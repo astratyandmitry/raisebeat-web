@@ -28,8 +28,8 @@ return new class extends Migration{
             $table->string('avatar_url')->nullable();
             $table->string('country', 2)->nullable()->comment(Country::class);
             $table->string('city', 40)->nullable();
-            $table->string('timezone', 9)->default(Timezone::UTC_PLUS_05_00)->comment(Timezone::class);
-            $table->string('language', 2)->default(Language::Russian)->comment(Language::class);
+            $table->string('timezone', 9)->comment(Timezone::class);
+            $table->string('language', 2)->comment(Language::class);
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_blocked')->default(false);
             $table->timestamps();

@@ -3,7 +3,9 @@
 namespace App\Models\Abstracts;
 
 use App\Models\Contracts\Linkable as LinkableContract;
+use App\Models\Contracts\Verifiable as VerifiableContract;
 use App\Models\Traits\Linkable;
+use App\Models\Traits\Verifiable;
 
 /**
  * @property-read string $slug
@@ -16,9 +18,9 @@ use App\Models\Traits\Linkable;
  * @property-read string|null $contact_phone
  * @property-read boolean $is_public
  */
-abstract class Organization extends Model implements LinkableContract
+abstract class Organization extends Model implements VerifiableContract, LinkableContract
 {
-    use Linkable;
+    use Verifiable, Linkable;
 
     protected function casts(): array
     {
