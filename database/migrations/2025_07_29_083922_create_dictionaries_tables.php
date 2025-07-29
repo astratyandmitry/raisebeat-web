@@ -44,7 +44,7 @@ return new class extends Migration{
             $className = pathinfo($file, PATHINFO_FILENAME);
             $fullClass = "App\\Models\\Dictionaries\\$className";
 
-            if ($className === 'Dictionary' || ! class_exists($fullClass)) {
+            if (! class_exists($fullClass)) {
                 continue;
             }
 

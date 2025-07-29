@@ -4,7 +4,7 @@ namespace App\Models\Enums;
 
 use App\Support\Traits\HasLocalizedInformation;
 
-enum OutletType: string
+enum MediaType: string
 {
     use HasLocalizedInformation;
 

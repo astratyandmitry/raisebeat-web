@@ -10,7 +10,7 @@ use App\Models\Enums\Language;
 use App\Models\Enums\Country;
 use App\Models\Enums\MemberType;
 use App\Models\Enums\MetricType;
-use App\Models\Enums\OutletType;
+use App\Models\Enums\MediaType;
 use App\Models\Enums\PostType;
 use App\Models\Enums\Region;
 use App\Models\Enums\StartupStage;
@@ -170,13 +170,13 @@ return [
         JobType::Freelance->value => 'Freelance',
     ],
 
-    OutletType::class => [
-        OutletType::NewsSite->value => 'News site',
-        OutletType::Blog->value => 'Blog',
-        OutletType::Podcast->value => 'Podcast',
-        OutletType::Youtube->value => 'YouTube',
-        OutletType::Telegram->value => 'Telegram',
-        OutletType::Community->value => 'Community',
+    MediaType::class => [
+        MediaType::NewsSite->value => 'News site',
+        MediaType::Blog->value => 'Blog',
+        MediaType::Podcast->value => 'Podcast',
+        MediaType::Youtube->value => 'YouTube',
+        MediaType::Telegram->value => 'Telegram',
+        MediaType::Community->value => 'Community',
     ],
 
     PostType::class => [

@@ -1,11 +1,13 @@
 <?php
 
+use App\Models\Enums\Country;
+use App\Models\Enums\Language;
+use App\Models\Enums\Timezone;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration{
     /**
      * Run the migrations.
      */
@@ -13,12 +15,26 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->uuid()->unique();
+            $table->string('email', 80)->unique();
+            $table->timestamp('email_verified_at')->nullable()->index();
             $table->string('password');
             $table->rememberToken();
+            $table->string('first_name', 40);
+            $table->string('last_name', 40);
+            $table->string('username', 40)->unique()->index();
+            $table->string('headline', 120)->nullable();
+            $table->text('bio')->nullable();
+            $table->string('avatar_url')->nullable();
+            $table->string('country', 2)->nullable()->comment(Country::class);
+            $table->string('city', 40)->nullable();
+            $table->string('timezone', 9)->default(Timezone::UTC_PLUS_05_00)->comment(Timezone::class);
+            $table->string('language', 2)->default(Language::Russian)->comment(Language::class);
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_blocked')->default(false);
             $table->timestamps();
+
+            $table->index(['country', 'city']);
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
