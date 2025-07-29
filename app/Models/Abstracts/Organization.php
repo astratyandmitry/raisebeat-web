@@ -2,6 +2,9 @@
 
 namespace App\Models\Abstracts;
 
+use App\Models\Contracts\Linkable as LinkableContract;
+use App\Models\Traits\Linkable;
+
 /**
  * @property-read string $slug
  * @property-read string $name
@@ -13,8 +16,10 @@ namespace App\Models\Abstracts;
  * @property-read string|null $contact_phone
  * @property-read boolean $is_public
  */
-abstract class Organization extends Model
+abstract class Organization extends Model implements LinkableContract
 {
+    use Linkable;
+
     protected function casts(): array
     {
         return [

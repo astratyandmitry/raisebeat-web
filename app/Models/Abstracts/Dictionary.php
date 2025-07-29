@@ -15,4 +15,13 @@ abstract class Dictionary extends Model
     use HasTranslations;
 
     protected array $translatable = ['name'];
+
+    public static function boot(): void
+    {
+        parent::boot();
+
+        self::creating(function (self $model): void {
+            $model->sort_order = (int) self::query()->max('sort_order') + 1;
+        });
+    }
 }

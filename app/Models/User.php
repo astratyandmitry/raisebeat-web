@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use App\Models\Abstracts\Model;
+use App\Models\Contracts\Linkable as LinkableContract;
 use App\Models\Enums\Country;
 use App\Models\Enums\Language;
 use App\Models\Enums\Timezone;
+use App\Models\Traits\Linkable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -40,10 +42,11 @@ use Illuminate\Notifications\Notifiable;
 final class User extends Model implements
     AuthenticatableContract,
     AuthorizableContract,
-    CanResetPasswordContract
+    CanResetPasswordContract,
+    LinkableContract
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
+    use HasFactory, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, Linkable;
 
     protected $guarded = ['is_admin', 'is_blocked'];
 
