@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
+
 /**
  * @property int $id
  * @property \Ramsey\Uuid\Uuid $uuid
@@ -10,5 +12,12 @@ namespace App\Models;
  */
 class Model extends \Illuminate\Database\Eloquent\Model
 {
-    //
+    public static function boot(): void
+    {
+        parent::boot();
+
+        self::creating(function (self $model) {
+            $model->uuid = Str::uuid();
+        });
+    }
 }
