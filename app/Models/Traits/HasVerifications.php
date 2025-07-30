@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 /**
  * @mixin \App\Models\Abstracts\Model
  */
-trait Verifiable
+trait HasVerifications
 {
     public function latest_verification(): HasOne
     {

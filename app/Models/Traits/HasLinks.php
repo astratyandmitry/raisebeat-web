@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 /**
  * @mixin \App\Models\Abstracts\Model
  */
-trait Linkable
+trait HasLinks
 {
     public function social_links(): MorphMany
     {

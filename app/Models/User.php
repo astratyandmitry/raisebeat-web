@@ -7,7 +7,7 @@ use App\Models\Contracts\Linkable as LinkableContract;
 use App\Models\Enums\Country;
 use App\Models\Enums\Language;
 use App\Models\Enums\Timezone;
-use App\Models\Traits\Linkable;
+use App\Models\Traits\HasLinks;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -46,7 +46,7 @@ final class User extends Model implements
     LinkableContract
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, Linkable;
+    use HasFactory, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasLinks;
 
     protected $guarded = ['is_admin', 'is_blocked'];
 

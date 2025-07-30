@@ -4,8 +4,8 @@ namespace App\Models\Abstracts;
 
 use App\Models\Contracts\Linkable as LinkableContract;
 use App\Models\Contracts\Verifiable as VerifiableContract;
-use App\Models\Traits\Linkable;
-use App\Models\Traits\Verifiable;
+use App\Models\Traits\HasLinks;
+use App\Models\Traits\HasVerifications;
 
 /**
  * @property-read string $slug
@@ -20,7 +20,7 @@ use App\Models\Traits\Verifiable;
  */
 abstract class Organization extends Model implements VerifiableContract, LinkableContract
 {
-    use Verifiable, Linkable;
+    use HasVerifications, HasLinks;
 
     protected function casts(): array
     {
