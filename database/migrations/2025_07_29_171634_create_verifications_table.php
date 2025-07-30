@@ -13,6 +13,7 @@ return new class extends Migration{
     {
         Schema::create('verifications', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
             $table->string('verifiable_type');
             $table->unsignedInteger('verifiable_id');
             $table->string('status', 20)->comment(VerificationStatus::class)->index();

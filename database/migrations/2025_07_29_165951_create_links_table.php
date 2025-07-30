@@ -13,6 +13,7 @@ return new class extends Migration{
     {
         Schema::create('links', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
             $table->string('linkable_type');
             $table->unsignedInteger('linkable_id');
             $table->string('type', 40)->comment(SocialLinkType::class);

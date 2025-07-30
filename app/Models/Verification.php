@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Abstracts\Model;
 use App\Models\Enums\VerificationStatus;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * @property-read string $verifiable_type
@@ -12,6 +13,7 @@ use App\Models\Enums\VerificationStatus;
  * @property-read \App\Models\Enums\VerificationStatus $status
  * @property-read \Carbon\Carbon|null $requested_at
  * @property-read \Carbon\Carbon|null $responded_at
+ * @property-read \App\Models\Contracts\Verifiable $verifiable
  */
 final class Verification extends Model
 {
@@ -23,5 +25,10 @@ final class Verification extends Model
             'requested_at' => 'datetime',
             'verified_at' => 'datetime',
         ];
+    }
+
+    public function verifiable(): MorphTo
+    {
+        return $this->morphTo();
     }
 }

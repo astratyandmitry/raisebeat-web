@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // todo: classmap
+        // todo: nuno setup
     }
 }
