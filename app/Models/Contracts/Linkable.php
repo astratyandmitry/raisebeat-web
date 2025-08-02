@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
- * @property-read Link[]|Collection $social_links
+ * @property-read Link[]|Collection $links
  */
 interface Linkable
 {
-    public function social_links(): MorphMany;
+    public function links(): MorphMany;
 }

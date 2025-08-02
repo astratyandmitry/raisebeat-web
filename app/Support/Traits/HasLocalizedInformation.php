@@ -11,6 +11,9 @@ trait HasLocalizedInformation
         return __('enums.'.static::class.'.'.$this->value);
     }
 
+    /**
+     * @return array<int|string, string>
+     */
     public static function options(): array
     {
         return collect(static::cases())->mapWithKeys(fn($case) => [

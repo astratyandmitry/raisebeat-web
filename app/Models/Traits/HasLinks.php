@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 trait HasLinks
 {
-    public function social_links(): MorphMany
+    public function links(): MorphMany
     {
         return $this->morphMany(Link::class, 'social_linkable');
     }

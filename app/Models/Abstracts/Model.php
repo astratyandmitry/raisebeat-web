@@ -9,8 +9,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 /**
+ * @property string $uuid
  * @property-read int $id
- * @property-read Uuid $uuid
  * @property-read Carbon $created_at
  * @property-read Carbon $updated_at
  */
@@ -23,7 +23,7 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model
         parent::boot();
 
         self::creating(function (self $model): void {
-            $model->uuid = Str::uuid();
+            $model->uuid = Str::uuid()->toString();
         });
     }
 }
