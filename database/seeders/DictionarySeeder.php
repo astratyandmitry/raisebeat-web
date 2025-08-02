@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 abstract class DictionarySeeder extends Seeder
@@ -24,7 +25,7 @@ abstract class DictionarySeeder extends Seeder
     public function run(): void
     {
         collect($this->data)
-            ->each(function (string $name, string $key) {
+            ->each(function (string $name, string $key): void {
                 $this->getModelClassName()::create([
                     'name' => ['en' => $name, 'ru' => $name],
                     'key' => $key,

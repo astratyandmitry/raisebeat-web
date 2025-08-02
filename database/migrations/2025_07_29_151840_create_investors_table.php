@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Enums\Region;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -11,7 +13,7 @@ return new class extends Migration{
      */
     public function up(): void
     {
-        Schema::create('investors', function (Blueprint $table) {
+        Schema::create('investors', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->decimal('check_size_min')->nullable();

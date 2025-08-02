@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Abstracts;
 
 use App\Models\Contracts\Linkable as LinkableContract;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Enums\Country;
 use App\Models\Enums\FundraisingRound;
 use App\Models\Enums\FundraisingStatus;
@@ -16,7 +18,7 @@ return new class extends Migration{
      */
     public function up(): void
     {
-        Schema::create('startups', function (Blueprint $table) {
+        Schema::create('startups', function (Blueprint $table): void {
             $table->id();
             $table->uuid()->unique();
             $table->foreignId('user_id')->constrained();

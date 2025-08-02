@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Contracts;
 
+use App\Models\Link;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
- * @property-read \App\Models\Link[]|\Illuminate\Database\Eloquent\Collection $social_links
+ * @property-read Link[]|Collection $social_links
  */
 interface Linkable
 {

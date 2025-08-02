@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Accelerator;
+declare(strict_types=1);
 use App\Models\Enums\Country;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,7 +12,7 @@ return new class extends Migration{
      */
     public function up(): void
     {
-        Schema::create('accelerators', function (Blueprint $table) {
+        Schema::create('accelerators', function (Blueprint $table): void {
             $table->id();
             $table->uuid()->unique();
             $table->foreignId('user_id')->constrained();

@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Traits;
 
+use App\Models\Abstracts\Model;
 use App\Models\Link;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
- * @mixin \App\Models\Abstracts\Model
+ * @mixin Model
  */
 trait HasLinks
 {

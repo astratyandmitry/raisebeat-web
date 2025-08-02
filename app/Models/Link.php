@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use App\Models\Contracts\Verifiable;
 use App\Models\Abstracts\Model;
 use App\Models\Enums\SocialLinkType;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -10,8 +13,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property-read string $linkable_type
  * @property-read string $linkable_id
  * @property-read string $url
- * @property-read \App\Models\Enums\SocialLinkType $type
- * @property-read \App\Models\Contracts\Verifiable $linkable
+ * @property-read SocialLinkType $type
+ * @property-read Verifiable $linkable
  */
 final class Link extends Model
 {

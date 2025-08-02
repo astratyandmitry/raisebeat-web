@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\File;
@@ -12,7 +14,7 @@ return new class extends Migration{
     public function up(): void
     {
         $this->applyForDictionaries(function (string $table): void {
-            Schema::create($table, function (Blueprint $table) {
+            Schema::create($table, function (Blueprint $table): void {
                 $table->id();
                 $table->uuid()->unique();
                 $table->string('key', 40)->unique()->index();

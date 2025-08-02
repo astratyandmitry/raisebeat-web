@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Models\Abstracts\Organization;
@@ -20,14 +22,13 @@ use App\Models\Enums\TeamSize;
  * @property-read string|null $deck_url
  * @property-read boolean $is_demo_private
  * @property-read boolean $is_deck_private
- * @property-read \App\Models\Enums\Country $country
- * @property-read \App\Models\Enums\Region $market_region
- * @property-read \App\Models\Enums\BusinessModel $business_model
- * @property-read \App\Models\Enums\StartupStage $stage
- * @property-read \App\Models\Enums\FundraisingStatus $fundraising_status
- * @property-read \App\Models\Enums\FundraisingRound|null $fundraising_round
- * @property-read \App\Models\Enums\TeamSize $team_size
- *
+ * @property-read Country $country
+ * @property-read Region $market_region
+ * @property-read BusinessModel $business_model
+ * @property-read StartupStage $stage
+ * @property-read FundraisingStatus $fundraising_status
+ * @property-read FundraisingRound|null $fundraising_round
+ * @property-read TeamSize $team_size
  */
 final class Startup extends Organization
 {

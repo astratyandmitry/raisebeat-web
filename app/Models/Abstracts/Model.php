@@ -1,14 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Abstracts;
 
+use Ramsey\Uuid\Uuid;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 /**
  * @property-read int $id
- * @property-read \Ramsey\Uuid\Uuid $uuid
- * @property-read \Carbon\Carbon $created_at
- * @property-read \Carbon\Carbon $updated_at
+ * @property-read Uuid $uuid
+ * @property-read Carbon $created_at
+ * @property-read Carbon $updated_at
  */
 abstract class Model extends \Illuminate\Database\Eloquent\Model
 {
@@ -18,7 +22,7 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model
     {
         parent::boot();
 
-        self::creating(function (self $model) {
+        self::creating(function (self $model): void {
             $model->uuid = Str::uuid();
         });
     }

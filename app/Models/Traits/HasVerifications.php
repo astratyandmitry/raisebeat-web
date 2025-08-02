@@ -1,13 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Traits;
 
+use App\Models\Abstracts\Model;
 use App\Models\Verification;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * @mixin \App\Models\Abstracts\Model
+ * @mixin Model
  */
 trait HasVerifications
 {
