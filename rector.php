@@ -19,7 +19,10 @@ return RectorConfig::configure()
         AddTypeToConstRector::class,
         AddOverrideAttributeToOverriddenMethodsRector::class,
     ])
-    ->withImportNames(removeUnusedImports: true)
+    ->withImportNames(
+        importDocBlockNames: false,
+        removeUnusedImports: true,
+    )
     ->withPreparedSets(
 
         deadCode: true,

@@ -9,7 +9,7 @@ use App\Models\Enums\MediaType;
 
 /**
  * @property-read string|null $submission_url
- * @property-read MediaType $type
+ * @property-read \App\Models\Enums\MediaType $type
  */
 final class Media extends Organization
 {

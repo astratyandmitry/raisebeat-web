@@ -16,9 +16,9 @@ use App\Models\Enums\Region;
  * @property-read string $city
  * @property-read boolean $is_lead_investor
  * @property-read boolean $is_follow_investor
- * @property-read Region $focus_region
- * @property-read InvestmentModel $investment_model
- * @property-read Country $country
+ * @property-read \App\Models\Enums\Region $focus_region
+ * @property-read \App\Models\Enums\InvestmentModel $investment_model
+ * @property-read \App\Models\Enums\Country $country
  */
 final class Found extends Organization
 {

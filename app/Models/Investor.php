@@ -12,7 +12,7 @@ use App\Models\Enums\Region;
  * @property-read float|null $check_size_min
  * @property-read float|null $check_size_max
  * @property-read string $focus_headline
- * @property-read Region $focus_region
+ * @property-read \App\Models\Enums\Region $focus_region
  */
 final class Investor extends Model
 {

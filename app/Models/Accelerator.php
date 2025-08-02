@@ -10,9 +10,9 @@ use App\Models\Enums\Country;
 /**
  * @property-read int $founded_year
  * @property-read string $city
- * @property-read Country $country
+ * @property-read \App\Models\Enums\Country $country
  */
-class Accelerator extends Organization
+final class Accelerator extends Organization
 {
     protected function casts(): array
     {

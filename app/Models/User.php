@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Carbon\Carbon;
-use Database\Factories\UserFactory;
 use App\Models\Abstracts\Model;
 use App\Models\Contracts\Linkable as LinkableContract;
 use App\Models\Enums\Country;
@@ -36,10 +34,10 @@ use Illuminate\Notifications\Notifiable;
  * @property-read string|null $city
  * @property-read bool $is_admin
  * @property-read bool $is_blocked
- * @property-read Country|null $country
- * @property-read Timezone $timezone
- * @property-read Language $language
- * @property-read Carbon $email_verified_at
+ * @property-read \App\Models\Enums\Country|null $country
+ * @property-read \App\Models\Enums\Timezone $timezone
+ * @property-read \App\Models\Enums\Language $language
+ * @property-read \Carbon\Carbon $email_verified_at
  *
  * @property-read Investor|null $investor_profile
  */
@@ -49,7 +47,7 @@ final class User extends Model implements
     CanResetPasswordContract,
     LinkableContract
 {
-    /** @use HasFactory<UserFactory> */
+    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasLinks;
 
     protected $guarded = ['is_admin', 'is_blocked'];

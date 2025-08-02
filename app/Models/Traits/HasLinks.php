@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models\Traits;
 
-use App\Models\Abstracts\Model;
 use App\Models\Link;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
- * @mixin Model
+ * @mixin \App\Models\Abstracts\Model
  */
 trait HasLinks
 {
