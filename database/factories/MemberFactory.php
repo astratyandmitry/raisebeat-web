@@ -15,7 +15,7 @@ final class MemberFactory extends Factory
     {
         return [
             'user_id' => User::query()->inRandomOrder()->first(),
-            'headline' => $this->faker->optional()->sentence,
+            'headline' => $this->faker->optional()->sentence(4),
             'type' => $this->faker->randomElement(MemberType::cases())
         ];
     }

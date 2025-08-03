@@ -9,6 +9,7 @@ use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Commentable;
 use App\Models\Contracts\Likeable;
 use App\Models\Traits\HasReceivedActivities;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -27,7 +28,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 final class Comment extends Model implements Likeable, CanReceiveActivity
 {
-    use SoftDeletes, HasReceivedActivities;
+    /** @use HasFactory<\Database\Factories\CommentFactory> */
+    use HasFactory, SoftDeletes, HasReceivedActivities;
 
     public function parent(): BelongsTo
     {

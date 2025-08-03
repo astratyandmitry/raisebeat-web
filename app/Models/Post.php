@@ -12,6 +12,7 @@ use App\Models\Contracts\Viewable;
 use App\Models\Enums\PostType;
 use App\Models\Traits\HasComments;
 use App\Models\Traits\HasReceivedActivities;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -20,7 +21,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property-read int $user_id
  * @property-read string $postable_type
  * @property-read int $postable_id
- * @property-read string $title
+ * @property-read string|null $title
  * @property-read string|null $description
  * @property-read string|null $content
  * @property-read string|null $repost_comment
@@ -34,7 +35,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 final class Post extends Model implements Viewable, Likeable, CanReceiveActivity, Commentable
 {
-    use HasReceivedActivities, HasComments;
+    /** @use HasFactory<\Database\Factories\PostFactory> */
+    use HasFactory, HasReceivedActivities, HasComments;
 
     protected function casts(): array
     {

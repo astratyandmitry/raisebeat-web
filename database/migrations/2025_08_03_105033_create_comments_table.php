@@ -14,6 +14,7 @@ return new class extends Migration{
     {
         Schema::create('comments', function (Blueprint $table): void {
             $table->id();
+            $table->uuid()->unique();
             $table->foreignId('parent_id')->nullable()->constrained('posts');
             $table->foreignId('user_id')->constrained();
             $table->morphs('commentable');

@@ -20,7 +20,7 @@ return new class extends Migration{
             $table->foreignId('user_id')->constrained();
             $table->morphs('postable');
             $table->string('type', 40)->index()->comment(PostType::class);
-            $table->string('title', 200);
+            $table->string('title', 200)->nullable();
             $table->string('description', 1000)->nullable();
             $table->longText('content')->nullable();
             $table->string('repost_comment', 1000)->nullable();
