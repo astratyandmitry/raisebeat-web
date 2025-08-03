@@ -15,6 +15,7 @@ use App\Models\Media;
 use App\Models\Member;
 use App\Models\Notification;
 use App\Models\Startup;
+use App\Models\StartupMetric;
 use App\Models\User;
 use App\Models\Verification;
 use Illuminate\Database\Seeder;
@@ -30,6 +31,8 @@ final class DatabaseSeeder extends Seeder
         Startup::factory(50)
             ->has(Verification::factory(), 'verifications_history')
             ->has(Member::factory(5))
+            ->has(Link::factory(3))
+            ->has(StartupMetric::factory(3), 'metrics')
             ->create();
 
         Investor::factory(20)
@@ -42,12 +45,14 @@ final class DatabaseSeeder extends Seeder
             ->has(AcceleratorParticipant::factory(4), 'participators')
             ->has(Member::factory(2))
             ->has(Investment::factory(5))
+            ->has(Link::factory(5))
             ->create();
 
         Found::factory(20)
             ->has(Verification::factory(), 'verifications_history')
             ->has(Member::factory(2))
             ->has(Investment::factory(10))
+            ->has(Link::factory(2))
             ->create();
 
         Media::factory(10)

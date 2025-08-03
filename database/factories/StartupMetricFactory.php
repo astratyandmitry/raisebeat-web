@@ -2,13 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\Enums\MemberType;
 use App\Models\Startup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Investment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StartupMetric>
  */
-final class InvestmentFactory extends Factory
+final class StartupMetricFactory extends Factory
 {
     public function definition(): array
     {
@@ -16,7 +17,8 @@ final class InvestmentFactory extends Factory
             'startup_id' => Startup::query()->inRandomOrder()->first(),
             'year' => $this->faker->numberBetween(2000, 2020),
             'quarter' => $this->faker->randomElement(['q1', 'q2', 'q3', 'q4']),
-            'amount_usd' => $this->faker->numberBetween(10_000, 100_000),
+            'value' => $this->faker->numberBetween(10, 100),
+            'type' => $this->faker->randomElement(MemberType::cases()),
             'is_confirmed' => $this->faker->boolean,
         ];
     }
