@@ -8,6 +8,7 @@ namespace Database\Seeders;
 use App\Models\Accelerator;
 use App\Models\AcceleratorParticipant;
 use App\Models\Found;
+use App\Models\Investment;
 use App\Models\Investor;
 use App\Models\Link;
 use App\Models\Media;
@@ -26,24 +27,27 @@ final class DatabaseSeeder extends Seeder
             ->has(Notification::factory(10))
             ->create();
 
-        Investor::factory(20)
-            ->has(Verification::factory(), 'verifications_history')
-            ->create();
-
         Startup::factory(50)
             ->has(Verification::factory(), 'verifications_history')
             ->has(Member::factory(5))
+            ->create();
+
+        Investor::factory(20)
+            ->has(Verification::factory(), 'verifications_history')
+            ->has(Investment::factory(2))
             ->create();
 
         Accelerator::factory(10)
             ->has(Verification::factory(), 'verifications_history')
             ->has(AcceleratorParticipant::factory(4), 'participators')
             ->has(Member::factory(2))
+            ->has(Investment::factory(5))
             ->create();
 
         Found::factory(20)
             ->has(Verification::factory(), 'verifications_history')
             ->has(Member::factory(2))
+            ->has(Investment::factory(10))
             ->create();
 
         Media::factory(10)

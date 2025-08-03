@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Abstracts\Model;
 use App\Models\Contracts\Confirmable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -21,6 +22,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 final class Investment extends Model implements Confirmable
 {
+    /** @use HasFactory<\Database\Factories\InvestorFactory> */
+    use HasFactory;
+
     protected function casts(): array
     {
         return [
