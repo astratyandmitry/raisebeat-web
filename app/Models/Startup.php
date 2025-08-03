@@ -44,6 +44,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @property-read \App\Models\AcceleratorParticipant[]|\Illuminate\Database\Eloquent\Collection $accelerators_participation
  * @property-read \App\Models\Investment[]|\Illuminate\Database\Eloquent\Collection $investments
+ * @property-read \App\Models\StartupMetric[]|\Illuminate\Database\Eloquent\Collection $metrics
  */
 final class Startup extends Organization implements
     CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable
@@ -75,5 +76,10 @@ final class Startup extends Organization implements
     public function investments(): HasMany
     {
         return $this->hasMany(Investment::class);
+    }
+
+    public function metrics(): HasMany
+    {
+        return $this->hasMany(StartupMetric::class);
     }
 }
