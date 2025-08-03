@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Enums;
 
-enum SocialLinkType: string
+enum LinkType: string
 {
     case LinkedIn = 'linkedin';
     case Facebook = 'facebook';

@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Models\Abstracts\Model;
 use App\Models\Enums\VerificationStatus;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property-read string $verifiable_type
@@ -19,13 +20,15 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 final class Verification extends Model
 {
+    use SoftDeletes;
+
     protected function casts(): array
     {
         return [
             'verifiable_id' => 'integer',
             'status' => VerificationStatus::class,
             'requested_at' => 'datetime',
-            'verified_at' => 'datetime',
+            'responded_at' => 'datetime',
         ];
     }
 

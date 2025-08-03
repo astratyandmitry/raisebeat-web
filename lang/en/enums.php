@@ -16,6 +16,7 @@ use App\Models\Enums\Region;
 use App\Models\Enums\StartupStage;
 use App\Models\Enums\TeamSize;
 use App\Models\Enums\Timezone;
+use App\Models\Enums\VerificationStatus;
 
 return [
     Language::class => [
@@ -187,5 +188,11 @@ return [
         PostType::Hiring->value => 'Hiring',
         PostType::MediaMention->value => 'Media Mention',
         PostType::Commentary->value => 'Commentary',
+    ],
+
+    VerificationStatus::class => [
+        VerificationStatus::PENDING->value => 'Pending',
+        VerificationStatus::ACCEPTED->value => 'Accepted',
+        VerificationStatus::REJECTED->value => 'Rejected',
     ],
 ];
