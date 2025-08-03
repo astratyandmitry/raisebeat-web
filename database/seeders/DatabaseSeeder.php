@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Accelerator;
+use App\Models\AcceleratorParticipant;
 use App\Models\Found;
 use App\Models\Investor;
 use App\Models\Link;
@@ -29,22 +30,26 @@ final class DatabaseSeeder extends Seeder
             ->has(Verification::factory(), 'verifications_history')
             ->create();
 
+        Startup::factory(50)
+            ->has(Verification::factory(), 'verifications_history')
+            ->has(Member::factory(5))
+            ->create();
+
         Accelerator::factory(10)
             ->has(Verification::factory(), 'verifications_history')
-            ->has(Member::factory(3))
+            ->has(AcceleratorParticipant::factory(4), 'participators')
+            ->has(Member::factory(2))
             ->create();
 
         Found::factory(20)
             ->has(Verification::factory(), 'verifications_history')
+            ->has(Member::factory(2))
             ->create();
 
         Media::factory(10)
             ->has(Verification::factory(), 'verifications_history')
             ->has(Link::factory(3))
-            ->create();
-
-        Startup::factory(50)
-            ->has(Verification::factory(), 'verifications_history')
+            ->has(Member::factory(1))
             ->create();
 
         $this->call([
