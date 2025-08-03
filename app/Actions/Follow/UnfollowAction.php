@@ -3,11 +3,12 @@
 namespace App\Actions\Follow;
 
 use App\Models\Contracts\Followable;
+use App\Models\User;
 
 final class UnfollowAction
 {
-    public function execute(int $userId, Followable $followable): void
+    public function execute(User $user, Followable $followable): void
     {
-        $followable->followers()->detach($userId);
+        $followable->followers()->detach($user);
     }
 }
