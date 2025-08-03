@@ -17,7 +17,7 @@ use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @property-read int $user_id
@@ -48,8 +48,8 @@ abstract class Organization extends Model implements Verifiable, Linkable, Posta
         return $this->belongsTo(User::class);
     }
 
-    public function members(): HasMany
+    public function members(): MorphMany
     {
-        return $this->hasMany(Member::class);
+        return $this->morphMany(Member::class, 'organization');
     }
 }

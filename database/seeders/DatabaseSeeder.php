@@ -10,6 +10,7 @@ use App\Models\Found;
 use App\Models\Investor;
 use App\Models\Link;
 use App\Models\Media;
+use App\Models\Member;
 use App\Models\Notification;
 use App\Models\Startup;
 use App\Models\User;
@@ -30,6 +31,7 @@ final class DatabaseSeeder extends Seeder
 
         Accelerator::factory(10)
             ->has(Verification::factory(), 'verifications_history')
+            ->has(Member::factory(3))
             ->create();
 
         Found::factory(20)
