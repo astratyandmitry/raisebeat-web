@@ -17,7 +17,6 @@ final class AcceleratorFactory extends OrganizationFactory
             'founded_year' => $this->faker->year,
             'country' => $this->faker->randomElement(Country::cases()),
             'city' => $this->faker->city,
-            'is_public' => true,
         ];
     }
 }

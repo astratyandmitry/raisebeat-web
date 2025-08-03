@@ -17,6 +17,7 @@ use App\Models\Traits\HasLinks;
 use App\Models\Traits\HasPerformedActivities;
 use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property-read string|null $submission_url
@@ -25,7 +26,8 @@ use App\Models\Traits\HasVerifications;
 final class Media extends Organization implements
     CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable
 {
-    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications;
+    /** @use HasFactory<\Database\Factories\MediaFactory> */
+    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasFactory;
 
     protected function casts(): array
     {
