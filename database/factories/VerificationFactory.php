@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Enums\VerificationStatus;
@@ -14,9 +16,7 @@ final class VerificationFactory extends Factory
     {
         return [
             'status' => $this->faker->randomElement(VerificationStatus::cases()),
-            'responded_at' => function (array $attributes) {
-                return $attributes['status'] === VerificationStatus::Pending ? null : now();
-            },
+            'responded_at' => fn(array $attributes) => $attributes['status'] === VerificationStatus::Pending ? null : now(),
             'requested_at' => $this->faker->dateTimeBetween('-1 year'),
         ];
     }

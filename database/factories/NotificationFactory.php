@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
-use App\Models\Abstracts\Model;
 use App\Models\Accelerator;
 use App\Models\Enums\NotificationType;
 use App\Models\Found;

@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
  */
 final class UserFactory extends Factory
 {
-    protected static ?string $password = null;
+    private static ?string $password = null;
 
     public function definition(): array
     {
