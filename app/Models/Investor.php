@@ -21,6 +21,7 @@ use App\Models\Traits\HasPerformedActivities;
 use App\Models\Traits\HasPosts;
 use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property-read int $user_id
@@ -32,7 +33,8 @@ use App\Models\Traits\HasVerifications;
 final class Investor extends Model implements
     CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable, Investable, Postable
 {
-    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasInvestments, HasPosts;
+    /** @use HasFactory<\Database\Factories\InvestorFactory> */
+    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasInvestments, HasPosts, HasFactory;
 
     protected function casts(): array
     {

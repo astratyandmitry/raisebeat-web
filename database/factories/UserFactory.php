@@ -39,14 +39,14 @@ final class UserFactory extends Factory
         ];
     }
 
-    public function unverified(): static
+    public function unverified(): self
     {
         return $this->state(fn(array $attributes): array => [
             'email_verified_at' => null,
         ]);
     }
 
-    public function blocked(): static
+    public function blocked(): self
     {
         return $this->state(fn(array $attributes): array => [
             'is_blocked' => true,

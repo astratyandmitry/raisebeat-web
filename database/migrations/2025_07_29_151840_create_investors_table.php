@@ -15,6 +15,7 @@ return new class extends Migration{
     {
         Schema::create('investors', function (Blueprint $table): void {
             $table->id();
+            $table->uuid()->unique();
             $table->foreignId('user_id')->constrained();
             $table->decimal('check_size_min')->nullable();
             $table->decimal('check_size_max')->nullable();
