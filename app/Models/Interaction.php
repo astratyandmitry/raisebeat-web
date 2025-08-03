@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property-read \Carbon\Carbon|null $reviewed_at
  * @property-read \App\Models\Enums\InteractionType $type
  * @property-read \App\Models\Enums\InteractionStatus $status
+ * @property-read \App\Models\User $user
+ * @property-read \App\Models\Contracts\Interactable $from_entity
+ * @property-read \App\Models\Contracts\Interactable $to_entity
  */
 final class Interaction extends Model
 {
