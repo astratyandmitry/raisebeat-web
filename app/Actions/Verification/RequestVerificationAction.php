@@ -14,16 +14,16 @@ final readonly class RequestVerificationAction
     {
         $latestVerification = $verifiable->verifications_history()->latest()->first();
 
-        if ($latestVerification && $latestVerification->status === VerificationStatus::ACCEPTED) {
+        if ($latestVerification && $latestVerification->status === VerificationStatus::Accepted) {
             return null;
         }
 
-        if ($latestVerification && $latestVerification->status === VerificationStatus::PENDING) {
+        if ($latestVerification && $latestVerification->status === VerificationStatus::Pending) {
             $latestVerification->delete();
         }
 
         return $verifiable->verifications_history()->create([
-            'status' => VerificationStatus::PENDING,
+            'status' => VerificationStatus::Pending,
             'requested_at' => now(),
         ]);
     }

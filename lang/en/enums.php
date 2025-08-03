@@ -191,8 +191,8 @@ return [
     ],
 
     VerificationStatus::class => [
-        VerificationStatus::PENDING->value => 'Pending',
-        VerificationStatus::ACCEPTED->value => 'Accepted',
-        VerificationStatus::REJECTED->value => 'Rejected',
+        VerificationStatus::Pending->value => 'Pending',
+        VerificationStatus::Accepted->value => 'Accepted',
+        VerificationStatus::Rejected->value => 'Rejected',
     ],
 ];

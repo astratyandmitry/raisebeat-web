@@ -12,7 +12,7 @@ final readonly class RejectVerificationAction
     public function execute(Verification $verification, string $comment): Verification
     {
         $verification->update([
-            'status' => VerificationStatus::REJECTED,
+            'status' => VerificationStatus::Rejected,
             'responded_at' => now(),
             'comment' => $comment,
         ]);

@@ -12,7 +12,7 @@ final readonly class ApproveVerificationAction
     public function execute(Verification $verification): Verification
     {
         $verification->update([
-            'status' => VerificationStatus::ACCEPTED,
+            'status' => VerificationStatus::Accepted,
             'responded_at' => now(),
         ]);
 

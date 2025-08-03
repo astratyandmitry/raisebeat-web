@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Models\Traits;
 
 use App\Models\Verification;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * @mixin \App\Models\Abstracts\Model
@@ -14,13 +14,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 trait HasVerifications
 {
-    public function latest_verification(): HasOne
+    public function latest_verification(): MorphOne
     {
-        return $this->hasOne(Verification::class)->latestOfMany();
+        return $this->morphOne(Verification::class, 'verifiable')->latestOfMany();
     }
 
-    public function verifications_history(): HasMany
+    public function verifications_history(): MorphMany
     {
-        return $this->hasMany(Verification::class)->latest();
+        return $this->morphMany(Verification::class, 'verifiable')->latest();
     }
 }

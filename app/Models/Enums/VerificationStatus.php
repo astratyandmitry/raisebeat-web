@@ -8,7 +8,7 @@ enum VerificationStatus: string
 {
     use HasLocalizedInformation;
 
-    case PENDING = 'pending';
-    case ACCEPTED = 'accepted';
-    case REJECTED = 'rejected';
+    case Pending = 'pending';
+    case Accepted = 'accepted';
+    case Rejected = 'rejected';
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\Contracts;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * @property-read \App\Models\Verification|null $latest_verification
@@ -15,12 +15,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 interface Verifiable
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Verification>
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne<\App\Models\Verification>
      */
-    public function latest_verification(): HasOne;
+    public function latest_verification(): MorphOne;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Verification>
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\Verification>
      */
-    public function verifications_history(): HasMany;
+    public function verifications_history(): MorphMany;
 }
