@@ -11,12 +11,14 @@ use App\Models\Contracts\Followable;
 use App\Models\Contracts\HasInvestments;
 use App\Models\Contracts\Investable;
 use App\Models\Contracts\Linkable;
+use App\Models\Contracts\Postable;
 use App\Models\Contracts\Verifiable;
 use App\Models\Contracts\Viewable;
 use App\Models\Enums\Region;
 use App\Models\Traits\HasFollowers;
 use App\Models\Traits\HasLinks;
 use App\Models\Traits\HasPerformedActivities;
+use App\Models\Traits\HasPosts;
 use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
 
@@ -28,9 +30,9 @@ use App\Models\Traits\HasVerifications;
  * @property-read \App\Models\Enums\Region $focus_region
  */
 final class Investor extends Model implements
-    CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable, Investable
+    CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable, Investable, Postable
 {
-    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasInvestments;
+    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasInvestments, HasPosts;
 
     protected function casts(): array
     {

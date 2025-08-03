@@ -9,4 +9,7 @@ enum ActivityType: string
     use HasLocalizedInformation;
 
     case View = 'view';
+    case Like = 'like';
+    case Post = 'post';
+    case Repost = 'repost';
 }

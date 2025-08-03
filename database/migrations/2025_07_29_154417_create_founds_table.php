@@ -34,6 +34,7 @@ return new class extends Migration{
             $table->string('investment_model')->comment(InvestmentModel::class)->index();
             $table->string('country', 2)->comment(Country::class);
             $table->string('city', 40);
+            $table->unsignedInteger('count_viewed')->default(0);
             $table->boolean('is_lead_investor')->default(false)->index();
             $table->boolean('is_follow_investor')->default(false)->index();
             $table->boolean('is_public')->default(false)->index();

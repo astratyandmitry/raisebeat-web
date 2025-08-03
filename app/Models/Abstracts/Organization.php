@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models\Abstracts;
 
-use App\Models\Contracts\Linkable as LinkableContract;
-use App\Models\Contracts\Verifiable as VerifiableContract;
+use App\Models\Contracts\CanPerformActivity;
+use App\Models\Contracts\CanReceiveActivity;
+use App\Models\Contracts\Linkable;
+use App\Models\Contracts\Postable;
+use App\Models\Contracts\Verifiable;
 use App\Models\Member;
 use App\Models\Traits\HasLinks;
+use App\Models\Traits\HasPerformedActivities;
+use App\Models\Traits\HasPosts;
+use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,9 +32,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read boolean $is_public
  * @property-read \App\Models\User $owner
  */
-abstract class Organization extends Model implements VerifiableContract, LinkableContract
+abstract class Organization extends Model implements Verifiable, Linkable, Postable, CanReceiveActivity, CanPerformActivity
 {
-    use HasVerifications, HasLinks;
+    use HasVerifications, HasLinks, HasPosts, HasReceivedActivities, HasPerformedActivities;
 
     protected function casts(): array
     {

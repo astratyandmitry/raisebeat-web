@@ -20,6 +20,7 @@ return new class extends Migration{
             $table->string('description', 1000);
             $table->longText('content');
             $table->string('feedback_email', 80);
+            $table->unsignedInteger('count_views')->default(0);
             $table->boolean('is_applicable')->default(false)->index9;
             $table->timestamps();
         });

@@ -20,6 +20,7 @@ return new class extends Migration{
             $table->decimal('check_size_max')->nullable();
             $table->string('focus_headline', 120);
             $table->string('focus_region', 40)->comment(Region::class)->index();
+            $table->unsignedInteger('count_viewed')->default(0);
             $table->timestamps();
 
             $table->index(['check_size_min', 'check_size_max']);

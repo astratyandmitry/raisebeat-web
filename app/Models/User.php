@@ -51,6 +51,7 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \App\Models\Notification[]|\Illuminate\Database\Eloquent\Collection $notifications
  * @property-read \App\Models\Interaction[]|\Illuminate\Database\Eloquent\Collection $interactions
  * @property-read \App\Models\Member[]|\Illuminate\Database\Eloquent\Collection $memberships
+ * @property-read \App\Models\Post[]|\Illuminate\Database\Eloquent\Collection $posts
  */
 final class User extends Model implements
     AuthenticatableContract,
@@ -107,5 +108,10 @@ final class User extends Model implements
     public function memberships(): HasMany
     {
         return $this->hasMany(Member::class);
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 }

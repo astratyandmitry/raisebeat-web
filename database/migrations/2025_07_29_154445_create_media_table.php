@@ -27,6 +27,7 @@ return new class extends Migration{
             $table->string('contact_phone', 20)->nullable();
             $table->string('type', 20)->index()->comment(MediaType::class);
             $table->string('submission_url', 240)->nullable();
+            $table->unsignedInteger('count_viewed')->default(0);
             $table->boolean('is_public')->default(false)->index();
             $table->timestamps();
 

@@ -3,7 +3,10 @@
 namespace App\Models;
 
 use App\Models\Abstracts\Model;
+use App\Models\Contracts\CanReceiveActivity;
+use App\Models\Contracts\Viewable;
 use App\Models\Enums\VacancyType;
+use App\Models\Traits\HasReceivedActivities;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -16,8 +19,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read \App\Models\Enums\VacancyType $type
  * @property-read \App\Models\Startup $startup
  */
-final class StartupVacancy extends Model
+final class StartupVacancy extends Model implements Viewable, CanReceiveActivity
 {
+    use HasReceivedActivities;
+
     protected function casts(): array
     {
         return [

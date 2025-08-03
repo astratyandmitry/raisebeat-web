@@ -28,6 +28,7 @@ return new class extends Migration{
             $table->unsignedInteger('founded_year', 4);
             $table->string('country', 2)->comment(Country::class);
             $table->string('city', 40);
+            $table->unsignedInteger('count_viewed')->default(0);
             $table->boolean('is_public')->default(false)->index();
             $table->timestamps();
 
