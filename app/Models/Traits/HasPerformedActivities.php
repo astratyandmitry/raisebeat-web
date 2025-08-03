@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models\Traits;
+
+use App\Models\Activity;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
+/**
+ * @mixin \App\Models\Abstracts\Model
+ * @implements \App\Models\Contracts\CanReceiveActivity
+ */
+trait HasPerformedActivities
+{
+    public function performed_activities(): MorphMany
+    {
+        return $this->morphMany(Activity::class, 'performable');
+    }
+}

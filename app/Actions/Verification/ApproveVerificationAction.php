@@ -5,7 +5,7 @@ namespace App\Actions\Verification;
 use App\Models\Enums\VerificationStatus;
 use App\Models\Verification;
 
-final class ApproveVerificationAction
+final readonly class ApproveVerificationAction
 {
     public function execute(Verification $verification): Verification
     {

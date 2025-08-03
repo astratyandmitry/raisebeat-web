@@ -12,7 +12,7 @@ return new class extends Migration{
     {
         Schema::create('follows', function (Blueprint $table) {
             $table->id();
-            $table->uuid()->index();
+            $table->uuid()->unique();
             $table->foreignId('user_id')->constrained();
             $table->morphs('followable');
             $table->timestamps();

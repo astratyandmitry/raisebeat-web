@@ -6,7 +6,7 @@ use App\Models\Contracts\Verifiable;
 use App\Models\Enums\VerificationStatus;
 use App\Models\Verification;
 
-final class RequestVerificationAction
+final readonly class RequestVerificationAction
 {
     public function execute(Verifiable $verifiable): ?Verification
     {

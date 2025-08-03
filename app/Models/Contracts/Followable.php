@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 /**
  * @property-read int $followers_count
  * @property-read \App\Models\Follow[]|\Illuminate\Support\Collection $followers
+ * @mixin \App\Models\Abstracts\Model
  */
 interface Followable
 {

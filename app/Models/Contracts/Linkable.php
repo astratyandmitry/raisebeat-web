@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @property-read \App\Models\Link[]|\Illuminate\Database\Eloquent\Collection $links
+ * @mixin \App\Models\Abstracts\Model
  */
 interface Linkable
 {

@@ -25,7 +25,6 @@ final class Verification extends Model
     protected function casts(): array
     {
         return [
-            'verifiable_id' => 'integer',
             'status' => VerificationStatus::class,
             'requested_at' => 'datetime',
             'responded_at' => 'datetime',

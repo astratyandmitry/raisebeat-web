@@ -20,7 +20,6 @@ final class Link extends Model
     protected function casts(): array
     {
         return [
-            'linkable_id' => 'integer',
             'type' => LinkType::class,
         ];
     }

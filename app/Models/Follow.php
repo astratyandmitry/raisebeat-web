@@ -13,14 +13,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 final class Follow extends Model
 {
-    protected function casts(): array
-    {
-        return [
-            'user_id' => 'integer',
-            'followable_id' => 'integer',
-        ];
-    }
-
     public function followable(): MorphTo
     {
         return $this->morphTo();
