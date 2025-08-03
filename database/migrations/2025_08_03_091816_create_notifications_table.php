@@ -1,8 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use App\Models\Enums\ActivityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,13 +10,14 @@ return new class extends Migration{
      */
     public function up(): void
     {
-        Schema::create('activities', function (Blueprint $table): void {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
-            $table->morphs('performable');
-            $table->morphs('subjectable');
-            $table->string('type', 40)->index()->comment(ActivityType::class);
+            $table->foreignId('user_id')->constrained();
+            $table->morphs('entity');
+            $table->string('type', 40)->index();
             $table->json('data')->nullable();
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration{
      */
     public function down(): void
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('notifications');
     }
 };

@@ -17,7 +17,7 @@ return new class extends Migration{
             $table->id();
             $table->uuid()->unique();
             $table->morphs('verifiable');
-            $table->string('status', 20)->comment(VerificationStatus::class)->index();
+            $table->string('status', 20)->index()->comment(VerificationStatus::class)->index();
             $table->string('comment', 500)->nullable();
             $table->timestamp('requested_at')->nullable();
             $table->timestamp('responded_at')->nullable();

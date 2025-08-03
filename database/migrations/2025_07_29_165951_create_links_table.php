@@ -17,7 +17,7 @@ return new class extends Migration{
             $table->id();
             $table->uuid()->unique();
             $table->morphs('linkable');
-            $table->string('type', 40)->comment(LinkType::class);
+            $table->string('type', 40)->index()->comment(LinkType::class);
             $table->string('url', 240);
             $table->timestamps();
         });

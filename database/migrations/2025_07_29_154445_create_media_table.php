@@ -25,7 +25,7 @@ return new class extends Migration{
             $table->string('contact_website', 240)->nullable();
             $table->string('contact_email', 80)->nullable();
             $table->string('contact_phone', 20)->nullable();
-            $table->string('type', 20)->comment(MediaType::class);
+            $table->string('type', 20)->index()->comment(MediaType::class);
             $table->string('submission_url', 240)->nullable();
             $table->boolean('is_public')->default(false)->index();
             $table->timestamps();
