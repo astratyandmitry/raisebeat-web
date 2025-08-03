@@ -8,6 +8,7 @@ namespace Database\Seeders;
 use App\Models\Accelerator;
 use App\Models\Found;
 use App\Models\Investor;
+use App\Models\Link;
 use App\Models\Media;
 use App\Models\Startup;
 use App\Models\User;
@@ -21,7 +22,7 @@ final class DatabaseSeeder extends Seeder
         Investor::factory(20)->create();
         Accelerator::factory(10)->create();
         Found::factory(20)->create();
-        Media::factory(10)->create();
+        Media::factory(10)->has(Link::factory(3))->create();
         Startup::factory(50)->create();
 
         $this->call([
