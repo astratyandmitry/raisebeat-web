@@ -8,8 +8,11 @@ use App\Models\Contracts\Linkable as LinkableContract;
 use App\Models\Contracts\Verifiable as VerifiableContract;
 use App\Models\Traits\HasLinks;
 use App\Models\Traits\HasVerifications;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
+ * @property-read int $user_id
  * @property-read string $slug
  * @property-read string $name
  * @property-read string|null $headline
@@ -19,6 +22,7 @@ use App\Models\Traits\HasVerifications;
  * @property-read string|null $contact_email
  * @property-read string|null $contact_phone
  * @property-read boolean $is_public
+ * @property-read \App\Models\User $owner
  */
 abstract class Organization extends Model implements VerifiableContract, LinkableContract
 {
@@ -29,5 +33,10 @@ abstract class Organization extends Model implements VerifiableContract, Linkabl
         return [
             'is_public' => 'boolean',
         ];
+    }
+
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
