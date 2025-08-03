@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\StartupMetric;
+use App\Models\Enums\VacancyType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,15 +11,16 @@ return new class extends Migration{
      */
     public function up(): void
     {
-        Schema::create('startup_metrics', function (Blueprint $table) {
+        Schema::create('startup_vacancies', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
             $table->foreignId('startup_id')->constrained();
-            $table->string('type', 40)->index()->comment(StartupMetric::class);
-            $table->unsignedInteger('year', 4);
-            $table->enum('quarter', ['q1', 'q2', 'q3', 'q4']);
-            $table->double('value');
-            $table->boolean('is_confirmed')->default(false);
+            $table->string('type', 40)->index()->comment(VacancyType::class);
+            $table->string('title', 200);
+            $table->string('description', 1000);
+            $table->longText('content');
+            $table->string('feedback_email', 80);
+            $table->boolean('is_applicable')->default(false)->index9;
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration{
      */
     public function down(): void
     {
-        Schema::dropIfExists('startup_metrics');
+        Schema::dropIfExists('startup_vacancies');
     }
 };

@@ -5,7 +5,7 @@ use App\Models\Enums\FundraisingRound;
 use App\Models\Enums\FundraisingStatus;
 use App\Models\Enums\InteractionStatus;
 use App\Models\Enums\InvestmentModel;
-use App\Models\Enums\JobType;
+use App\Models\Enums\VacancyType;
 use App\Models\Enums\Language;
 use App\Models\Enums\Country;
 use App\Models\Enums\MemberType;
@@ -164,11 +164,11 @@ return [
         MetricType::CHURN->value => 'Churn Rate',
     ],
 
-    JobType::class => [
-        JobType::CoFounder->value => 'Co-Founder',
-        JobType::FullTime->value => 'Full-time',
-        JobType::PartTime->value => 'Part-time',
-        JobType::Freelance->value => 'Freelance',
+    VacancyType::class => [
+        VacancyType::CoFounder->value => 'Co-Founder',
+        VacancyType::FullTime->value => 'Full-time',
+        VacancyType::PartTime->value => 'Part-time',
+        VacancyType::Freelance->value => 'Freelance',
     ],
 
     MediaType::class => [
