@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\Traits;
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use App\Models\Follow;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @mixin \App\Models\Abstracts\Model
@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 trait HasFollowers
 {
-    public function followers(): MorphToMany
+    public function followers(): MorphMany
     {
-        return $this->morphedByMany(User::class, 'followable', 'user_id');
+        return $this->morphMany(Follow::class, 'followable');
     }
 }
