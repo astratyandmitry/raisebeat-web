@@ -16,6 +16,7 @@ use App\Models\Member;
 use App\Models\Notification;
 use App\Models\Startup;
 use App\Models\StartupMetric;
+use App\Models\StartupVacancy;
 use App\Models\User;
 use App\Models\Verification;
 use Illuminate\Database\Seeder;
@@ -33,6 +34,7 @@ final class DatabaseSeeder extends Seeder
             ->has(Member::factory(5))
             ->has(Link::factory(3))
             ->has(StartupMetric::factory(3), 'metrics')
+            ->has(StartupVacancy::factory(1), 'vacancies')
             ->create();
 
         Investor::factory(20)

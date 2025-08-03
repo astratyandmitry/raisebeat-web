@@ -9,6 +9,7 @@ use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Viewable;
 use App\Models\Enums\VacancyType;
 use App\Models\Traits\HasReceivedActivities;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -23,7 +24,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 final class StartupVacancy extends Model implements Viewable, CanReceiveActivity
 {
-    use HasReceivedActivities;
+    /** @use HasFactory<\Database\Factories\StartupVacancyFactory> */
+    use HasReceivedActivities, HasFactory;
 
     protected function casts(): array
     {
