@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Support\Traits;
+namespace App\Models\Enums;
 
 trait HasLocalizedInformation
 {
