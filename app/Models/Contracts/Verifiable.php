@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 interface Verifiable
 {
-    /**\
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Verification>
      */
     public function latest_verification(): HasOne;

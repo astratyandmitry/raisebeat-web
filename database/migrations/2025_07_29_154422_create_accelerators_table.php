@@ -25,7 +25,7 @@ return new class extends Migration{
             $table->string('contact_website', 240)->nullable();
             $table->string('contact_email', 80)->nullable();
             $table->string('contact_phone', 20)->nullable();
-            $table->unsignedInteger('founded_year', 4);
+            $table->unsignedInteger('founded_year');
             $table->string('country', 2)->comment(Country::class);
             $table->string('city', 40);
             $table->unsignedInteger('count_viewed')->default(0);

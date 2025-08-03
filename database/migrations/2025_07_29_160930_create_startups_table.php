@@ -35,7 +35,7 @@ return new class extends Migration{
             $table->string('market_region', 20)->comment(Region::class);
             $table->string('country', 2)->comment(Country::class);
             $table->string('city', 40);
-            $table->unsignedInteger('founded_year', 4);
+            $table->unsignedInteger('founded_year');
             $table->string('business_model', 40);
             $table->string('stage', 10)->comment(StartupStage::class);
             $table->string('fundraising_status', 20)->comment(FundraisingStatus::class);

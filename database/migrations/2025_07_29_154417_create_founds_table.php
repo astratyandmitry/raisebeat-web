@@ -27,7 +27,7 @@ return new class extends Migration{
             $table->string('contact_website', 240)->nullable();
             $table->string('contact_email', 80)->nullable();
             $table->string('contact_phone', 20)->nullable();
-            $table->unsignedInteger('founded_year', 4);
+            $table->unsignedInteger('founded_year');
             $table->decimal('check_size_min')->nullable();
             $table->decimal('check_size_max')->nullable();
             $table->string('focus_region', 40)->comment(Region::class)->index();

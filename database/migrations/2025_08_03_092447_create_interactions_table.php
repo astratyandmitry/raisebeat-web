@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Enums\InteractionStatus;
 use App\Models\Enums\InteractionType;
 use Illuminate\Database\Migrations\Migration;
@@ -12,7 +14,7 @@ return new class extends Migration{
      */
     public function up(): void
     {
-        Schema::create('interactions', function (Blueprint $table) {
+        Schema::create('interactions', function (Blueprint $table): void {
             $table->id();
             $table->uuid()->unique();
             $table->foreignId('user_id')->constrained();
