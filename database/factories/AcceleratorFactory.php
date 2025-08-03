@@ -14,8 +14,6 @@ final class AcceleratorFactory extends OrganizationFactory
     {
         return [
             ...parent::definition(),
-            'name' => $name = $this->faker->company,
-            'slug' => Str::slug($name),
             'founded_year' => $this->faker->year,
             'country' => $this->faker->randomElement(Country::cases()),
             'city' => $this->faker->city,

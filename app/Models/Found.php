@@ -21,6 +21,7 @@ use App\Models\Traits\HasLinks;
 use App\Models\Traits\HasPerformedActivities;
 use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property-read int $founded_year
@@ -36,7 +37,8 @@ use App\Models\Traits\HasVerifications;
 final class Found extends Organization implements
     CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable, Investable
 {
-    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasInvestments;
+    /** @use HasFactory<\Database\Factories\FoundFactory> */
+    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasInvestments, HasFactory;
 
     protected function casts(): array
     {
