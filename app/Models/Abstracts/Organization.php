@@ -6,10 +6,12 @@ namespace App\Models\Abstracts;
 
 use App\Models\Contracts\Linkable as LinkableContract;
 use App\Models\Contracts\Verifiable as VerifiableContract;
+use App\Models\Member;
 use App\Models\Traits\HasLinks;
 use App\Models\Traits\HasVerifications;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property-read int $user_id
@@ -38,5 +40,10 @@ abstract class Organization extends Model implements VerifiableContract, Linkabl
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function members(): HasMany
+    {
+        return $this->hasMany(Member::class);
     }
 }
