@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @mixin \App\Models\Abstracts\Model
+ * @implements \App\Models\Contracts\Verifiable
  */
 trait HasVerifications
 {

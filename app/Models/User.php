@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Abstracts\Model;
-use App\Models\Contracts\Linkable as LinkableContract;
+use App\Models\Contracts\Followable;
+use App\Models\Contracts\Linkable;
 use App\Models\Enums\Country;
 use App\Models\Enums\Language;
 use App\Models\Enums\Timezone;
+use App\Models\Traits\HasFollowers;
 use App\Models\Traits\HasLinks;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -17,6 +19,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
@@ -45,10 +48,11 @@ final class User extends Model implements
     AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract,
-    LinkableContract
+    Linkable,
+    Followable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasLinks;
+    use HasFactory, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasLinks, HasFollowers;
 
     protected $guarded = ['is_admin', 'is_blocked'];
 
@@ -73,5 +77,10 @@ final class User extends Model implements
     public function investor_profile(): HasOne
     {
         return $this->hasOne(Investor::class);
+    }
+
+    public function followings(): HasMany
+    {
+        return $this->hasMany(Follow::class);
     }
 }
