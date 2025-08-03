@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Abstracts\Model;
+use App\Models\Contracts\CanPerformActivity;
+use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Followable;
 use App\Models\Contracts\Linkable;
 use App\Models\Enums\Country;
@@ -12,6 +14,8 @@ use App\Models\Enums\Language;
 use App\Models\Enums\Timezone;
 use App\Models\Traits\HasFollowers;
 use App\Models\Traits\HasLinks;
+use App\Models\Traits\HasPerformedActivities;
+use App\Models\Traits\HasReceivedActivities;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -48,11 +52,13 @@ final class User extends Model implements
     AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract,
+    CanPerformActivity,
+    CanReceiveActivity,
     Linkable,
     Followable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasLinks, HasFollowers;
+    use HasFactory, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasPerformedActivities, HasReceivedActivities, HasLinks, HasFollowers;
 
     protected $guarded = ['is_admin', 'is_blocked'];
 

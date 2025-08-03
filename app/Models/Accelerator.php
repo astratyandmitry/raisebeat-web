@@ -5,15 +5,29 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Abstracts\Organization;
+use App\Models\Contracts\CanPerformActivity;
+use App\Models\Contracts\CanReceiveActivity;
+use App\Models\Contracts\Followable;
+use App\Models\Contracts\Linkable;
+use App\Models\Contracts\Verifiable;
+use App\Models\Contracts\Viewable;
 use App\Models\Enums\Country;
+use App\Models\Traits\HasFollowers;
+use App\Models\Traits\HasLinks;
+use App\Models\Traits\HasPerformedActivities;
+use App\Models\Traits\HasReceivedActivities;
+use App\Models\Traits\HasVerifications;
 
 /**
  * @property-read int $founded_year
  * @property-read string $city
  * @property-read \App\Models\Enums\Country $country
  */
-final class Accelerator extends Organization
+final class Accelerator extends Organization implements
+    CanPerformActivity, CanReceiveActivity, Viewable, Linkable, Followable, Verifiable
 {
+    use HasPerformedActivities, HasReceivedActivities, HasLinks, HasVerifications, HasFollowers;
+
     protected function casts(): array
     {
         return [
