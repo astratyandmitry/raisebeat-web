@@ -20,8 +20,6 @@ return new class extends Migration{
             $table->string('type', 40)->comment(LinkType::class);
             $table->string('url', 240);
             $table->timestamps();
-
-            $table->index(['linkable_type', 'linkable_id']);
         });
     }
 

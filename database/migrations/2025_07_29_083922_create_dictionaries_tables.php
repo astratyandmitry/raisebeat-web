@@ -43,7 +43,7 @@ return new class extends Migration{
         $files = File::files($modelsPath);
 
         foreach ($files as $file) {
-            $className = pathinfo($file, PATHINFO_FILENAME);
+            $className = pathinfo((string) $file, PATHINFO_FILENAME);
             $fullClass = "App\\Models\\Dictionaries\\$className";
 
             if (! class_exists($fullClass)) {

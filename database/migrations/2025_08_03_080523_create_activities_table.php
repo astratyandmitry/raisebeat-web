@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Enums\ActivityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -11,7 +13,7 @@ return new class extends Migration{
      */
     public function up(): void
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table): void {
             $table->id();
             $table->uuid()->unique();
             $table->morphs('performable');
@@ -19,9 +21,6 @@ return new class extends Migration{
             $table->string('type', 40)->comment(ActivityType::class);
             $table->json('data')->nullable();
             $table->timestamps();
-
-            $table->index(['performable_type', 'performable_id']);
-            $table->index(['subjectable_type', 'subjectable_id']);
         });
     }
 

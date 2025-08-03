@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Contracts;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -10,5 +12,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 interface CanReceiveActivity
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\Activity>
+     */
     public function received_activities(): MorphMany;
 }

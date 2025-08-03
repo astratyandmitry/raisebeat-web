@@ -23,8 +23,6 @@ return new class extends Migration{
             $table->timestamp('responded_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
-
-            $table->index(['verifiable_type', 'verifiable_id']);
         });
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Follow;
 
 use App\Models\Contracts\Followable;

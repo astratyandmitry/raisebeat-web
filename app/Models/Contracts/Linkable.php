@@ -12,5 +12,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 interface Linkable
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\Link>
+     */
     public function links(): MorphMany;
 }
