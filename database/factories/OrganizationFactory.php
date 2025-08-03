@@ -12,7 +12,7 @@ abstract class OrganizationFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'name' => $name = $this->faker->company,
+            'name' => $name = $this->faker->unique()->company,
             'slug' => Str::slug($name),
             'headline' => $this->faker->sentence,
             'description' => $this->faker->paragraph,

@@ -23,6 +23,7 @@ use App\Models\Traits\HasLinks;
 use App\Models\Traits\HasPerformedActivities;
 use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -50,7 +51,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 final class Startup extends Organization implements
     CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable
 {
-    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications;
+    /** @use HasFactory<\Database\Factories\StartupFactory> */
+    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasFactory;
 
     protected function casts(): array
     {

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Enums\BusinessModel;
 use App\Models\Enums\Country;
 use App\Models\Enums\FundraisingRound;
 use App\Models\Enums\FundraisingStatus;
@@ -36,7 +37,7 @@ return new class extends Migration{
             $table->string('country', 2)->comment(Country::class);
             $table->string('city', 40);
             $table->unsignedInteger('founded_year');
-            $table->string('business_model', 40);
+            $table->string('business_model', 40)->comment(BusinessModel::class);
             $table->string('stage', 10)->comment(StartupStage::class);
             $table->string('fundraising_status', 20)->comment(FundraisingStatus::class);
             $table->string('fundraising_round', 10)->nullable()->comment(FundraisingRound::class);

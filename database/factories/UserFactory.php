@@ -22,13 +22,13 @@ final class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'email' => fake()->unique()->safeEmail(),
+            'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
-            'username' => $this->faker->userName,
+            'username' => $this->faker->unique()->userName,
             'headline' => $this->faker->sentence,
             'bio' => $this->faker->paragraph,
             'avatar_url' => $this->faker->imageUrl(400, 400),

@@ -9,6 +9,7 @@ use App\Models\Accelerator;
 use App\Models\Found;
 use App\Models\Investor;
 use App\Models\Media;
+use App\Models\Startup;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,7 @@ final class DatabaseSeeder extends Seeder
         Accelerator::factory(10)->create();
         Found::factory(20)->create();
         Media::factory(10)->create();
+        Startup::factory(50)->create();
 
         $this->call([
             DictionariesSeeder::class,
