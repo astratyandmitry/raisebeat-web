@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property-read string $linkable_id
  * @property-read string $url
  * @property-read \App\Models\Enums\SocialLinkType $type
- * @property-read \App\Models\Contracts\Verifiable $linkable
+ * @property-read \App\Models\Contracts\Linkable $linkable
  */
 final class Link extends Model
 {
