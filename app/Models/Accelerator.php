@@ -19,6 +19,7 @@ use App\Models\Traits\HasLinks;
 use App\Models\Traits\HasPerformedActivities;
 use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -31,7 +32,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 final class Accelerator extends Organization implements
     CanPerformActivity, CanReceiveActivity, Viewable, Linkable, Followable, Verifiable, Investable
 {
-    use HasPerformedActivities, HasReceivedActivities, HasLinks, HasVerifications, HasFollowers, HasInvestments;
+    /** @use HasFactory<\Database\Factories\AcceleratorFactory> */
+    use HasPerformedActivities, HasReceivedActivities, HasLinks, HasVerifications, HasFollowers, HasInvestments, HasFactory;
 
     protected function casts(): array
     {
