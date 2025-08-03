@@ -8,5 +8,5 @@ enum InteractionType: string
 {
     use HasLocalizedInformation;
 
-    // todo
+    //
 }

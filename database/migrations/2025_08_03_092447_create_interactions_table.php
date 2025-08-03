@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Enums\NotificationType;
+use App\Models\Enums\InteractionStatus;
+use App\Models\Enums\InteractionType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,14 +12,17 @@ return new class extends Migration{
      */
     public function up(): void
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('interactions', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
             $table->foreignId('user_id')->constrained();
-            $table->morphs('entity');
-            $table->string('type', 40)->index()->comment(NotificationType::class);
+            $table->morphs('from_entity');
+            $table->morphs('to_entity');
+            $table->string('type', 40)->index()->comment(InteractionType::class);
+            $table->string('status', 40)->index()->comment(InteractionStatus::class);
+            $table->text('message')->nullable();
             $table->json('data')->nullable();
-            $table->timestamp('read_at')->nullable();
+            $table->timestamp('reviewed_at')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration{
      */
     public function down(): void
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('interactions');
     }
 };

@@ -49,6 +49,7 @@ use Illuminate\Notifications\Notifiable;
  * @property-read Investor|null $investor_profile
  * @property-read \App\Models\Follow[]|\Illuminate\Database\Eloquent\Collection $followings
  * @property-read \App\Models\Notification[]|\Illuminate\Database\Eloquent\Collection $notifications
+ * @property-read \App\Models\Interaction[]|\Illuminate\Database\Eloquent\Collection $interactions
  */
 final class User extends Model implements
     AuthenticatableContract,
@@ -95,5 +96,10 @@ final class User extends Model implements
     public function notifications(): HasMany
     {
         return $this->hasMany(Notification::class);
+    }
+
+    public function interactions(): HasMany
+    {
+        return $this->hasMany(Interaction::class);
     }
 }
