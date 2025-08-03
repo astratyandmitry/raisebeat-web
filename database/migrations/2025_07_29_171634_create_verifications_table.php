@@ -16,8 +16,7 @@ return new class extends Migration{
         Schema::create('verifications', function (Blueprint $table): void {
             $table->id();
             $table->uuid()->unique();
-            $table->string('verifiable_type');
-            $table->unsignedInteger('verifiable_id');
+            $table->morphs('verifiable');
             $table->string('status', 20)->comment(VerificationStatus::class)->index();
             $table->string('comment', 500)->nullable();
             $table->timestamp('requested_at')->nullable();

@@ -14,8 +14,7 @@ return new class extends Migration{
             $table->id();
             $table->uuid()->index();
             $table->foreignId('user_id')->constrained();
-            $table->string('followable_type');
-            $table->unsignedInteger('followable_id');
+            $table->morphs('followable');
             $table->timestamps();
 
             $table->index(['followable_type', 'followable_id']);
