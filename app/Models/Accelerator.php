@@ -17,11 +17,14 @@ use App\Models\Traits\HasLinks;
 use App\Models\Traits\HasPerformedActivities;
 use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property-read int $founded_year
  * @property-read string $city
  * @property-read \App\Models\Enums\Country $country
+ *
+ * @property-read \App\Models\AcceleratorParticipant[]|\Illuminate\Database\Eloquent\Collection $participators
  */
 final class Accelerator extends Organization implements
     CanPerformActivity, CanReceiveActivity, Viewable, Linkable, Followable, Verifiable
@@ -35,5 +38,10 @@ final class Accelerator extends Organization implements
             'founded_year' => 'integer',
             'country' => Country::class,
         ];
+    }
+
+    public function participators(): HasMany
+    {
+        return $this->hasMany(AcceleratorParticipant::class);
     }
 }

@@ -25,7 +25,7 @@ return new class extends Migration{
             $table->string('contact_website', 240)->nullable();
             $table->string('contact_email', 80)->nullable();
             $table->string('contact_phone', 20)->nullable();
-            $table->unsignedInteger('founded_year');
+            $table->unsignedInteger('founded_year', 4);
             $table->string('country', 2)->comment(Country::class);
             $table->string('city', 40);
             $table->boolean('is_public')->default(false)->index();

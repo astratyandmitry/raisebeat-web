@@ -23,6 +23,7 @@ use App\Models\Traits\HasLinks;
 use App\Models\Traits\HasPerformedActivities;
 use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property-read string $market_problem
@@ -40,6 +41,8 @@ use App\Models\Traits\HasVerifications;
  * @property-read \App\Models\Enums\FundraisingStatus $fundraising_status
  * @property-read \App\Models\Enums\FundraisingRound|null $fundraising_round
  * @property-read \App\Models\Enums\TeamSize $team_size
+ *
+ * @property-read \App\Models\AcceleratorParticipant[]|\Illuminate\Database\Eloquent\Collection $accelerators_participation
  */
 final class Startup extends Organization implements
     CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable
@@ -61,5 +64,10 @@ final class Startup extends Organization implements
             'fundraising_round' => FundraisingRound::class,
             'team_size' => TeamSize::class,
         ];
+    }
+
+    public function accelerators_participation(): HasMany
+    {
+        return $this->hasMany(AcceleratorParticipant::class);
     }
 }
