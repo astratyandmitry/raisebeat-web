@@ -10,6 +10,7 @@ use App\Models\Found;
 use App\Models\Investor;
 use App\Models\Link;
 use App\Models\Media;
+use App\Models\Notification;
 use App\Models\Startup;
 use App\Models\User;
 use App\Models\Verification;
@@ -19,12 +20,30 @@ final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory(100)->create();
-        Investor::factory(20)->has(Verification::factory(), 'verifications_history')->create();
-        Accelerator::factory(10)->has(Verification::factory(), 'verifications_history')->create();
-        Found::factory(20)->has(Verification::factory(), 'verifications_history')->create();
-        Media::factory(10)->has(Verification::factory(), 'verifications_history')->has(Link::factory(3))->create();
-        Startup::factory(50)->has(Verification::factory(), 'verifications_history')->create();
+        User::factory(100)
+            ->has(Notification::factory(10))
+            ->create();
+
+        Investor::factory(20)
+            ->has(Verification::factory(), 'verifications_history')
+            ->create();
+
+        Accelerator::factory(10)
+            ->has(Verification::factory(), 'verifications_history')
+            ->create();
+
+        Found::factory(20)
+            ->has(Verification::factory(), 'verifications_history')
+            ->create();
+
+        Media::factory(10)
+            ->has(Verification::factory(), 'verifications_history')
+            ->has(Link::factory(3))
+            ->create();
+
+        Startup::factory(50)
+            ->has(Verification::factory(), 'verifications_history')
+            ->create();
 
         $this->call([
             DictionariesSeeder::class,

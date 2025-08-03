@@ -6,4 +6,5 @@ namespace App\Models\Enums;
 
 enum NotificationType: string
 {
+    case System =  'system';
 }

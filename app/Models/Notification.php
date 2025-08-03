@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Abstracts\Model;
 use App\Models\Enums\NotificationType;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -21,6 +22,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 final class Notification extends Model
 {
+    /** @use HasFactory<\Database\Factories\NotificationFactory> */
+    use HasFactory;
+
     protected function casts(): array
     {
         return [
