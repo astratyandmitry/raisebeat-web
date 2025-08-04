@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Filament\Resources\Founds\Schemas;
+
+use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Schema;
+
+class FoundInfolist
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                TextEntry::make('uuid')
+                    ->label('UUID'),
+                TextEntry::make('user_id')
+                    ->numeric(),
+                TextEntry::make('slug'),
+                TextEntry::make('name'),
+                TextEntry::make('headline'),
+                TextEntry::make('logo_url'),
+                TextEntry::make('contact_website'),
+                TextEntry::make('contact_email'),
+                TextEntry::make('contact_phone'),
+                TextEntry::make('founded_year')
+                    ->numeric(),
+                TextEntry::make('check_size_min')
+                    ->numeric(),
+                TextEntry::make('check_size_max')
+                    ->numeric(),
+                TextEntry::make('focus_region'),
+                TextEntry::make('investment_model'),
+                TextEntry::make('country'),
+                TextEntry::make('city'),
+                TextEntry::make('count_viewed')
+                    ->numeric(),
+                IconEntry::make('is_lead_investor')
+                    ->boolean(),
+                IconEntry::make('is_follow_investor')
+                    ->boolean(),
+                IconEntry::make('is_public')
+                    ->boolean(),
+                TextEntry::make('created_at')
+                    ->dateTime(),
+                TextEntry::make('updated_at')
+                    ->dateTime(),
+            ]);
+    }
+}
