@@ -8,9 +8,7 @@ use UnitEnum;
 use App\Filament\Resources\StartupIndustries\Pages\CreateStartupIndustry;
 use App\Filament\Resources\StartupIndustries\Pages\EditStartupIndustry;
 use App\Filament\Resources\StartupIndustries\Pages\ListStartupIndustries;
-use App\Filament\Resources\StartupIndustries\Pages\ViewStartupIndustry;
 use App\Filament\Resources\StartupIndustries\Schemas\StartupIndustryForm;
-use App\Filament\Resources\StartupIndustries\Schemas\StartupIndustryInfolist;
 use App\Filament\Resources\StartupIndustries\Tables\StartupIndustriesTable;
 use App\Models\Dictionaries\StartupIndustry;
 use Filament\Resources\Resource;
@@ -23,16 +21,9 @@ final class StartupIndustryResource extends Resource
 
     protected static null|string|UnitEnum $navigationGroup = 'Dictionaries';
 
-    protected static ?string $recordTitleAttribute = 'Startup Industry';
-
     public static function form(Schema $schema): Schema
     {
         return StartupIndustryForm::configure($schema);
-    }
-
-    public static function infolist(Schema $schema): Schema
-    {
-        return StartupIndustryInfolist::configure($schema);
     }
 
     public static function table(Table $table): Table
@@ -52,7 +43,6 @@ final class StartupIndustryResource extends Resource
         return [
             'index' => ListStartupIndustries::route('/'),
             'create' => CreateStartupIndustry::route('/create'),
-            'view' => ViewStartupIndustry::route('/{record}'),
             'edit' => EditStartupIndustry::route('/{record}/edit'),
         ];
     }

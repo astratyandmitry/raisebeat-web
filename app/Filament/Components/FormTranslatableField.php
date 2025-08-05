@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Components;
 
 use App\Models\Enums\Language;
-use Closure;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
-use Illuminate\Contracts\Support\Htmlable;
 
 final class FormTranslatableField
 {

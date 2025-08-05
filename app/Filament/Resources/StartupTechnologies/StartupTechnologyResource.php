@@ -8,9 +8,7 @@ use UnitEnum;
 use App\Filament\Resources\StartupTechnologies\Pages\CreateStartupTechnology;
 use App\Filament\Resources\StartupTechnologies\Pages\EditStartupTechnology;
 use App\Filament\Resources\StartupTechnologies\Pages\ListStartupTechnologies;
-use App\Filament\Resources\StartupTechnologies\Pages\ViewStartupTechnology;
 use App\Filament\Resources\StartupTechnologies\Schemas\StartupTechnologyForm;
-use App\Filament\Resources\StartupTechnologies\Schemas\StartupTechnologyInfolist;
 use App\Filament\Resources\StartupTechnologies\Tables\StartupTechnologiesTable;
 use App\Models\Dictionaries\StartupTechnology;
 use Filament\Resources\Resource;
@@ -23,16 +21,9 @@ final class StartupTechnologyResource extends Resource
 
     protected static null|string|UnitEnum $navigationGroup = 'Dictionaries';
 
-    protected static ?string $recordTitleAttribute = 'Startup Technology';
-
     public static function form(Schema $schema): Schema
     {
         return StartupTechnologyForm::configure($schema);
-    }
-
-    public static function infolist(Schema $schema): Schema
-    {
-        return StartupTechnologyInfolist::configure($schema);
     }
 
     public static function table(Table $table): Table
@@ -52,7 +43,6 @@ final class StartupTechnologyResource extends Resource
         return [
             'index' => ListStartupTechnologies::route('/'),
             'create' => CreateStartupTechnology::route('/create'),
-            'view' => ViewStartupTechnology::route('/{record}'),
             'edit' => EditStartupTechnology::route('/{record}/edit'),
         ];
     }

@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Resources\StartupTechnologies\Pages;
 
 use App\Filament\Resources\StartupTechnologies\StartupTechnologyResource;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
 final class EditStartupTechnology extends EditRecord
@@ -16,8 +14,7 @@ final class EditStartupTechnology extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            ViewAction::make(),
-            DeleteAction::make(),
+            //
         ];
     }
 }
