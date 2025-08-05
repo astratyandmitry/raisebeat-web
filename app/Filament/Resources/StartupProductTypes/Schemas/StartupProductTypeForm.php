@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\StartupProductTypes\Schemas;
 
-use App\Filament\Schemas\Components\TranslatableInput;
+use App\Filament\Components\FormTranslatableField;
 use App\Models\Enums\Language;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -33,21 +33,7 @@ final class StartupProductTypeForm
                         ]),
                     ]),
 
-                TranslatableInput::make('name'),
+                FormTranslatableField::make('name', 'Name'),
             ]);
-    }
-
-    protected static function getTranslatable(string $key): Section
-    {
-        $schema = [];
-
-        foreach (Language::cases() as $language) {
-            $locale = strtolower($language->value);
-            $schema[] = TextInput::make("name.$locale")
-                ->label($language->label())
-                ->required();
-        }
-
-        return Section::make($key)->schema($schema);
     }
 }
