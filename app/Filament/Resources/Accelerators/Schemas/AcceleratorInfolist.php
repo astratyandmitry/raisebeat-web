@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Accelerators\Schemas;
 
 use Filament\Infolists\Components\IconEntry;

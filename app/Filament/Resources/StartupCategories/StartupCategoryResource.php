@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\StartupCategories;
 
+use UnitEnum;
 use App\Filament\Resources\StartupCategories\Pages\CreateStartupCategory;
 use App\Filament\Resources\StartupCategories\Pages\EditStartupCategory;
 use App\Filament\Resources\StartupCategories\Pages\ListStartupCategories;
@@ -10,17 +13,15 @@ use App\Filament\Resources\StartupCategories\Schemas\StartupCategoryForm;
 use App\Filament\Resources\StartupCategories\Schemas\StartupCategoryInfolist;
 use App\Filament\Resources\StartupCategories\Tables\StartupCategoriesTable;
 use App\Models\Dictionaries\StartupCategory;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class StartupCategoryResource extends Resource
 {
     protected static ?string $model = StartupCategory::class;
 
-    protected static null|string|\UnitEnum $navigationGroup = 'Dictionaries';
+    protected static null|string|UnitEnum $navigationGroup = 'Dictionaries';
 
     protected static ?string $recordTitleAttribute = 'Startup Category';
 

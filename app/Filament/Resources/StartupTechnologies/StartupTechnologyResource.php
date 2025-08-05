@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\StartupTechnologies;
 
+use UnitEnum;
 use App\Filament\Resources\StartupTechnologies\Pages\CreateStartupTechnology;
 use App\Filament\Resources\StartupTechnologies\Pages\EditStartupTechnology;
 use App\Filament\Resources\StartupTechnologies\Pages\ListStartupTechnologies;
@@ -10,17 +13,15 @@ use App\Filament\Resources\StartupTechnologies\Schemas\StartupTechnologyForm;
 use App\Filament\Resources\StartupTechnologies\Schemas\StartupTechnologyInfolist;
 use App\Filament\Resources\StartupTechnologies\Tables\StartupTechnologiesTable;
 use App\Models\Dictionaries\StartupTechnology;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class StartupTechnologyResource extends Resource
 {
     protected static ?string $model = StartupTechnology::class;
 
-    protected static null|string|\UnitEnum $navigationGroup = 'Dictionaries';
+    protected static null|string|UnitEnum $navigationGroup = 'Dictionaries';
 
     protected static ?string $recordTitleAttribute = 'Startup Technology';
 

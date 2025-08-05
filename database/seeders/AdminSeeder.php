@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Admin;
@@ -8,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 final class AdminSeeder extends Seeder
 {
-    protected array $data = [
+    private array $data = [
         [
             'email' => 'astratyandmitry@gmail.com',
             'name' => 'Astatyan Dmitry',

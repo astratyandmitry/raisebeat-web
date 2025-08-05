@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Admins;
 
+use UnitEnum;
 use App\Filament\Resources\Admins\Pages\CreateAdmin;
 use App\Filament\Resources\Admins\Pages\EditAdmin;
 use App\Filament\Resources\Admins\Pages\ListAdmins;
@@ -18,7 +21,7 @@ class AdminResource extends Resource
 {
     protected static ?string $model = Admin::class;
 
-    protected static null|string|\UnitEnum $navigationGroup = 'System';
+    protected static null|string|UnitEnum $navigationGroup = 'System';
 
     public static function form(Schema $schema): Schema
     {

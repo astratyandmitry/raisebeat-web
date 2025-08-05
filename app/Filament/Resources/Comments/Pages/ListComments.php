@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Comments\Pages;
 
 use App\Filament\Resources\Comments\CommentResource;

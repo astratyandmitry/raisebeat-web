@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\StartupVacancies;
 
 use App\Filament\Resources\StartupVacancies\Pages\CreateStartupVacancy;

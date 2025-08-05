@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Accelerators;
 
 use App\Filament\Resources\Accelerators\Pages\CreateAccelerator;
