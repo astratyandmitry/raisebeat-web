@@ -8,7 +8,7 @@ use App\Filament\Resources\Startups\StartupResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewStartup extends ViewRecord
+final class ViewStartup extends ViewRecord
 {
     protected static string $resource = StartupResource::class;
 

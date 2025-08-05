@@ -8,7 +8,7 @@ use App\Filament\Resources\StartupCategories\StartupCategoryResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewStartupCategory extends ViewRecord
+final class ViewStartupCategory extends ViewRecord
 {
     protected static string $resource = StartupCategoryResource::class;
 

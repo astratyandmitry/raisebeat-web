@@ -11,7 +11,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
-class MediaForm
+final class MediaForm
 {
     public static function configure(Schema $schema): Schema
     {

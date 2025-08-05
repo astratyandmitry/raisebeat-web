@@ -8,7 +8,7 @@ use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
-class StartupInfolist
+final class StartupInfolist
 {
     public static function configure(Schema $schema): Schema
     {

@@ -8,7 +8,7 @@ use App\Filament\Resources\Accelerators\AcceleratorResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListAccelerators extends ListRecords
+final class ListAccelerators extends ListRecords
 {
     protected static string $resource = AcceleratorResource::class;
 

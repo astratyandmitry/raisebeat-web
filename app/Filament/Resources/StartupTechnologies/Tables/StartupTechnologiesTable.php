@@ -12,7 +12,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class StartupTechnologiesTable
+final class StartupTechnologiesTable
 {
     public static function configure(Table $table): Table
     {

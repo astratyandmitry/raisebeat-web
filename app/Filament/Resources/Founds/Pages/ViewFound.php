@@ -8,7 +8,7 @@ use App\Filament\Resources\Founds\FoundResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewFound extends ViewRecord
+final class ViewFound extends ViewRecord
 {
     protected static string $resource = FoundResource::class;
 

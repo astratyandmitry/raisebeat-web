@@ -18,7 +18,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class InvestorResource extends Resource
+final class InvestorResource extends Resource
 {
     protected static ?string $model = Investor::class;
 

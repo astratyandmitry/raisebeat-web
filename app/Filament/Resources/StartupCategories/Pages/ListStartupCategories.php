@@ -8,7 +8,7 @@ use App\Filament\Resources\StartupCategories\StartupCategoryResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListStartupCategories extends ListRecords
+final class ListStartupCategories extends ListRecords
 {
     protected static string $resource = StartupCategoryResource::class;
 

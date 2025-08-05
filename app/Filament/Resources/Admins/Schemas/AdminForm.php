@@ -7,7 +7,7 @@ namespace App\Filament\Resources\Admins\Schemas;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
-class AdminForm
+final class AdminForm
 {
     public static function configure(Schema $schema): Schema
     {

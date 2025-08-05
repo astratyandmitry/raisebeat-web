@@ -9,7 +9,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditAdmin extends EditRecord
+final class EditAdmin extends EditRecord
 {
     protected static string $resource = AdminResource::class;
 

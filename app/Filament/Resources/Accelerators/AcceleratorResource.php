@@ -18,7 +18,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class AcceleratorResource extends Resource
+final class AcceleratorResource extends Resource
 {
     protected static ?string $model = Accelerator::class;
 

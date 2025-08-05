@@ -17,7 +17,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 
-class AdminResource extends Resource
+final class AdminResource extends Resource
 {
     protected static ?string $model = Admin::class;
 

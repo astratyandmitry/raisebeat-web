@@ -8,7 +8,7 @@ use App\Filament\Resources\Admins\AdminResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewAdmin extends ViewRecord
+final class ViewAdmin extends ViewRecord
 {
     protected static string $resource = AdminResource::class;
 

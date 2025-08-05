@@ -20,7 +20,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CommentResource extends Resource
+final class CommentResource extends Resource
 {
     protected static ?string $model = Comment::class;
 

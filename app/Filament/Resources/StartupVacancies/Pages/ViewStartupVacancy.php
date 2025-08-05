@@ -8,7 +8,7 @@ use App\Filament\Resources\StartupVacancies\StartupVacancyResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewStartupVacancy extends ViewRecord
+final class ViewStartupVacancy extends ViewRecord
 {
     protected static string $resource = StartupVacancyResource::class;
 

@@ -9,7 +9,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditInvestor extends EditRecord
+final class EditInvestor extends EditRecord
 {
     protected static string $resource = InvestorResource::class;
 

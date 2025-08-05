@@ -18,7 +18,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class StartupVacancyResource extends Resource
+final class StartupVacancyResource extends Resource
 {
     protected static ?string $model = StartupVacancy::class;
 

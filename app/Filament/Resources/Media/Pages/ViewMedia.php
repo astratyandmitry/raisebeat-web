@@ -8,7 +8,7 @@ use App\Filament\Resources\Media\MediaResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewMedia extends ViewRecord
+final class ViewMedia extends ViewRecord
 {
     protected static string $resource = MediaResource::class;
 

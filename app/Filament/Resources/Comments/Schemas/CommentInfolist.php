@@ -7,7 +7,7 @@ namespace App\Filament\Resources\Comments\Schemas;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
-class CommentInfolist
+final class CommentInfolist
 {
     public static function configure(Schema $schema): Schema
     {

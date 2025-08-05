@@ -17,7 +17,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 
-class StartupIndustryResource extends Resource
+final class StartupIndustryResource extends Resource
 {
     protected static ?string $model = StartupIndustry::class;
 

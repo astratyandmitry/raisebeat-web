@@ -11,7 +11,7 @@ use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditComment extends EditRecord
+final class EditComment extends EditRecord
 {
     protected static string $resource = CommentResource::class;
 

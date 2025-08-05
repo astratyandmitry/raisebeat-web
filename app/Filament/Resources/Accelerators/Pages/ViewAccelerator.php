@@ -8,7 +8,7 @@ use App\Filament\Resources\Accelerators\AcceleratorResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewAccelerator extends ViewRecord
+final class ViewAccelerator extends ViewRecord
 {
     protected static string $resource = AcceleratorResource::class;
 

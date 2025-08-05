@@ -9,7 +9,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditStartupTechnology extends EditRecord
+final class EditStartupTechnology extends EditRecord
 {
     protected static string $resource = StartupTechnologyResource::class;
 

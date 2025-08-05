@@ -18,7 +18,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class MediaResource extends Resource
+final class MediaResource extends Resource
 {
     protected static ?string $model = Media::class;
 

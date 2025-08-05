@@ -13,7 +13,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
-class FoundForm
+final class FoundForm
 {
     public static function configure(Schema $schema): Schema
     {

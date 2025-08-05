@@ -14,7 +14,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
-class UserForm
+final class UserForm
 {
     public static function configure(Schema $schema): Schema
     {
