@@ -73,6 +73,7 @@ final class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             DictionariesSeeder::class,
+            FollowSeeder::class,
         ]);
     }
 }
