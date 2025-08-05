@@ -18,6 +18,7 @@ final readonly class LogViewActivityAction
         DB::beginTransaction();
 
         $activity = $performer->performed_activities()->create([
+            'user_id' => $performer->performer_user_id(),
             'subjectable_type' => $subject::class,
             'subjectable_id' => $subject->getKey(),
             'type' => ActivityType::View,

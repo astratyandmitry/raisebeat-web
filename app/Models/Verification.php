@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Abstracts\Model;
+use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Enums\VerificationStatus;
+use App\Models\Traits\HasReceivedActivities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,10 +21,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \Carbon\Carbon|null $responded_at
  * @property-read \App\Models\Contracts\Verifiable $verifiable
  */
-final class Verification extends Model
+final class Verification extends Model implements CanReceiveActivity
 {
     /** @use HasFactory<\Database\Factories\VerificationFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasReceivedActivities;
 
     protected function casts(): array
     {

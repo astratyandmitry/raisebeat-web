@@ -114,4 +114,9 @@ final class User extends Model implements
     {
         return $this->hasMany(Post::class);
     }
+
+    public function performer_user_id(): int
+    {
+        return $this->id;
+    }
 }

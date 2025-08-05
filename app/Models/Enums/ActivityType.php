@@ -12,4 +12,5 @@ enum ActivityType: string
     case Like = 'like';
     case Post = 'post';
     case Repost = 'repost';
+    case RequestVerification = 'request-verification';
 }

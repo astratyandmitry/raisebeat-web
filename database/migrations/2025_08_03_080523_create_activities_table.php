@@ -16,6 +16,7 @@ return new class extends Migration{
         Schema::create('activities', function (Blueprint $table): void {
             $table->id();
             $table->uuid()->unique();
+            $table->foreignId('user_id')->constrained();
             $table->morphs('performable');
             $table->morphs('subjectable');
             $table->string('type', 40)->index()->comment(ActivityType::class);

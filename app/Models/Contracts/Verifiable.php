@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 /**
  * @property-read \App\Models\Verification|null $latest_verification
  * @property-read \App\Models\Verification[]|\Illuminate\Database\Eloquent\Collection $verifications_history
- * @mixin \App\Models\Abstracts\Model
+ * @mixin \App\Models\User
+ * @mixin \App\Models\Abstracts\Organization
  */
 interface Verifiable
 {

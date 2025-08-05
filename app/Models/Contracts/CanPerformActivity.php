@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @property-read \App\Models\Activity[]|\Illuminate\Database\Eloquent\Collection $performed_activities
- * @mixin \App\Models\Abstracts\Model
+ * @mixin \App\Models\Abstracts\Organization
+ * @mixin \App\Models\User
  */
 interface CanPerformActivity
 {
+    /**
+     * @return int
+     */
+    public function performer_user_id(): int;
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\Activity>
      */
