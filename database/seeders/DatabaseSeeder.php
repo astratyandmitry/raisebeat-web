@@ -74,6 +74,7 @@ final class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             DictionariesSeeder::class,
             FollowSeeder::class,
+            InteractionSeeder::class,
         ]);
     }
 }

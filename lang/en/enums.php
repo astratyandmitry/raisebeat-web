@@ -4,6 +4,7 @@ use App\Models\Enums\BusinessModel;
 use App\Models\Enums\FundraisingRound;
 use App\Models\Enums\FundraisingStatus;
 use App\Models\Enums\InteractionStatus;
+use App\Models\Enums\InteractionType;
 use App\Models\Enums\InvestmentModel;
 use App\Models\Enums\VacancyType;
 use App\Models\Enums\Language;
@@ -194,5 +195,15 @@ return [
         VerificationStatus::Pending->value => 'Pending',
         VerificationStatus::Accepted->value => 'Accepted',
         VerificationStatus::Rejected->value => 'Rejected',
+    ],
+
+    InteractionType::class => [
+        InteractionType::RequestDemoAccess->value => 'Request Demo Access',
+        InteractionType::RequestDeckAccess->value => 'Request Deck Access',
+        InteractionType::ApplyForProgram->value => 'Apply for Program',
+        InteractionType::ProposeInvestment->value => 'Propose Investment',
+        InteractionType::InviteToPitch->value => 'Invite to Pitch',
+        InteractionType::SubmitNews->value => 'Submit News',
+        InteractionType::InviteToTeam->value => 'Invite to Team',
     ],
 ];
