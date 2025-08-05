@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Abstracts\Organization;
 use App\Models\Accelerator;
-use App\Models\Contracts\Interactable;
 use App\Models\Enums\InteractionStatus;
 use App\Models\Enums\InteractionType;
 use App\Models\Found;
@@ -13,7 +14,6 @@ use App\Models\Investor;
 use App\Models\Media;
 use App\Models\Startup;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 
@@ -60,7 +60,7 @@ final class InteractionSeeder extends Seeder
     public function run(): void
     {
         foreach ($this->data as $data) {
-            for ($i = 0; $i < rand(3, 10); $i++) {
+            for ($i = 0; $i < random_int(3, 10); $i++) {
                 [$from_user_id, $from_model] = $this->getInteractable($data['from']);
                 [$to_user_id, $to_model] = $this->getInteractable($data['to']);
 

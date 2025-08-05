@@ -8,7 +8,6 @@ use App\Actions\Activity\LogActivityAction;
 use App\Models\Enums\ActivityType;
 use App\Models\Enums\VerificationStatus;
 use App\Models\Verification;
-use Closure;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

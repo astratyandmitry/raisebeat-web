@@ -19,7 +19,7 @@ final readonly class LogActivityAction
     ): Activity {
         return $performer->performed_activities()->create([
             'user_id' => $performer->performer_user_id(),
-            'subjectable_type' => $subject ? $subject::class : null,
+            'subjectable_type' => $subject instanceof CanReceiveActivity ? $subject::class : null,
             'subjectable_id' => $subject?->getKey(),
             'type' => $type,
             'data' => $data,

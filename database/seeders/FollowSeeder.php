@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Accelerator;
@@ -9,7 +11,6 @@ use App\Models\Investor;
 use App\Models\Media;
 use App\Models\Startup;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 
@@ -23,8 +24,7 @@ final class FollowSeeder extends Seeder
             ->map(function (User $user): void {
                 $alreadyFollowed = [];
 
-                for ($i = 0; $i < rand(0, 10); $i++) {
-                    /** @var \App\Models\Contracts\Followable $toFollow */
+                for ($i = 0; $i < random_int(0, 10); $i++) {
                     $followable = $this->getFollowable($alreadyFollowed);
 
                     $user->followings()->create([

@@ -13,9 +13,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 interface CanPerformActivity
 {
-    /**
-     * @return int
-     */
     public function performer_user_id(): int;
 
     /**
