@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace App\Filament\Resources\StartupProductTypes\Pages;
 
 use App\Filament\Resources\StartupProductTypes\StartupProductTypeResource;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Actions\CreateAction;
+use Filament\Resources\Pages\ListRecords;
 
-final class EditStartupProductType extends EditRecord
+final class ManageStartupProductTypes extends ListRecords
 {
     protected static string $resource = StartupProductTypeResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            //
+            CreateAction::make()->label('Create'),
         ];
     }
 }

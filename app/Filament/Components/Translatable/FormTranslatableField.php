@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Components;
+namespace App\Filament\Components\Translatable;
 
 use App\Models\Enums\Language;
 use Filament\Forms\Components\TextInput;
-use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Fieldset;
 
 final class FormTranslatableField
 {
-    public static function make(string $attribute, ?string $heading): Section
+    public static function make(string $attribute, ?string $heading): Fieldset
     {
         $schema = [];
 
@@ -18,9 +18,10 @@ final class FormTranslatableField
             $locale = strtolower($language->value);
             $schema[] = TextInput::make("$attribute.$locale")
                 ->label($language->label())
+                ->maxLength(80)
                 ->required();
         }
 
-        return Section::make($heading ?? $attribute)->schema($schema);
+        return Fieldset::make($heading ?? $attribute)->schema($schema);
     }
 }
