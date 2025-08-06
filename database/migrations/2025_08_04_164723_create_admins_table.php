@@ -19,6 +19,7 @@ return new class extends Migration{
             $table->string('email', 80)->unique()->index();
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -49,6 +49,7 @@ final class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-o-folder')
                     ->collapsed(),
             ])
+            ->profile()
             ->unsavedChangesAlerts()
             ->databaseTransactions()
             ->readOnlyRelationManagersOnResourceViewPagesByDefault(false)

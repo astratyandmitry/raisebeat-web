@@ -65,7 +65,6 @@ abstract class BaseDictionaryResource extends Resource
                     ->label($isReordering ? 'Disable reordering' : 'Enable reordering'),
             )
             ->paginated(false)
-            ->defaultKeySort(true)
             ->reorderable('sort_order')
             ->defaultSort('sort_order')
             ->columns([
