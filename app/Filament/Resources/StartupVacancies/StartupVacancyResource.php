@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\StartupVacancies;
 
+use UnitEnum;
 use App\Filament\Resources\StartupVacancies\Pages\CreateStartupVacancy;
 use App\Filament\Resources\StartupVacancies\Pages\EditStartupVacancy;
 use App\Filament\Resources\StartupVacancies\Pages\ListStartupVacancies;
@@ -18,7 +21,7 @@ final class StartupVacancyResource extends Resource
 {
     protected static ?string $model = StartupVacancy::class;
 
-    protected static null|string|\UnitEnum $navigationGroup = 'Content';
+    protected static null|string|UnitEnum $navigationGroup = 'Content';
 
     protected static ?int $navigationSort = 1;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Components\Translatable;
 
 use App\Models\Abstracts\Dictionary;
@@ -17,7 +19,7 @@ final class InfolistTranslatableTextEntry
             $locale = strtolower($language->value);
             $schema[] = TextEntry::make('name')
                 ->label($language->label())
-                ->state(fn(Dictionary $record) => $record->getTranslation($attribute, $locale));
+                ->state(fn(Dictionary $record): string => $record->getTranslation($attribute, $locale));
         }
 
         return Fieldset::make($heading ?? $attribute)->inlineLabel()->columns(1)->schema($schema);

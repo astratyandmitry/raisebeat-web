@@ -60,7 +60,7 @@ abstract class BaseDictionaryResource extends Resource
     {
         return $table
             ->reorderRecordsTriggerAction(
-                fn(Action $action, bool $isReordering) => $action
+                fn(Action $action, bool $isReordering): Action => $action
                     ->button()
                     ->label($isReordering ? 'Disable reordering' : 'Enable reordering'),
             )

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Posts;
 
+use UnitEnum;
 use App\Filament\Resources\Posts\Pages\CreatePost;
 use App\Filament\Resources\Posts\Pages\EditPost;
 use App\Filament\Resources\Posts\Pages\ListPosts;
@@ -20,7 +21,7 @@ final class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
-    protected static null|string|\UnitEnum $navigationGroup = 'Content';
+    protected static null|string|UnitEnum $navigationGroup = 'Content';
 
     protected static ?int $navigationSort = 2;
 

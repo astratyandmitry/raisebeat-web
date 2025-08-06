@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Comments;
 
+use UnitEnum;
 use App\Filament\Resources\Comments\Pages\CreateComment;
 use App\Filament\Resources\Comments\Pages\EditComment;
 use App\Filament\Resources\Comments\Pages\ListComments;
@@ -22,7 +23,7 @@ final class CommentResource extends Resource
 {
     protected static ?string $model = Comment::class;
 
-    protected static null|string|\UnitEnum $navigationGroup = 'Content';
+    protected static null|string|UnitEnum $navigationGroup = 'Content';
 
     protected static ?int $navigationSort = 3;
 

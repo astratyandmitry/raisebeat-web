@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Verifications;
 
+use UnitEnum;
 use App\Filament\Resources\Verifications\Pages\CreateVerification;
 use App\Filament\Resources\Verifications\Pages\EditVerification;
 use App\Filament\Resources\Verifications\Pages\ListVerifications;
@@ -22,7 +23,7 @@ final class VerificationResource extends Resource
 {
     protected static ?string $model = Verification::class;
 
-    protected static null|string|\UnitEnum $navigationGroup = 'System';
+    protected static null|string|UnitEnum $navigationGroup = 'System';
 
     protected static ?int $navigationSort = 1;
 
