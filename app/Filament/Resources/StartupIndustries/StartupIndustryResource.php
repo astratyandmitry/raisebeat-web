@@ -12,6 +12,8 @@ final class StartupIndustryResource extends BaseDictionaryResource
 {
     protected static ?string $model = StartupIndustry::class;
 
+    protected static ?string $navigationLabel = 'Industries';
+
     public static function getPages(): array
     {
         return [

@@ -12,6 +12,8 @@ final class StartupProductTypeResource extends BaseDictionaryResource
 {
     protected static ?string $model = StartupProductType::class;
 
+    protected static ?string $navigationLabel = 'Product Types';
+
     public static function getPages(): array
     {
         return [

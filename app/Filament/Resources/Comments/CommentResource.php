@@ -12,10 +12,8 @@ use App\Filament\Resources\Comments\Schemas\CommentForm;
 use App\Filament\Resources\Comments\Schemas\CommentInfolist;
 use App\Filament\Resources\Comments\Tables\CommentsTable;
 use App\Models\Comment;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -24,7 +22,9 @@ final class CommentResource extends Resource
 {
     protected static ?string $model = Comment::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static null|string|\UnitEnum $navigationGroup = 'Content';
+
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {

@@ -37,6 +37,10 @@ final class AdminPanelProvider extends PanelProvider
             ])
             ->navigationGroups([
                 NavigationGroup::make()
+                    ->label('Content')
+                    ->icon('heroicon-o-folder')
+                    ->collapsed(),
+                NavigationGroup::make()
                     ->label('Dictionaries')
                     ->icon('heroicon-o-folder')
                     ->collapsed(),

@@ -12,6 +12,8 @@ final class StartupCategoryResource extends BaseDictionaryResource
 {
     protected static ?string $model = StartupCategory::class;
 
+    protected static ?string $navigationLabel = 'Categories';
+
     public static function getPages(): array
     {
         return [

@@ -12,6 +12,8 @@ final class StartupTechnologyResource extends BaseDictionaryResource
 {
     protected static ?string $model = StartupTechnology::class;
 
+    protected static ?string $navigationLabel = 'Technologies';
+
     public static function getPages(): array
     {
         return [

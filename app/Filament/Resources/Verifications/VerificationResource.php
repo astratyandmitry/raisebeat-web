@@ -12,10 +12,8 @@ use App\Filament\Resources\Verifications\Schemas\VerificationForm;
 use App\Filament\Resources\Verifications\Schemas\VerificationInfolist;
 use App\Filament\Resources\Verifications\Tables\VerificationsTable;
 use App\Models\Verification;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -24,7 +22,9 @@ final class VerificationResource extends Resource
 {
     protected static ?string $model = Verification::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static null|string|\UnitEnum $navigationGroup = 'System';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {
