@@ -59,11 +59,6 @@ abstract class BaseDictionaryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->reorderRecordsTriggerAction(
-                fn(Action $action, bool $isReordering): Action => $action
-                    ->button()
-                    ->label($isReordering ? 'Disable reordering' : 'Enable reordering'),
-            )
             ->paginated(false)
             ->reorderable('sort_order')
             ->defaultSort('sort_order')

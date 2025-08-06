@@ -95,6 +95,7 @@ final class AdminResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->paginated(false)
             ->columns([
                 TextColumn::make('id')
                     ->width(40)
