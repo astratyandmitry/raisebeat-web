@@ -27,7 +27,7 @@ final class ManageVerifications extends ListRecords
 
         foreach (VerificationStatus::cases() as $status) {
             $tabs[$status->value] = Tab::make($status->getLabel())
-                ->modifyQueryUsing(fn ($query) => $query->where('status', $status))
+                ->modifyQueryUsing(fn($query) => $query->where('status', $status))
                 ->badgeColor($status->getColor())
                 ->badge($counts->get($status->value));
         }

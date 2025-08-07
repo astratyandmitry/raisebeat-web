@@ -15,6 +15,7 @@ use App\Models\Traits\HasReceivedActivities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property-read int|null $parent_id
@@ -36,7 +37,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 final class Post extends Model implements CanReceiveActivity, Commentable, Likeable, Viewable
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
-    use HasComments, HasFactory, HasReceivedActivities;
+    use HasComments, HasFactory, HasReceivedActivities, SoftDeletes;
 
     protected function casts(): array
     {

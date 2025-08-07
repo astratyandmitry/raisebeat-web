@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\StartupVacancies\Tables;
+namespace App\Filament\Resources\StartupVacancies\Schemas;
 
+use App\Filament\Resources\Startups\StartupResource;
 use App\Models\Enums\VacancyType;
 use App\Models\StartupVacancy;
 use Filament\Actions\ActionGroup;
@@ -27,7 +28,6 @@ final class StartupVacanciesTable
     {
         return $table
             ->defaultSort('id', 'desc')
-            ->striped()
             ->columns([
                 TextColumn::make('id')
                     ->width(50)
@@ -36,10 +36,9 @@ final class StartupVacanciesTable
                     ->limit(50)
                     ->searchable(),
                 TextColumn::make('startup.name')
-                    ->url(fn(StartupVacancy $vacancy
-                    ) => route('filament.admin.resources.startups.view', $vacancy->startup))
-                    ->openUrlInNewTab()
-                    ->label('Startup'),
+                    ->label('Startup')
+                    ->url(fn(StartupVacancy $vacancy) => StartupResource::getUrl('view', [$vacancy]))
+                    ->openUrlInNewTab(),
                 TextColumn::make('type')
                     ->width(20)
                     ->color('default')
@@ -73,7 +72,6 @@ final class StartupVacanciesTable
                 ViewAction::make()->hiddenLabel(),
 
                 ActionGroup::make([
-                    EditAction::make(),
                     DeleteAction::make(),
                     ForceDeleteAction::make(),
                     RestoreAction::make(),

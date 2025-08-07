@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\StartupVacancies\Schemas;
 
+use App\Filament\Resources\Startups\StartupResource;
 use App\Models\StartupVacancy;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
@@ -18,6 +19,8 @@ final class StartupVacancyInfolist
                 TextEntry::make('uuid')
                     ->label('UUID'),
                 TextEntry::make('startup.name')
+                    ->url(fn(StartupVacancy $record) => StartupResource::getUrl('view', [$record]))
+                    ->openUrlInNewTab()
                     ->label('Startup'),
                 TextEntry::make('type'),
                 TextEntry::make('title'),
