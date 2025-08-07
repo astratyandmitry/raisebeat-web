@@ -8,8 +8,8 @@ use App\Filament\Resources\Verifications\Actions\ApproveBulkAction;
 use App\Filament\Resources\Verifications\Actions\ApproveRecordAction;
 use App\Filament\Resources\Verifications\Actions\RejectBulkAction;
 use App\Filament\Resources\Verifications\Actions\RejectRecordAction;
-use App\Filament\Resources\Verifications\Actions\ViewVerifiableAction;
 use App\Filament\Resources\Verifications\Pages\ManageVerifications;
+use App\Filament\Support\Common\TextColumnLimitedStringTooltip;
 use App\Models\Verification;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
@@ -33,8 +33,13 @@ final class VerificationResource extends Resource
     {
         return $table
             ->defaultSort('requested_at', 'desc')
+            ->recordUrl(function (Verification $record): string {
+                return route("filament.admin.resources.{$record->verifiable_type}.view", $record->verifiable_id);
+            })
+            ->openRecordUrlInNewTab()
             ->columns([
                 TextColumn::make('id')
+                    ->width(50)
                     ->label('ID'),
                 TextColumn::make('verifiable.')
                     ->state(fn(Verification $record) => $record->verifiable->getDisplayLabel())
@@ -43,21 +48,16 @@ final class VerificationResource extends Resource
                     ->badge(),
                 TextColumn::make('comment')
                     ->placeholder('No comment provided.')
-                    ->limit(40)
-                    ->tooltip(function (TextColumn $column): ?string {
-                        if (strlen((string) $column->getState()) <= $column->getCharacterLimit()) {
-                            return null;
-                        }
-
-                        return $column->getState();
-                    })
+                    ->limitedTooltip()
                     ->searchable(),
                 TextColumn::make('requested_at')
+                    ->width(40)
                     ->label('Requested')
                     ->dateTime('Y-m-d H:i')
                     ->sortable(),
                 TextColumn::make('responded_at')
                     ->label('Responded')
+                    ->width(40)
                     ->placeholder('Pending')
                     ->dateTime('Y-m-d H:i')
                     ->sortable(),
@@ -67,7 +67,6 @@ final class VerificationResource extends Resource
                     ApproveRecordAction::make(),
                     RejectRecordAction::make(),
                 ])->visible(fn(Verification $record) => $record->status->isPending()),
-                ViewVerifiableAction::make(),
             ])
             ->filters([
                 SelectFilter::make('verifiable_type')

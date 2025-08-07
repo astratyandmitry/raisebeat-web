@@ -16,6 +16,7 @@ use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\VerticalAlignment;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -31,6 +32,18 @@ final class AdminPanelProvider extends PanelProvider
     {
         Notifications::alignment(Alignment::End);
         Notifications::verticalAlignment(VerticalAlignment::End);
+
+        TextColumn::macro('limitedTooltip', function (?int $limit = 40) {
+            /** @var TextColumn $this */
+            return $this->limit($limit)
+                ->tooltip(function (TextColumn $column): ?string {
+                    if (strlen((string) $column->getState()) <= $column->getCharacterLimit()) {
+                        return null;
+                    }
+
+                    return $column->getState();
+                });
+        });
 
         return $panel
             ->default()

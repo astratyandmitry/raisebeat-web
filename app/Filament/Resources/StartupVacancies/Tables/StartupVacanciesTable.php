@@ -1,15 +1,24 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Filament\Resources\StartupVacancies\Tables;
 
+use App\Models\Enums\VacancyType;
+use App\Models\StartupVacancy;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 final class StartupVacanciesTable
@@ -17,45 +26,64 @@ final class StartupVacanciesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
+            ->striped()
             ->columns([
-                TextColumn::make('uuid')
-                    ->label('UUID')
+                TextColumn::make('id')
+                    ->width(50)
+                    ->label('ID'),
+                TextColumn::make('title')
+                    ->limit(50)
                     ->searchable(),
                 TextColumn::make('startup.name')
-                    ->numeric()
-                    ->sortable(),
+                    ->url(fn(StartupVacancy $vacancy
+                    ) => route('filament.admin.resources.startups.view', $vacancy->startup))
+                    ->openUrlInNewTab()
+                    ->label('Startup'),
                 TextColumn::make('type')
+                    ->width(20)
+                    ->color('default')
+                    ->badge()
                     ->searchable(),
-                TextColumn::make('title')
-                    ->searchable(),
-                TextColumn::make('description')
-                    ->searchable(),
-                TextColumn::make('feedback_email')
-                    ->searchable(),
-                TextColumn::make('count_views')
-                    ->numeric()
-                    ->sortable(),
                 IconColumn::make('is_applicable')
+                    ->width(20)
+                    ->label('Applicable')
+                    ->alignCenter()
                     ->boolean(),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->width(40)
+                    ->label('Created')
+                    ->dateTime('Y-m-d H:i')
+                    ->sortable(),
                 TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
+                    ->label('Updated')
+                    ->dateTime('Y-m-d H:i')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('deleted_at')
+                    ->label('Deleted')
+                    ->dateTime('Y-m-d H:i')
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('type')->options(VacancyType::options()),
+                TernaryFilter::make('is_applicable')->label('Applicable'),
+                TrashedFilter::make(),
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->hiddenLabel(),
+
+                ActionGroup::make([
+                    EditAction::make(),
+                    DeleteAction::make(),
+                    ForceDeleteAction::make(),
+                    RestoreAction::make(),
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
                 ]),
             ]);
     }

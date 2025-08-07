@@ -1,27 +1,28 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Filament\Resources\StartupVacancies;
 
 use App\Filament\Resources\StartupVacancies\Pages\CreateStartupVacancy;
 use App\Filament\Resources\StartupVacancies\Pages\EditStartupVacancy;
-use App\Filament\Resources\StartupVacancies\Pages\ListStartupVacancies;
+use App\Filament\Resources\StartupVacancies\Pages\ManageStartupVacancies;
 use App\Filament\Resources\StartupVacancies\Pages\ViewStartupVacancy;
 use App\Filament\Resources\StartupVacancies\Schemas\StartupVacancyForm;
 use App\Filament\Resources\StartupVacancies\Schemas\StartupVacancyInfolist;
 use App\Filament\Resources\StartupVacancies\Tables\StartupVacanciesTable;
 use App\Models\StartupVacancy;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 final class StartupVacancyResource extends Resource
 {
     protected static ?string $model = StartupVacancy::class;
 
-    protected static null|string|UnitEnum $navigationGroup = 'Content';
+    protected static null|string|\UnitEnum $navigationGroup = 'Content';
 
     protected static ?int $navigationSort = 1;
 
@@ -29,10 +30,6 @@ final class StartupVacancyResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    public static function form(Schema $schema): Schema
-    {
-        return StartupVacancyForm::configure($schema);
-    }
 
     public static function infolist(Schema $schema): Schema
     {
@@ -54,10 +51,15 @@ final class StartupVacancyResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListStartupVacancies::route('/'),
-            'create' => CreateStartupVacancy::route('/create'),
-            'view' => ViewStartupVacancy::route('/{record}'),
-            'edit' => EditStartupVacancy::route('/{record}/edit'),
+            'index' => ManageStartupVacancies::route('/'),
         ];
+    }
+
+    public static function getRecordRouteBindingEloquentQuery(): Builder
+    {
+        return parent::getRecordRouteBindingEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }

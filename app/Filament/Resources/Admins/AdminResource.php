@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Admins;
 
+use App\Filament\Resources\Admins\Actions\EditAdminAction;
 use App\Filament\Resources\Admins\Pages\ManageAdmins;
 use App\Models\Admin;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
@@ -23,7 +23,6 @@ use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Hash;
 use UnitEnum;
 
 final class AdminResource extends Resource
@@ -103,7 +102,7 @@ final class AdminResource extends Resource
             ->paginated(false)
             ->columns([
                 TextColumn::make('id')
-                    ->width(40)
+                    ->width(50)
                     ->label('ID')
                     ->sortable(),
                 TextColumn::make('name')
@@ -114,6 +113,7 @@ final class AdminResource extends Resource
                 IconColumn::make('deleted_at')
                     ->label('Status')
                     ->trueColor('danger')
+                    ->alignCenter()
                     ->icon('heroicon-o-trash')
                     ->boolean(),
                 TextColumn::make('created_at')
@@ -121,18 +121,9 @@ final class AdminResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])->recordActions([
+                ViewAction::make()->hiddenLabel(),
                 ActionGroup::make([
-                    ViewAction::make(),
-                    EditAction::make()
-                        ->mutateDataUsing(function (array $data): array {
-                            if (isset($data['new_password']) && filled($data['new_password'])) {
-                                $data['password'] = Hash::make($data['new_password']);
-                            }
-
-                            unset($data['new_password'], $data['new_password_confirmation']);
-
-                            return $data;
-                        }),
+                    EditAdminAction::make(),
                     DeleteAction::make(),
                     ForceDeleteAction::make()->hidden(),
                     RestoreAction::make(),

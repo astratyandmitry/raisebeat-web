@@ -11,6 +11,7 @@ use App\Models\Enums\VacancyType;
 use App\Models\Traits\HasReceivedActivities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property-read int $startup_id
@@ -25,7 +26,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 final class StartupVacancy extends Model implements CanReceiveActivity, Viewable
 {
     /** @use HasFactory<\Database\Factories\StartupVacancyFactory> */
-    use HasFactory, HasReceivedActivities;
+    use HasFactory, HasReceivedActivities, SoftDeletes;
 
     protected function casts(): array
     {
