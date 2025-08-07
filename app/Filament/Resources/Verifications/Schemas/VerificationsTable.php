@@ -28,9 +28,10 @@ final class VerificationsTable
                 TextColumn::make('id')
                     ->width(50)
                     ->label('ID'),
-                TextColumn::make('verifiable.')
+                TextColumn::make('verifiable.name')
                     ->state(fn(Verification $record) => $record->verifiable->getDisplayLabel())
-                    ->description(fn(Verification $record) => Str::title($record->verifiable_type)),
+                    ->description(fn(Verification $record) => Str::title($record->verifiable_type))
+                    ->searchable(),
                 TextColumn::make('status')
                     ->badge(),
                 TextColumn::make('comment')

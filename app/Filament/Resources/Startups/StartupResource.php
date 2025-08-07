@@ -22,7 +22,7 @@ final class StartupResource extends Resource
 {
     protected static ?string $model = Startup::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-rocket-launch';
 
     protected static ?int $navigationSort = 1;
 

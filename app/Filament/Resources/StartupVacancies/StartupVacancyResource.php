@@ -41,11 +41,6 @@ final class StartupVacancyResource extends Resource
         ];
     }
 
-    public static function getGloballySearchableAttributes(): array
-    {
-        return ['title', 'content'];
-    }
-
     public static function getRecordRouteBindingEloquentQuery(): Builder
     {
         return parent::getRecordRouteBindingEloquentQuery()

@@ -6,6 +6,7 @@ use App\Filament\Resources\Startups\StartupResource;
 use App\Models\StartupVacancy;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Schema;
 
 final class StartupVacancyInfolist
@@ -20,9 +21,10 @@ final class StartupVacancyInfolist
                     ->label('UUID'),
                 TextEntry::make('startup.name')
                     ->url(fn(StartupVacancy $record) => StartupResource::getUrl('view', [$record]))
+                    ->color('primary')
                     ->openUrlInNewTab()
                     ->label('Startup'),
-                TextEntry::make('type'),
+                TextEntry::make('type')->badge(),
                 TextEntry::make('title'),
                 TextEntry::make('description'),
                 TextEntry::make('content')
@@ -31,13 +33,19 @@ final class StartupVacancyInfolist
                 TextEntry::make('feedback_email'),
                 IconEntry::make('is_applicable')
                     ->boolean(),
-                TextEntry::make('created_at')
-                    ->dateTime('Y-m-d H:i'),
-                TextEntry::make('updated_at')
-                    ->dateTime('Y-m-d H:i'),
-                TextEntry::make('deleted_at')
-                    ->placeholder('Entity is not deleted.')
-                    ->dateTime('Y-m-d H:i'),
+
+                Fieldset::make('Dates')
+                    ->columns(3)
+                    ->inlineLabel(false)
+                    ->schema([
+                        TextEntry::make('created_at')
+                            ->dateTime('Y-m-d H:i'),
+                        TextEntry::make('updated_at')
+                            ->dateTime('Y-m-d H:i'),
+                        TextEntry::make('deleted_at')
+                            ->placeholder('None')
+                            ->dateTime('Y-m-d H:i'),
+                    ]),
             ]);
     }
 }

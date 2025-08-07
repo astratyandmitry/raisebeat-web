@@ -10,7 +10,6 @@ use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreAction;
@@ -35,14 +34,13 @@ final class StartupVacanciesTable
                     ->label('ID'),
                 TextColumn::make('title')
                     ->limit(50)
-                    ->searchable(),
+                    ->searchable(['title', 'content']),
                 TextColumn::make('startup.name')
                     ->label('Startup')
-                    ->url(fn(StartupVacancy $vacancy) => StartupResource::getUrl('view', [$vacancy]))
-                    ->openUrlInNewTab(),
+                    ->searchable(),
                 TextColumn::make('type')
                     ->width(20)
-                    ->color('default')
+                    ->color('gray')
                     ->badge()
                     ->searchable(),
                 IconColumn::make('is_applicable')

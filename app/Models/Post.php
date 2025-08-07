@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Models\Abstracts\Model;
 use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Commentable;
+use App\Models\Contracts\HasPublicUrl;
 use App\Models\Contracts\Likeable;
 use App\Models\Contracts\Viewable;
 use App\Models\Enums\PostType;
@@ -34,7 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\User $user
  * @property-read \App\Models\Abstracts\Organization|null $postable
  */
-final class Post extends Model implements CanReceiveActivity, Commentable, Likeable, Viewable
+final class Post extends Model implements CanReceiveActivity, Commentable, Likeable, Viewable, HasPublicUrl
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasComments, HasFactory, HasReceivedActivities, SoftDeletes;
@@ -63,5 +64,10 @@ final class Post extends Model implements CanReceiveActivity, Commentable, Likea
     public function postable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function getPublicUrl(): string
+    {
+        return url('/'); // todo
     }
 }

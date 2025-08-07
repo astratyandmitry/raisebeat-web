@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Dashboard;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Livewire\Notifications;
 use Filament\Navigation\NavigationGroup;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -51,24 +51,15 @@ final class AdminPanelProvider extends PanelProvider
             ->domain(config('app.admin_domain'))
             ->login()
             ->authGuard('admin')
-            ->colors([
-                'primary' => Color::Indigo,
-            ])
+            ->colors(['primary' => Color::Indigo])
+            ->maxContentWidth('full')
             ->navigationGroups([
-                NavigationGroup::make()
-                    ->label('Content')
-                    ->icon('heroicon-o-folder')
-                    ->collapsed(),
-                NavigationGroup::make()
-                    ->label('Dictionaries')
-                    ->icon('heroicon-o-folder')
-                    ->collapsed(),
-                NavigationGroup::make()
-                    ->label('System')
-                    ->icon('heroicon-o-folder')
-                    ->collapsed(),
+                NavigationGroup::make()->icon('heroicon-o-document-text')->collapsible()->label('Content'),
+                NavigationGroup::make()->icon('heroicon-o-queue-list')->collapsible()->label('Dictionaries'),
+                NavigationGroup::make()->icon('heroicon-o-cog-6-tooth')->collapsible()->label('System'),
             ])
             ->profile()
+            ->sidebarCollapsibleOnDesktop()
             ->unsavedChangesAlerts()
             ->databaseTransactions()
             ->readOnlyRelationManagersOnResourceViewPagesByDefault(false)

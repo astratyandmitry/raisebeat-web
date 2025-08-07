@@ -22,7 +22,7 @@ final class FoundResource extends Resource
 {
     protected static ?string $model = Found::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-presentation-chart-line';
 
     protected static ?int $navigationSort = 3;
 

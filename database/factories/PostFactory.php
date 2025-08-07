@@ -41,8 +41,6 @@ final class PostFactory extends Factory
     {
         return $this->state(fn (array $attributes): array => [
             'external_url' => $this->faker->url,
-            'title' => null,
-            'description' => null,
             'content' => null,
         ]);
     }

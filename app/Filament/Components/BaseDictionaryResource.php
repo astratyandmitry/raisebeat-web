@@ -101,9 +101,4 @@ abstract class BaseDictionaryResource extends Resource
                 InfolistTranslatableTextEntry::make('name', 'Name'),
             ]);
     }
-
-    public static function getGloballySearchableAttributes(): array
-    {
-        return ['name', 'key'];
-    }
 }

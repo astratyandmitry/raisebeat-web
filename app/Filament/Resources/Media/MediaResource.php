@@ -22,7 +22,7 @@ final class MediaResource extends Resource
 {
     protected static ?string $model = Media::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-newspaper';
 
     protected static ?int $navigationSort = 5;
 
