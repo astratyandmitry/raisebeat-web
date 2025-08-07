@@ -16,7 +16,7 @@ final class ApproveBulkAction extends ApproveAction
     {
         return BulkAction::make('verification.approve')
             ->action(function (Collection $records, ApproveVerificationAction $cmd): void {
-                $records->each(fn(Verification $el): Verification => $cmd->execute($el));
+                $records->each(fn (Verification $el): Verification => $cmd->execute($el));
             })
             ->successNotification(function (Collection $records): void {
                 Notification::make()->success()

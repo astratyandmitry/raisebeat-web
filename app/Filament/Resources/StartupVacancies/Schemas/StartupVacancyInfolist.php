@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\StartupVacancies\Schemas;
 
 use App\Filament\Resources\Startups\StartupResource;
@@ -24,7 +26,7 @@ final class StartupVacancyInfolist
                 TextEntry::make('startup.name')
                     ->label('Startup')
                     ->color('primary')
-                    ->url(fn(StartupVacancy $record) => StartupResource::getUrl('view', [$record]))
+                    ->url(fn (StartupVacancy $record): string => StartupResource::getUrl('view', [$record]))
                     ->openUrlInNewTab(),
 
                 TextEntry::make('type')->badge(),

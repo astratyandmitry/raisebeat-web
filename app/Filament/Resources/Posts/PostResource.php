@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Posts;
 
 use App\Filament\Resources\Posts\Pages\ManagePosts;
-use App\Filament\Resources\Posts\Pages\ViewPost;
-use App\Filament\Resources\Posts\Schemas\PostForm;
 use App\Filament\Resources\Posts\Schemas\PostInfolist;
 use App\Filament\Resources\Posts\Schemas\PostsTable;
 use App\Models\Post;

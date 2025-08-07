@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Verifications\Actions;
 
 use App\Models\Verification;
@@ -10,9 +12,7 @@ final class ViewVerifiableAction
     public static function make(): Action
     {
         return Action::make('view')
-            ->url(function (Verification $record): string {
-                return route("filament.admin.resources.{$record->verifiable_type}.view", $record->verifiable_id);
-            })
+            ->url(fn (Verification $record): string => route("filament.admin.resources.{$record->verifiable_type}.view", $record->verifiable_id))
             ->hiddenLabel()
             ->openUrlInNewTab()
             ->icon('heroicon-o-eye');

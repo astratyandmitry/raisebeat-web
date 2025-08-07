@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Posts\Entries;
 
 use App\Models\Post;
@@ -15,15 +17,15 @@ final class RepostFieldsetEntry
             ->columns(1)
             ->schema([
                 TextEntry::make('parent.title')
-                    ->visible(fn(Post $record) => ! empty($record->parent->title))
+                    ->visible(fn (Post $record): bool => ! empty($record->parent->title))
                     ->label('Original Title'),
 
                 TextEntry::make('parent.description')
-                    ->visible(fn(Post $record) => ! empty($record->parent->description))
-                    ->formatStateUsing(fn(Post $record) => nl2br($record->parent->description))
+                    ->visible(fn (Post $record): bool => ! empty($record->parent->description))
+                    ->formatStateUsing(fn (Post $record): string => nl2br((string) $record->parent->description))
                     ->label('Original Description'),
 
                 TextEntry::make('repost_comment')->name('Comment'),
-            ])->visible(fn(Post $record) => $record->parent !== null);
+            ])->visible(fn (Post $record): bool => $record->parent !== null);
     }
 }

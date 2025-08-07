@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\StartupVacancies;
 
 use App\Filament\Resources\StartupVacancies\Pages\ManageStartupVacancies;
@@ -11,12 +13,13 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 final class StartupVacancyResource extends Resource
 {
     protected static ?string $model = StartupVacancy::class;
 
-    protected static null|string|\UnitEnum $navigationGroup = 'Content';
+    protected static null|string|UnitEnum $navigationGroup = 'Content';
 
     protected static ?int $navigationSort = 1;
 

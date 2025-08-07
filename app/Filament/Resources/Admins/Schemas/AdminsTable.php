@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Admins\Schemas;
 
 use App\Filament\Resources\Admins\Actions\EditAdminAction;
@@ -46,7 +48,7 @@ final class AdminsTable
                     DeleteAction::make(),
                     ForceDeleteAction::make()->hidden(),
                     RestoreAction::make(),
-                ])->color('gray')->visible(fn(Admin $record) => ! $record->root || auth()->user()->root),
+                ])->color('gray')->visible(fn (Admin $record): bool => ! $record->root || auth()->user()->root),
             ])
             ->filters([
                 TrashedFilter::make(),

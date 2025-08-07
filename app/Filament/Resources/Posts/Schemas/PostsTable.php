@@ -34,23 +34,23 @@ final class PostsTable
                     ->label('ID'),
                 TextColumn::make('title')
                     ->label('Post')
-                    ->formatStateUsing(fn(Post $record) => $record->parent ? $record->parent->title : $record->title)
-                    ->description(fn(Post $record) => Str::limit($record->repost_comment ?: $record->description, 80))
+                    ->formatStateUsing(fn (Post $record) => $record->parent ? $record->parent->title : $record->title)
+                    ->description(fn (Post $record) => Str::limit($record->repost_comment ?: $record->description, 80))
                     ->searchable(['title', 'description']),
                 TextColumn::make('type')
-                    ->formatStateUsing(fn(Post $record) => $record->parent ? 'REPOST' : $record->type)
-                    ->color(fn(Post $record) => $record->parent ? 'primary' : $record->type->getColor())
+                    ->formatStateUsing(fn (Post $record) => $record->parent ? 'REPOST' : $record->type)
+                    ->color(fn (Post $record) => $record->parent ? 'primary' : $record->type->getColor())
                     ->badge()
                     ->searchable(),
                 TextColumn::make('postable.name')
-                    ->state(fn(Post $record) => $record->postable->getDisplayLabel())
-                    ->description(fn(Post $record) => Str::title($record->postable_type))
+                    ->state(fn (Post $record) => $record->postable->getDisplayLabel())
+                    ->description(fn (Post $record) => Str::title($record->postable_type))
                     ->searchable(),
                 IconColumn::make('external_url')
                     ->label('URL')
                     ->trueColor('primary')
-                    ->tooltip(fn(Post $record) => $record->external_url)
-                    ->url(fn(Post $record) => $record->external_url)
+                    ->tooltip(fn (Post $record) => $record->external_url)
+                    ->url(fn (Post $record) => $record->external_url)
                     ->openUrlInNewTab()
                     ->alignCenter()
                     ->icon('heroicon-o-link')
@@ -67,7 +67,7 @@ final class PostsTable
 
                 Filter::make('external')
                     ->checkbox()
-                    ->modifyQueryUsing(fn($query) => $query->whereNotNull('external_url')),
+                    ->modifyQueryUsing(fn ($query) => $query->whereNotNull('external_url')),
             ])
             ->recordActions([
                 ViewAction::make()->hiddenLabel(),

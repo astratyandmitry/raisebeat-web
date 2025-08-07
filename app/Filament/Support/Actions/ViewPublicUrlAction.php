@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Actions;
 
 use App\Models\Contracts\HasPublicUrl;
@@ -14,6 +16,6 @@ final class ViewPublicUrlAction
             ->icon('heroicon-o-link')
             ->openUrlInNewTab()
             ->color('gray')
-            ->url(fn(HasPublicUrl $record) => $record->getPublicUrl());
+            ->url(fn (HasPublicUrl $record): string => $record->getPublicUrl());
     }
 }

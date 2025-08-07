@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Verifications\Schemas;
 
 use App\Filament\Resources\Verifications\Actions\ApproveBulkAction;
@@ -20,17 +22,15 @@ final class VerificationsTable
     {
         return $table
             ->defaultSort('requested_at', 'desc')
-            ->recordUrl(function (Verification $record): string {
-                return route("filament.admin.resources.{$record->verifiable_type}.view", $record->verifiable_id);
-            })
+            ->recordUrl(fn (Verification $record): string => route("filament.admin.resources.{$record->verifiable_type}.view", $record->verifiable_id))
             ->openRecordUrlInNewTab()
             ->columns([
                 TextColumn::make('id')
                     ->width(50)
                     ->label('ID'),
                 TextColumn::make('verifiable.name')
-                    ->state(fn(Verification $record) => $record->verifiable->getDisplayLabel())
-                    ->description(fn(Verification $record) => Str::title($record->verifiable_type))
+                    ->state(fn (Verification $record) => $record->verifiable->getDisplayLabel())
+                    ->description(fn (Verification $record) => Str::title($record->verifiable_type))
                     ->searchable(),
                 TextColumn::make('status')
                     ->badge(),
@@ -54,7 +54,7 @@ final class VerificationsTable
                 ActionGroup::make([
                     ApproveRecordAction::make(),
                     RejectRecordAction::make(),
-                ])->color('gray')->visible(fn(Verification $record) => $record->status->isPending()),
+                ])->color('gray')->visible(fn (Verification $record) => $record->status->isPending()),
             ])
             ->filters([
                 SelectFilter::make('verifiable_type')
@@ -74,7 +74,7 @@ final class VerificationsTable
                 ])->label('Actions'),
             ])
             ->checkIfRecordIsSelectableUsing(
-                fn(Verification $record): bool => $record->status->isPending(),
+                fn (Verification $record): bool => $record->status->isPending(),
             );
     }
 }

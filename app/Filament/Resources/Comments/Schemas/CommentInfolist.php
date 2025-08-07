@@ -28,11 +28,9 @@ final class CommentInfolist
                     ->label('Commentable')
                     ->color('primary')
                     ->openUrlInNewTab()
-                    ->url(fn(Comment $record) => $record->commentable->getPublicUrl())
-                    ->formatStateUsing(function (Comment $record) {
-                        return match (get_class($record->commentable)) {
-                            Post::class => $record->commentable->title ?? 'Untitled Post',
-                        };
+                    ->url(fn (Comment $record) => $record->commentable->getPublicUrl())
+                    ->formatStateUsing(fn (Comment $record) => match ($record->commentable::class) {
+                        Post::class => $record->commentable->title ?? 'Untitled Post',
                     }),
 
                 HtmlEntry::make('content'),

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Entries;
 
 use App\Filament\Resources\Users\UserResource;
@@ -14,7 +16,7 @@ final class UsernameEntry
             ->label('Author')
             ->color('primary')
             ->openUrlInNewTab()
-            ->url(fn(RelaterToUser $record) => UserResource::getUrl('view', [$record]))
-            ->state(fn(RelaterToUser $record) => "@{$record->user->username}");
+            ->url(fn (RelaterToUser $record): string => UserResource::getUrl('view', [$record]))
+            ->state(fn (RelaterToUser $record): string => "@{$record->user->username}");
     }
 }

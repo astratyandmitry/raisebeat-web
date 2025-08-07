@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Columns;
 
 use App\Models\Contracts\RelaterToUser;
@@ -12,6 +14,6 @@ final class UsernameColumn
         return TextColumn::make('user.username')
             ->width(240)
             ->label('Author')
-            ->formatStateUsing(fn(RelaterToUser $record) => "@{$record->user->username}");
+            ->formatStateUsing(fn (RelaterToUser $record): string => "@{$record->user->username}");
     }
 }
