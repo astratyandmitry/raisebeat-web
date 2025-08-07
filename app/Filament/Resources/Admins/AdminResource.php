@@ -54,6 +54,7 @@ final class AdminResource extends Resource
                     ->unique()
                     ->required(),
 
+                // Create
                 TextInput::make('password')
                     ->password()
                     ->minLength(8)
@@ -61,12 +62,12 @@ final class AdminResource extends Resource
                     ->columnSpanFull()
                     ->required(),
 
+                // Update
                 TextInput::make('new_password')
                     ->hiddenOn(Operation::Create)
                     ->minLength(8)
                     ->password()
                     ->confirmed(),
-
                 TextInput::make('new_password_confirmation')
                     ->hiddenOn(Operation::Create)
                     ->minLength(8)
@@ -111,7 +112,7 @@ final class AdminResource extends Resource
                     ->label('E-mail')
                     ->searchable(),
                 IconColumn::make('deleted_at')
-                    ->label('Deleted')
+                    ->label('Status')
                     ->trueColor('danger')
                     ->icon('heroicon-o-trash')
                     ->boolean(),

@@ -58,6 +58,7 @@ final class VerificationResource extends Resource
                     ->sortable(),
                 TextColumn::make('responded_at')
                     ->label('Responded')
+                    ->placeholder('Pending')
                     ->dateTime('Y-m-d H:i')
                     ->sortable(),
             ])
