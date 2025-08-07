@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use Opcodes\LogViewer\Facades\LogViewer;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,8 @@ final class AppServiceProvider extends ServiceProvider
         $this->tuneModelBehavior();
         $this->enforceSecureUrls();
         $this->optimizeViteSettings();
+
+        LogViewer::auth(fn(): bool => auth('admin')->check());
     }
 
     /**
