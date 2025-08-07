@@ -8,6 +8,7 @@ use App\Models\Abstracts\Model;
 use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Commentable;
 use App\Models\Contracts\Likeable;
+use App\Models\Contracts\RelaterToUser;
 use App\Models\Traits\HasReceivedActivities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,9 +25,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\Comment|null $parent
  * @property-read \App\Models\Comment[]|\Illuminate\Database\Eloquent\Collection $replies
  * @property-read \App\Models\User $user
- * @property-read \App\Models\Contracts\Commentable $commentable
+ * @property-read \App\Models\Contracts\Commentable&\App\Models\Contracts\HasPublicUrl $commentable
  */
-final class Comment extends Model implements CanReceiveActivity, Likeable
+final class Comment extends Model implements CanReceiveActivity, Likeable, RelaterToUser
 {
     /** @use HasFactory<\Database\Factories\CommentFactory> */
     use HasFactory, HasReceivedActivities, SoftDeletes;

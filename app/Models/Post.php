@@ -9,6 +9,7 @@ use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Commentable;
 use App\Models\Contracts\HasPublicUrl;
 use App\Models\Contracts\Likeable;
+use App\Models\Contracts\RelaterToUser;
 use App\Models\Contracts\Viewable;
 use App\Models\Enums\PostType;
 use App\Models\Traits\HasComments;
@@ -29,13 +30,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read string|null $repost_comment
  * @property-read string|null $external_url
  * @property-read int $count_reposts
- * @property-read \Carbon\Carbon|null $published_at
  * @property-read \App\Models\Enums\PostType $type
  * @property-read \App\Models\Post|null $parent
  * @property-read \App\Models\User $user
  * @property-read \App\Models\Abstracts\Organization|null $postable
  */
-final class Post extends Model implements CanReceiveActivity, Commentable, Likeable, Viewable, HasPublicUrl
+final class Post extends Model implements CanReceiveActivity, Commentable, Likeable, Viewable, HasPublicUrl, RelaterToUser
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasComments, HasFactory, HasReceivedActivities, SoftDeletes;
@@ -47,7 +47,6 @@ final class Post extends Model implements CanReceiveActivity, Commentable, Likea
             'count_reposts' => 'integer',
             'count_views' => 'integer',
             'count_likes' => 'integer',
-            'published_at' => 'datetime',
         ];
     }
 

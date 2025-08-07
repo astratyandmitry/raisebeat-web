@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Comments;
 
-use App\Filament\Resources\Comments\Pages\CreateComment;
-use App\Filament\Resources\Comments\Pages\EditComment;
-use App\Filament\Resources\Comments\Pages\ListComments;
-use App\Filament\Resources\Comments\Pages\ViewComment;
-use App\Filament\Resources\Comments\Schemas\CommentForm;
+use App\Filament\Resources\Comments\Pages\ManageComments;
 use App\Filament\Resources\Comments\Schemas\CommentInfolist;
-use App\Filament\Resources\Comments\Tables\CommentsTable;
+use App\Filament\Resources\Comments\Schemas\CommentsTable;
 use App\Models\Comment;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -27,11 +23,6 @@ final class CommentResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
-    public static function form(Schema $schema): Schema
-    {
-        return CommentForm::configure($schema);
-    }
-
     public static function infolist(Schema $schema): Schema
     {
         return CommentInfolist::configure($schema);
@@ -42,21 +33,16 @@ final class CommentResource extends Resource
         return CommentsTable::configure($table);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
-            'index' => ListComments::route('/'),
-            'create' => CreateComment::route('/create'),
-            'view' => ViewComment::route('/{record}'),
-            'edit' => EditComment::route('/{record}/edit'),
+            'index' => ManageComments::route('/'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with('commentable', 'user');
     }
 
     public static function getRecordRouteBindingEloquentQuery(): Builder

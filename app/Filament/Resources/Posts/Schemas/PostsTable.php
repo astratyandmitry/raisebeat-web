@@ -13,6 +13,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -26,7 +27,7 @@ final class PostsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->defaultSort('published_at', 'desc')
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('id')
                     ->width(50)
@@ -38,7 +39,7 @@ final class PostsTable
                     ->searchable(['title', 'description']),
                 TextColumn::make('type')
                     ->formatStateUsing(fn(Post $record) => $record->parent ? 'REPOST' : $record->type)
-                    ->color(fn(Post $record) => $record->parent ? 'white' : $record->type->getColor())
+                    ->color(fn(Post $record) => $record->parent ? 'primary' : $record->type->getColor())
                     ->badge()
                     ->searchable(),
                 TextColumn::make('postable.name')
@@ -54,8 +55,8 @@ final class PostsTable
                     ->alignCenter()
                     ->icon('heroicon-o-link')
                     ->boolean(),
-                TextColumn::make('published_at')
-                    ->label('Published')
+                TextColumn::make('created_at')
+                    ->label('Created')
                     ->width(80)
                     ->dateTime('Y-m-d H:i')
                     ->sortable(),
@@ -81,6 +82,7 @@ final class PostsTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
                 ]),
             ]);
     }

@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Comments\Schemas;
 
+use App\Filament\Support\Entries\DatesFieldsetEntry;
+use App\Filament\Support\Entries\HtmlEntry;
+use App\Filament\Support\Entries\UsernameEntry;
+use App\Models\Comment;
+use App\Models\Post;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -12,24 +17,27 @@ final class CommentInfolist
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->inlineLabel()
+            ->columns(1)
             ->components([
                 TextEntry::make('uuid')
                     ->label('UUID'),
-                TextEntry::make('parent_id')
-                    ->numeric(),
-                TextEntry::make('user.id')
-                    ->numeric(),
-                TextEntry::make('commentable_type'),
-                TextEntry::make('commentable_id')
-                    ->numeric(),
-                TextEntry::make('count_likes')
-                    ->numeric(),
-                TextEntry::make('deleted_at')
-                    ->dateTime(),
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
+                UsernameEntry::make(),
+
+                TextEntry::make('commentable')
+                    ->label('Commentable')
+                    ->color('primary')
+                    ->openUrlInNewTab()
+                    ->url(fn(Comment $record) => $record->commentable->getPublicUrl())
+                    ->formatStateUsing(function (Comment $record) {
+                        return match (get_class($record->commentable)) {
+                            Post::class => $record->commentable->title ?? 'Untitled Post',
+                        };
+                    }),
+
+                HtmlEntry::make('content'),
+
+                DatesFieldsetEntry::make(),
             ]);
     }
 }

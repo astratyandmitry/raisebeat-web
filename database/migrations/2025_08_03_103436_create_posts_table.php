@@ -29,7 +29,6 @@ return new class extends Migration
             $table->unsignedInteger('count_viewed')->default(0);
             $table->unsignedInteger('count_likes')->default(0);
             $table->unsignedInteger('count_reposts')->default(0);
-            $table->timestamp('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -8,6 +8,7 @@ use App\Models\Contracts\CanPerformActivity;
 use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Linkable;
 use App\Models\Contracts\Postable;
+use App\Models\Contracts\RelaterToUser;
 use App\Models\Contracts\Verifiable;
 use App\Models\Member;
 use App\Models\Traits\HasLinks;
@@ -30,9 +31,9 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property-read string|null $contact_email
  * @property-read string|null $contact_phone
  * @property-read bool $is_public
- * @property-read \App\Models\User $owner
+ * @property-read \App\Models\User $user
  */
-abstract class Organization extends Model implements CanPerformActivity, CanReceiveActivity, Linkable, Postable, Verifiable
+abstract class Organization extends Model implements CanPerformActivity, CanReceiveActivity, Linkable, Postable, Verifiable, RelaterToUser
 {
     use HasLinks, HasPerformedActivities, HasPosts, HasReceivedActivities, HasVerifications;
 
@@ -43,7 +44,7 @@ abstract class Organization extends Model implements CanPerformActivity, CanRece
         ];
     }
 
-    public function owner(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

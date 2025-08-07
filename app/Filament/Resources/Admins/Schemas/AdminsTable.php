@@ -38,8 +38,7 @@ final class AdminsTable
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime('Y-m-d H:i')
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
             ])->recordActions([
                 ViewAction::make()->hiddenLabel(),
                 ActionGroup::make([
