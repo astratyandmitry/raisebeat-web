@@ -2,10 +2,8 @@
 
 namespace App\Filament\Resources\StartupVacancies\Schemas;
 
-use App\Filament\Resources\Startups\StartupResource;
 use App\Filament\Support\Actions\ViewPublicUrlAction;
 use App\Models\Enums\VacancyType;
-use App\Models\StartupVacancy;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;

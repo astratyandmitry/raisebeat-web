@@ -15,14 +15,13 @@ use App\Models\Startup;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 final class StartupResource extends Resource
 {
     protected static ?string $model = Startup::class;
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-rocket-launch';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rocket-launch';
 
     protected static ?int $navigationSort = 1;
 

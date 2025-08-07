@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Models\User;
+use App\Models\Abstracts\Model;
 use App\Models\Accelerator;
-use App\Models\Investor;
+use App\Models\Comment;
 use App\Models\Found;
+use App\Models\Investor;
 use App\Models\Media;
+use App\Models\Post;
 use App\Models\Startup;
 use App\Models\StartupVacancy;
-use App\Models\Post;
-use App\Models\Comment;
-use App\Models\Abstracts\Model;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
@@ -33,7 +33,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->enforceSecureUrls();
         $this->optimizeViteSettings();
 
-        LogViewer::auth(fn (): bool => auth('admin')->check());
+        LogViewer::auth(fn(): bool => auth('admin')->check());
 
         Relation::morphMap([
             'users' => User::class,

@@ -15,14 +15,13 @@ use App\Models\Investor;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 final class InvestorResource extends Resource
 {
     protected static ?string $model = Investor::class;
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-scale';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-scale';
 
     protected static ?int $navigationSort = 4;
 

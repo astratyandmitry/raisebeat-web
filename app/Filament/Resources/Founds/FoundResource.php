@@ -15,14 +15,13 @@ use App\Models\Found;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 final class FoundResource extends Resource
 {
     protected static ?string $model = Found::class;
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-presentation-chart-line';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-presentation-chart-line';
 
     protected static ?int $navigationSort = 3;
 

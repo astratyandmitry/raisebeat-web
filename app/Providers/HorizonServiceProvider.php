@@ -24,6 +24,7 @@ final class HorizonServiceProvider extends HorizonApplicationServiceProvider
             if (app()->environment('local')) {
                 return true;
             }
+
             return auth('admin')->check();
         });
     }
