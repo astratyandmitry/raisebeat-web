@@ -2,12 +2,8 @@
 
 namespace App\Filament\Resources\StartupVacancies;
 
-use App\Filament\Resources\StartupVacancies\Pages\CreateStartupVacancy;
-use App\Filament\Resources\StartupVacancies\Pages\EditStartupVacancy;
 use App\Filament\Resources\StartupVacancies\Pages\ManageStartupVacancies;
-use App\Filament\Resources\StartupVacancies\Pages\ViewStartupVacancy;
 use App\Filament\Resources\StartupVacancies\Schemas\StartupVacanciesTable;
-use App\Filament\Resources\StartupVacancies\Schemas\StartupVacancyForm;
 use App\Filament\Resources\StartupVacancies\Schemas\StartupVacancyInfolist;
 use App\Models\StartupVacancy;
 use Filament\Resources\Resource;
@@ -28,7 +24,6 @@ final class StartupVacancyResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-
     public static function infolist(Schema $schema): Schema
     {
         return StartupVacancyInfolist::configure($schema);
@@ -39,18 +34,16 @@ final class StartupVacancyResource extends Resource
         return StartupVacanciesTable::configure($table);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
             'index' => ManageStartupVacancies::route('/'),
         ];
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['title', 'content'];
     }
 
     public static function getRecordRouteBindingEloquentQuery(): Builder
