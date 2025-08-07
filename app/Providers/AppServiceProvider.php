@@ -36,15 +36,15 @@ final class AppServiceProvider extends ServiceProvider
         LogViewer::auth(fn (): bool => auth('admin')->check());
 
         Relation::morphMap([
-            'user' => User::class,
-            'accelerator' => Accelerator::class,
-            'investor' => Investor::class,
-            'found' => Found::class,
+            'users' => User::class,
+            'accelerators' => Accelerator::class,
+            'investors' => Investor::class,
+            'founds' => Found::class,
             'media' => Media::class,
-            'startup' => Startup::class,
-            'startup_vacancy' => StartupVacancy::class,
-            'post' => Post::class,
-            'comment' => Comment::class,
+            'startups' => Startup::class,
+            'startup_vacancies' => StartupVacancy::class,
+            'posts' => Post::class,
+            'comments' => Comment::class,
         ]);
     }
 

@@ -8,6 +8,7 @@ use App\Filament\Resources\Verifications\Actions\ApproveBulkAction;
 use App\Filament\Resources\Verifications\Actions\ApproveRecordAction;
 use App\Filament\Resources\Verifications\Actions\RejectBulkAction;
 use App\Filament\Resources\Verifications\Actions\RejectRecordAction;
+use App\Filament\Resources\Verifications\Actions\ViewVerifiableAction;
 use App\Filament\Resources\Verifications\Pages\ManageVerifications;
 use App\Models\Verification;
 use Filament\Actions\ActionGroup;
@@ -36,8 +37,8 @@ final class VerificationResource extends Resource
                 TextColumn::make('id')
                     ->label('ID'),
                 TextColumn::make('verifiable.')
-                    ->state(fn (Verification $record) => $record->verifiable->getDisplayLabel())
-                    ->description(fn (Verification $record) => Str::title($record->verifiable_type)),
+                    ->state(fn(Verification $record) => $record->verifiable->getDisplayLabel())
+                    ->description(fn(Verification $record) => Str::title($record->verifiable_type)),
                 TextColumn::make('status')
                     ->badge(),
                 TextColumn::make('comment')
@@ -64,16 +65,17 @@ final class VerificationResource extends Resource
                 ActionGroup::make([
                     ApproveRecordAction::make(),
                     RejectRecordAction::make(),
-                ])->visible(fn (Verification $record) => $record->status->isPending()),
+                ])->visible(fn(Verification $record) => $record->status->isPending()),
+                ViewVerifiableAction::make(),
             ])
             ->filters([
                 SelectFilter::make('verifiable_type')
                     ->options([
-                        'user' => 'Users',
-                        'investor' => 'Investors',
-                        'accelerator' => 'Accelerators',
-                        'found' => 'Founds',
-                        'media' => 'Medias',
+                        'users' => 'Users',
+                        'investors' => 'Investors',
+                        'accelerators' => 'Accelerators',
+                        'founds' => 'Founds',
+                        'medias' => 'Medias',
                     ])
                     ->label('Verifiable'),
             ])
@@ -84,7 +86,7 @@ final class VerificationResource extends Resource
                 ])->label('Actions'),
             ])
             ->checkIfRecordIsSelectableUsing(
-                fn (Verification $record): bool => $record->status->isPending(),
+                fn(Verification $record): bool => $record->status->isPending(),
             );
     }
 
