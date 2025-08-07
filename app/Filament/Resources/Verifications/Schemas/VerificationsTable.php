@@ -53,18 +53,18 @@ final class VerificationsTable
                 ActionGroup::make([
                     ApproveRecordAction::make(),
                     RejectRecordAction::make(),
-                ])->visible(fn(Verification $record) => $record->status->isPending()),
+                ])->color('gray')->visible(fn(Verification $record) => $record->status->isPending()),
             ])
             ->filters([
                 SelectFilter::make('verifiable_type')
+                    ->label('Verifiable')
                     ->options([
                         'users' => 'Users',
                         'investors' => 'Investors',
                         'accelerators' => 'Accelerators',
                         'founds' => 'Founds',
                         'medias' => 'Medias',
-                    ])
-                    ->label('Verifiable'),
+                    ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

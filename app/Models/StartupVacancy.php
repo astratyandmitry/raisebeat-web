@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Abstracts\Model;
 use App\Models\Contracts\CanReceiveActivity;
+use App\Models\Contracts\HasPublicUrl;
 use App\Models\Contracts\Viewable;
 use App\Models\Enums\VacancyType;
 use App\Models\Traits\HasReceivedActivities;
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\Enums\VacancyType $type
  * @property-read \App\Models\Startup $startup
  */
-final class StartupVacancy extends Model implements CanReceiveActivity, Viewable
+final class StartupVacancy extends Model implements CanReceiveActivity, Viewable, HasPublicUrl
 {
     /** @use HasFactory<\Database\Factories\StartupVacancyFactory> */
     use HasFactory, HasReceivedActivities, SoftDeletes;
@@ -39,5 +40,10 @@ final class StartupVacancy extends Model implements CanReceiveActivity, Viewable
     public function startup(): BelongsTo
     {
         return $this->belongsTo(Startup::class);
+    }
+
+    public function getPublicUrl(): string
+    {
+        return url('/'); // todo
     }
 }

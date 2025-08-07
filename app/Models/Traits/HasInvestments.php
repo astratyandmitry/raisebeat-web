@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Contracts;
+namespace App\Models\Traits;
 
 use App\Models\Investment;
 use Illuminate\Database\Eloquent\Relations\MorphMany;

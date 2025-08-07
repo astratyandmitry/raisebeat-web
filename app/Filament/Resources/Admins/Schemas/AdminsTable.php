@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Admins\Schemas;
 
 use App\Filament\Resources\Admins\Actions\EditAdminAction;
-use App\Filament\Resources\Admins\AdminResource;
 use App\Models\Admin;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\DeleteAction;
@@ -32,7 +31,7 @@ final class AdminsTable
                     ->label('E-mail')
                     ->searchable(),
                 IconColumn::make('deleted_at')
-                    ->label('Status')
+                    ->label('State')
                     ->trueColor('danger')
                     ->alignCenter()
                     ->icon('heroicon-o-trash')
@@ -48,7 +47,7 @@ final class AdminsTable
                     DeleteAction::make(),
                     ForceDeleteAction::make()->hidden(),
                     RestoreAction::make(),
-                ]),
+                ])->color('gray')->visible(fn(Admin $record) => ! $record->root || auth()->user()->root),
             ])
             ->filters([
                 TrashedFilter::make(),

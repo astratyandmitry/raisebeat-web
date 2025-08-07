@@ -20,10 +20,18 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
  * @property string $name
  * @property string $password
  * @property string $remember_token
+ * @property boolean $root
  */
 final class Admin extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser
 {
     use Authenticatable, Authorizable, CanResetPassword, SoftDeletes;
+
+    protected function casts(): array
+    {
+        return [
+            'root' => 'boolean',
+        ];
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {

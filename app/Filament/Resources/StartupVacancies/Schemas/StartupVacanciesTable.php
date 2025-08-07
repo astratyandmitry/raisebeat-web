@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\StartupVacancies\Schemas;
 
 use App\Filament\Resources\Startups\StartupResource;
+use App\Filament\Support\Actions\ViewPublicUrlAction;
 use App\Models\Enums\VacancyType;
 use App\Models\StartupVacancy;
 use Filament\Actions\ActionGroup;
@@ -70,12 +71,13 @@ final class StartupVacanciesTable
             ])
             ->recordActions([
                 ViewAction::make()->hiddenLabel(),
+                ViewPublicUrlAction::make()->hiddenLabel(),
 
                 ActionGroup::make([
                     DeleteAction::make(),
                     ForceDeleteAction::make(),
                     RestoreAction::make(),
-                ]),
+                ])->color('gray'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

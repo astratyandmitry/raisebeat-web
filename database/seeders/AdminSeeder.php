@@ -15,6 +15,7 @@ final class AdminSeeder extends Seeder
             'email' => 'astratyandmitry@gmail.com',
             'name' => 'Astatyan Dmitry',
             'password' => 'aveego',
+            'root' => true,
         ],
         [
             'email' => 'admin@raisebeat.asia',
