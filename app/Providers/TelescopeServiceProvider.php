@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use Laravel\Telescope\IncomingEntry;
@@ -26,7 +28,7 @@ final class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
         });
     }
 
-    protected function hideSensitiveRequestDetails(): void
+    private function hideSensitiveRequestDetails(): void
     {
         if ($this->app->environment('local')) {
             return;
