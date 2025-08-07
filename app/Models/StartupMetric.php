@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read int $startup_id
  * @property-read int $year
  * @property-read string $quarter
- * @property-read double $value
+ * @property-read float $value
  * @property-read \App\Models\Enums\MemberType $type
  */
 final class StartupMetric extends Model implements Confirmable

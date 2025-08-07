@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 final class Verification extends Model implements CanReceiveActivity
 {
     /** @use HasFactory<\Database\Factories\VerificationFactory> */
-    use HasFactory, SoftDeletes, HasReceivedActivities;
+    use HasFactory, HasReceivedActivities, SoftDeletes;
 
     protected function casts(): array
     {

@@ -26,14 +26,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read int $founded_year
  * @property-read string $city
  * @property-read \App\Models\Enums\Country $country
- *
  * @property-read \App\Models\AcceleratorParticipant[]|\Illuminate\Database\Eloquent\Collection $participators
  */
-final class Accelerator extends Organization implements
-    CanPerformActivity, CanReceiveActivity, Viewable, Linkable, Followable, Verifiable, Investable
+final class Accelerator extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Verifiable, Viewable
 {
     /** @use HasFactory<\Database\Factories\AcceleratorFactory> */
-    use HasPerformedActivities, HasReceivedActivities, HasLinks, HasVerifications, HasFollowers, HasInvestments, HasFactory;
+    use HasFactory, HasFollowers, HasInvestments, HasLinks, HasPerformedActivities, HasReceivedActivities, HasVerifications;
 
     protected function casts(): array
     {

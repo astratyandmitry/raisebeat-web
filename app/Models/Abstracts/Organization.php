@@ -29,12 +29,12 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property-read string|null $contact_website
  * @property-read string|null $contact_email
  * @property-read string|null $contact_phone
- * @property-read boolean $is_public
+ * @property-read bool $is_public
  * @property-read \App\Models\User $owner
  */
-abstract class Organization extends Model implements Verifiable, Linkable, Postable, CanReceiveActivity, CanPerformActivity
+abstract class Organization extends Model implements CanPerformActivity, CanReceiveActivity, Linkable, Postable, Verifiable
 {
-    use HasVerifications, HasLinks, HasPosts, HasReceivedActivities, HasPerformedActivities;
+    use HasLinks, HasPerformedActivities, HasPosts, HasReceivedActivities, HasVerifications;
 
     protected function casts(): array
     {

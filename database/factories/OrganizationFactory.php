@@ -28,7 +28,7 @@ abstract class OrganizationFactory extends Factory
 
     public function hidden(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'is_public' => false,
         ]);
     }

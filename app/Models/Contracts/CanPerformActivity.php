@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @property-read \App\Models\Activity[]|\Illuminate\Database\Eloquent\Collection $performed_activities
+ *
  * @mixin \App\Models\Abstracts\Organization
  * @mixin \App\Models\User
  */

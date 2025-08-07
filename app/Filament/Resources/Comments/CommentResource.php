@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Comments;
 
-use UnitEnum;
 use App\Filament\Resources\Comments\Pages\CreateComment;
 use App\Filament\Resources\Comments\Pages\EditComment;
 use App\Filament\Resources\Comments\Pages\ListComments;
@@ -18,6 +17,7 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 final class CommentResource extends Resource
 {

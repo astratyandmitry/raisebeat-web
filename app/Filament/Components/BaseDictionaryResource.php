@@ -7,7 +7,6 @@ namespace App\Filament\Components;
 use App\Filament\Components\Translatable\FormTranslatableField;
 use App\Filament\Components\Translatable\InfolistTranslatableTextEntry;
 use App\Models\Abstracts\Model;
-use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -69,14 +68,14 @@ abstract class BaseDictionaryResource extends Resource
                     ->sortable(),
                 TextColumn::make('name')
                     ->label('Entity')
-                    ->description(fn($record) => $record->key)
+                    ->description(fn ($record) => $record->key)
                     ->searchable(['name', 'key']),
                 ToggleColumn::make('is_active')
                     ->label('Active')
                     ->width(80),
                 TextColumn::make('created_at')
                     ->label('Date')
-                    ->description(fn(Model $record) => $record->updated_at->format('Y-m-d H:i'))
+                    ->description(fn (Model $record) => $record->updated_at->format('Y-m-d H:i'))
                     ->width(120)
                     ->dateTime('Y-m-d H:i')
                     ->sortable(),

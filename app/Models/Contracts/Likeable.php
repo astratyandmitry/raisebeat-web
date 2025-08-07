@@ -6,6 +6,7 @@ namespace App\Models\Contracts;
 
 /**
  * @property-read int $count_likes
+ *
  * @mixin \App\Models\Abstracts\Model
  */
 interface Likeable

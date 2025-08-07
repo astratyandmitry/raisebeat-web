@@ -18,14 +18,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read string $description
  * @property-read string $content
  * @property-read string $feedback_email
- * @property-read boolean $is_applicable
+ * @property-read bool $is_applicable
  * @property-read \App\Models\Enums\VacancyType $type
  * @property-read \App\Models\Startup $startup
  */
-final class StartupVacancy extends Model implements Viewable, CanReceiveActivity
+final class StartupVacancy extends Model implements CanReceiveActivity, Viewable
 {
     /** @use HasFactory<\Database\Factories\StartupVacancyFactory> */
-    use HasReceivedActivities, HasFactory;
+    use HasFactory, HasReceivedActivities;
 
     protected function casts(): array
     {

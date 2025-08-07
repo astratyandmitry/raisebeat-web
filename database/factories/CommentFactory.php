@@ -23,7 +23,7 @@ final class CommentFactory extends Factory
 
     public function as_reply(): self
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'parent_id' => Comment::query()->inRandomOrder()->first(),
         ]);
     }

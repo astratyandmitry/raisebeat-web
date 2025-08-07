@@ -28,17 +28,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read float|null $check_size_min
  * @property-read float|null $check_size_max
  * @property-read string $city
- * @property-read boolean $is_lead_investor
- * @property-read boolean $is_follow_investor
+ * @property-read bool $is_lead_investor
+ * @property-read bool $is_follow_investor
  * @property-read \App\Models\Enums\Region $focus_region
  * @property-read \App\Models\Enums\InvestmentModel $investment_model
  * @property-read \App\Models\Enums\Country $country
  */
-final class Found extends Organization implements
-    CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable, Investable
+final class Found extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Verifiable, Viewable
 {
     /** @use HasFactory<\Database\Factories\FoundFactory> */
-    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasInvestments, HasFactory;
+    use HasFactory, HasFollowers, HasInvestments, HasLinks, HasPerformedActivities, HasReceivedActivities, HasVerifications;
 
     protected function casts(): array
     {

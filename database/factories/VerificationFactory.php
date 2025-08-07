@@ -29,7 +29,7 @@ final class VerificationFactory extends Factory
     {
         return [
             'status' => $this->faker->randomElement(VerificationStatus::cases()),
-            'responded_at' => fn(array $attributes
+            'responded_at' => fn (array $attributes
             ) => $attributes['status'] === VerificationStatus::Pending ? null : now(),
             'requested_at' => $this->faker->dateTimeBetween('-1 year'),
         ];
@@ -37,7 +37,7 @@ final class VerificationFactory extends Factory
 
     public function pending(): self
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'status' => VerificationStatus::Pending,
             'responded_at' => null,
         ]);
@@ -45,7 +45,7 @@ final class VerificationFactory extends Factory
 
     public function accepted(): self
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'status' => VerificationStatus::Accepted,
             'responded_at' => $this->faker->dateTimeBetween('-1 year'),
         ]);
@@ -53,7 +53,7 @@ final class VerificationFactory extends Factory
 
     public function rejected(): self
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'status' => VerificationStatus::Rejected,
             'comment' => $this->faker->sentence,
             'responded_at' => $this->faker->dateTimeBetween('-1 year'),

@@ -33,8 +33,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read int $founded_year
  * @property-read string|null $demo_url
  * @property-read string|null $deck_url
- * @property-read boolean $is_demo_private
- * @property-read boolean $is_deck_private
+ * @property-read bool $is_demo_private
+ * @property-read bool $is_deck_private
  * @property-read \App\Models\Enums\Country $country
  * @property-read \App\Models\Enums\Region $market_region
  * @property-read \App\Models\Enums\BusinessModel $business_model
@@ -42,17 +42,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \App\Models\Enums\FundraisingStatus $fundraising_status
  * @property-read \App\Models\Enums\FundraisingRound|null $fundraising_round
  * @property-read \App\Models\Enums\TeamSize $team_size
- *
  * @property-read \App\Models\AcceleratorParticipant[]|\Illuminate\Database\Eloquent\Collection $accelerators_participation
  * @property-read \App\Models\Investment[]|\Illuminate\Database\Eloquent\Collection $investments
  * @property-read \App\Models\StartupMetric[]|\Illuminate\Database\Eloquent\Collection $metrics
  * @property-read \App\Models\StartupVacancy[]|\Illuminate\Database\Eloquent\Collection $vacancies
  */
-final class Startup extends Organization implements
-    CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable
+final class Startup extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable
 {
     /** @use HasFactory<\Database\Factories\StartupFactory> */
-    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasFactory;
+    use HasFactory, HasFollowers, HasLinks, HasPerformedActivities, HasReceivedActivities, HasVerifications;
 
     protected function casts(): array
     {

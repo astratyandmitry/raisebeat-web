@@ -71,7 +71,7 @@ final class InteractionSeeder extends Seeder
                     'to_entity_id' => $to_model->id,
                     'user_id' => $from_user_id,
                     'type' => $data['type'],
-                    'status' => $status =Arr::random(InteractionStatus::cases()),
+                    'status' => $status = Arr::random(InteractionStatus::cases()),
                     'reviewed_at' => $status === InteractionStatus::Pending ? null : now(),
                     'message' => $status === InteractionStatus::Rejected ? 'Rejected reason' : null,
                 ]);

@@ -24,7 +24,7 @@ final class AdminSeeder extends Seeder
 
     public function run(): void
     {
-        collect($this->data)->each(fn(array $data) => Admin::query()->create([
+        collect($this->data)->each(fn (array $data) => Admin::query()->create([
             ...$data,
             'password' => Hash::make($data['password'] ?? 'password'),
         ]));

@@ -19,7 +19,7 @@ final class PostFactory extends Factory
         return [
             'user_id' => User::query()->inRandomOrder()->first(),
             'type' => $this->faker->randomElement(PostType::cases()),
-            'title' =>  $this->faker->sentence,
+            'title' => $this->faker->sentence,
             'description' => $this->faker->optional()->paragraph,
             'content' => $this->faker->paragraphs(3, true),
             'published_at' => $this->faker->dateTimeBetween('-1 year'),

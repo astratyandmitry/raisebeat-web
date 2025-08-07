@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Verifications;
 
-use UnitEnum;
 use App\Filament\Resources\Verifications\Pages\CreateVerification;
 use App\Filament\Resources\Verifications\Pages\EditVerification;
 use App\Filament\Resources\Verifications\Pages\ListVerifications;
@@ -18,6 +17,7 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 final class VerificationResource extends Resource
 {

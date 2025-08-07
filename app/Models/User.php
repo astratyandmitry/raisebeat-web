@@ -46,7 +46,6 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read \App\Models\Enums\Timezone $timezone
  * @property-read \App\Models\Enums\Language $language
  * @property-read \Carbon\Carbon $email_verified_at
- *
  * @property-read Investor|null $investor_profile
  * @property-read \App\Models\Follow[]|\Illuminate\Database\Eloquent\Collection $followings
  * @property-read \App\Models\Notification[]|\Illuminate\Database\Eloquent\Collection $notifications
@@ -54,17 +53,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read \App\Models\Member[]|\Illuminate\Database\Eloquent\Collection $memberships
  * @property-read \App\Models\Post[]|\Illuminate\Database\Eloquent\Collection $posts
  */
-final class User extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract,
-    CanPerformActivity,
-    CanReceiveActivity,
-    Linkable,
-    Followable
+final class User extends Model implements AuthenticatableContract, AuthorizableContract, CanPerformActivity, CanReceiveActivity, CanResetPasswordContract, Followable, Linkable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, HasApiTokens, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasPerformedActivities, HasReceivedActivities, HasLinks, HasFollowers;
+    use Authenticatable, Authorizable, CanResetPassword, HasApiTokens, HasFactory, HasFollowers, HasLinks, HasPerformedActivities, HasReceivedActivities, MustVerifyEmail, Notifiable;
 
     public function getGuarded(): array
     {

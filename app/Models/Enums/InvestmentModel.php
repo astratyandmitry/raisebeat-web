@@ -12,6 +12,6 @@ enum InvestmentModel: string
     case Revenue = 'revenue';
     case Safe = 'safe';
     case Convertible = 'convertible';
-    case Grant  = 'grant';
+    case Grant = 'grant';
     case Debt = 'debt';
 }

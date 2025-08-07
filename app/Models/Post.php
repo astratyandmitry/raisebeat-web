@@ -33,10 +33,10 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property-read \App\Models\User $user
  * @property-read \App\Models\Abstracts\Organization|null $postable
  */
-final class Post extends Model implements Viewable, Likeable, CanReceiveActivity, Commentable
+final class Post extends Model implements CanReceiveActivity, Commentable, Likeable, Viewable
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
-    use HasFactory, HasReceivedActivities, HasComments;
+    use HasComments, HasFactory, HasReceivedActivities;
 
     protected function casts(): array
     {

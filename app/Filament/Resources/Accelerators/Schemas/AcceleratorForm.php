@@ -6,8 +6,8 @@ namespace App\Filament\Resources\Accelerators\Schemas;
 
 use App\Models\Enums\Country;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 

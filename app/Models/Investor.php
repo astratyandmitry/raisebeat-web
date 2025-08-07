@@ -30,11 +30,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read string $focus_headline
  * @property-read \App\Models\Enums\Region $focus_region
  */
-final class Investor extends Model implements
-    CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable, Investable, Postable
+final class Investor extends Model implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Postable, Verifiable, Viewable
 {
     /** @use HasFactory<\Database\Factories\InvestorFactory> */
-    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasInvestments, HasPosts, HasFactory;
+    use HasFactory, HasFollowers, HasInvestments, HasLinks, HasPerformedActivities, HasPosts, HasReceivedActivities, HasVerifications;
 
     protected function casts(): array
     {

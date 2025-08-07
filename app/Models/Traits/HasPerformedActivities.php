@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 /**
  * @mixin \App\Models\Abstracts\Organization
  * @mixin \App\Models\User
+ *
  * @implements \App\Models\Contracts\CanReceiveActivity
  */
 trait HasPerformedActivities

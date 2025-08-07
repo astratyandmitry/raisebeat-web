@@ -26,10 +26,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\User $user
  * @property-read \App\Models\Contracts\Commentable $commentable
  */
-final class Comment extends Model implements Likeable, CanReceiveActivity
+final class Comment extends Model implements CanReceiveActivity, Likeable
 {
     /** @use HasFactory<\Database\Factories\CommentFactory> */
-    use HasFactory, SoftDeletes, HasReceivedActivities;
+    use HasFactory, HasReceivedActivities, SoftDeletes;
 
     public function parent(): BelongsTo
     {

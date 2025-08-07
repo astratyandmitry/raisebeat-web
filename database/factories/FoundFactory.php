@@ -31,14 +31,14 @@ final class FoundFactory extends OrganizationFactory
 
     public function lead_investor(): self
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'is_lead_investor' => true,
         ]);
     }
 
     public function follow_investor(): self
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'is_follow_investor' => false,
         ]);
     }

@@ -23,11 +23,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read string|null $submission_url
  * @property-read \App\Models\Enums\MediaType $type
  */
-final class Media extends Organization implements
-    CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable
+final class Media extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable
 {
     /** @use HasFactory<\Database\Factories\MediaFactory> */
-    use HasPerformedActivities, HasReceivedActivities, HasFollowers, HasLinks, HasVerifications, HasFactory;
+    use HasFactory, HasFollowers, HasLinks, HasPerformedActivities, HasReceivedActivities, HasVerifications;
 
     protected function casts(): array
     {

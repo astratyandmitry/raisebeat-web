@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\StartupVacancies;
 
-use UnitEnum;
 use App\Filament\Resources\StartupVacancies\Pages\CreateStartupVacancy;
 use App\Filament\Resources\StartupVacancies\Pages\EditStartupVacancy;
 use App\Filament\Resources\StartupVacancies\Pages\ListStartupVacancies;
@@ -16,6 +15,7 @@ use App\Models\StartupVacancy;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
+use UnitEnum;
 
 final class StartupVacancyResource extends Resource
 {

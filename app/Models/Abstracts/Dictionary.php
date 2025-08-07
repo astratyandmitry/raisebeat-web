@@ -9,7 +9,7 @@ use Spatie\Translatable\HasTranslations;
 /**
  * @property-read string $key
  * @property-read string|array $name
- * @property-read boolean $is_active
+ * @property-read bool $is_active
  * @property int $sort_order
  */
 abstract class Dictionary extends Model

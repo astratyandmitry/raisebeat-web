@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @property-read \App\Models\Comment[]|\Illuminate\Database\Eloquent\Collection $comments
+ *
  * @mixin \App\Models\Abstracts\Model
+ *
  * @implements \App\Models\Contracts\Commentable
  */
 trait HasComments

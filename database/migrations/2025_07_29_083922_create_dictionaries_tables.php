@@ -7,7 +7,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration{
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -31,7 +32,7 @@ return new class extends Migration{
      */
     public function down(): void
     {
-        $this->applyForDictionaries(fn(string $table) => Schema::dropIfExists($table));
+        $this->applyForDictionaries(fn (string $table) => Schema::dropIfExists($table));
     }
 
     /**
@@ -50,7 +51,7 @@ return new class extends Migration{
                 continue;
             }
 
-            $table = (new $fullClass())->getTable();
+            $table = (new $fullClass)->getTable();
 
             ($callback)($table);
         }

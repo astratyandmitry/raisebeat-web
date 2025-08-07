@@ -21,11 +21,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
  * @property string $password
  * @property string $remember_token
  */
-final class Admin extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract,
-    FilamentUser
+final class Admin extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser
 {
     use Authenticatable, Authorizable, CanResetPassword, SoftDeletes;
 
