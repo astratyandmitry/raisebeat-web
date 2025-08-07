@@ -20,8 +20,11 @@ final class HorizonServiceProvider extends HorizonApplicationServiceProvider
 
     protected function authorization(): void
     {
-        Horizon::auth(function ($request) {
-            return app()->environment('local') || auth('admin')->check();
+        Horizon::auth(function ($request): bool {
+            if (app()->environment('local')) {
+                return true;
+            }
+            return auth('admin')->check();
         });
     }
 }

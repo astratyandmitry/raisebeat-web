@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('comment', 500)->nullable();
             $table->timestamp('requested_at')->nullable();
             $table->timestamp('responded_at')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

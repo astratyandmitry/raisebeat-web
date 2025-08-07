@@ -16,7 +16,8 @@ final class InvestorFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => $user = User::factory()->create(),
+            'name' => $user->getDisplayLabel(),
             'check_size_min' => $this->faker->numberBetween(1000, 10000),
             'check_size_max' => $this->faker->numberBetween(10000, 100000),
             'focus_headline' => $this->faker->sentence,

@@ -21,6 +21,8 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Hash;
 use UnitEnum;
 
@@ -29,6 +31,8 @@ final class AdminResource extends Resource
     protected static ?string $model = Admin::class;
 
     protected static null|string|UnitEnum $navigationGroup = 'System';
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {
@@ -83,9 +87,9 @@ final class AdminResource extends Resource
                 TextEntry::make('email')
                     ->label('Email address'),
                 TextEntry::make('created_at')
-                    ->dateTime(),
+                    ->dateTime('Y-m-d H:i'),
                 TextEntry::make('updated_at')
-                    ->dateTime(),
+                    ->dateTime('Y-m-d H:i'),
                 TextEntry::make('deleted_at')
                     ->placeholder('Entity is not deleted')
                     ->dateTime(),
@@ -112,7 +116,7 @@ final class AdminResource extends Resource
                     ->icon('heroicon-o-trash')
                     ->boolean(),
                 TextColumn::make('created_at')
-                    ->dateTime()
+                    ->dateTime('Y-m-d H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])->recordActions([
@@ -143,5 +147,13 @@ final class AdminResource extends Resource
         return [
             'index' => ManageAdmins::route('/'),
         ];
+    }
+
+    public static function getRecordRouteBindingEloquentQuery(): Builder
+    {
+        return parent::getRecordRouteBindingEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }

@@ -115,4 +115,9 @@ final class User extends Model implements AuthenticatableContract, AuthorizableC
     {
         return $this->id;
     }
+
+    public function getDisplayLabel(): string
+    {
+        return "$this->first_name $this->last_name";
+    }
 }

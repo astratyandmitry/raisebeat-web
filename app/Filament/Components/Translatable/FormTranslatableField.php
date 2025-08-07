@@ -17,7 +17,7 @@ final class FormTranslatableField
         foreach (Language::cases() as $language) {
             $locale = strtolower($language->value);
             $schema[] = TextInput::make("$attribute.$locale")
-                ->label($language->label())
+                ->label($language->getLabel())
                 ->maxLength(80)
                 ->required();
         }

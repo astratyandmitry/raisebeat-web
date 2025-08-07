@@ -6,7 +6,7 @@ namespace App\Models\Enums;
 
 trait HasLocalizedInformation
 {
-    public function label(): string
+    public function getLabel(): string
     {
         return __('enums.'.static::class.'.'.$this->value);
     }

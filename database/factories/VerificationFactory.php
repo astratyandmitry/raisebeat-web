@@ -29,8 +29,8 @@ final class VerificationFactory extends Factory
     {
         return [
             'status' => $this->faker->randomElement(VerificationStatus::cases()),
-            'responded_at' => fn (array $attributes
-            ) => $attributes['status'] === VerificationStatus::Pending ? null : now(),
+            'responded_at' => fn (array $attr) => $attr['status'] === VerificationStatus::Pending ? null : now(),
+            'comment' => fn (array $attr) => $attr['status'] === VerificationStatus::Rejected ? $this->faker->sentence : null,
             'requested_at' => $this->faker->dateTimeBetween('-1 year'),
         ];
     }

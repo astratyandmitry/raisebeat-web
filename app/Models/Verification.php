@@ -10,7 +10,6 @@ use App\Models\Enums\VerificationStatus;
 use App\Models\Traits\HasReceivedActivities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property-read string $verifiable_type
@@ -24,7 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 final class Verification extends Model implements CanReceiveActivity
 {
     /** @use HasFactory<\Database\Factories\VerificationFactory> */
-    use HasFactory, HasReceivedActivities, SoftDeletes;
+    use HasFactory, HasReceivedActivities;
 
     protected function casts(): array
     {

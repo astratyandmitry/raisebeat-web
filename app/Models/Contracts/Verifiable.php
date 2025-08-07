@@ -25,4 +25,6 @@ interface Verifiable
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\Verification>
      */
     public function verifications_history(): MorphMany;
+
+    public function getDisplayLabel(): string;
 }

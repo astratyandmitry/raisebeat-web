@@ -52,4 +52,9 @@ abstract class Organization extends Model implements CanPerformActivity, CanRece
     {
         return $this->morphMany(Member::class, 'organization');
     }
+
+    public function getDisplayLabel(): string
+    {
+        return $this->name;
+    }
 }
