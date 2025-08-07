@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property-read string $email
@@ -63,14 +64,17 @@ final class User extends Model implements
     Followable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasPerformedActivities, HasReceivedActivities, HasLinks, HasFollowers;
+    use HasFactory, HasApiTokens, Notifiable, Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasPerformedActivities, HasReceivedActivities, HasLinks, HasFollowers;
 
-    protected $guarded = ['is_admin', 'is_blocked'];
+    public function getGuarded(): array
+    {
+        return ['is_admin', 'is_blocked'];
+    }
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function getHidden(): array
+    {
+        return ['password', 'remember_token'];
+    }
 
     protected function casts(): array
     {
