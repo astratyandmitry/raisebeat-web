@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Startups\Schemas;
 
+use App\Filament\Support\Forms\LocationFieldsGrid;
 use App\Models\Enums\BusinessModel;
-use App\Models\Enums\Country;
 use App\Models\Enums\FundraisingRound;
 use App\Models\Enums\FundraisingStatus;
 use App\Models\Enums\Region;
@@ -16,7 +16,6 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Fieldset;
-use Filament\Schemas\Components\Grid;
 
 final class StartupForm
 {
@@ -26,17 +25,7 @@ final class StartupForm
             Fieldset::make('Startup')
                 ->columns(1)
                 ->schema([
-                    Grid::make(2)
-                        ->schema([
-                            Select::make('country')
-                                ->options(Country::getOptions())
-                                ->required(),
-
-                            TextInput::make('city')
-                                ->maxlength(40)
-                                ->required(),
-                        ]),
-
+                    LocationFieldsGrid::make(),
                     TextInput::make('founded_year')
                         ->required()
                         ->numeric()

@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\Startups\Schemas;
 
+use App\Filament\Support\Columns\LocationColumn;
 use App\Models\Enums\BusinessModel;
 use App\Models\Enums\Country;
 use App\Models\Enums\FundraisingRound;
 use App\Models\Enums\FundraisingStatus;
 use App\Models\Enums\Region;
-use App\Models\Startup;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -18,22 +18,17 @@ final class StartupTable
     public static function columns(): array
     {
         return [
-            TextColumn::make('city')
-                ->label('Location')
-                ->searchable(['country', 'city'])
-                ->description(fn(Startup $record) => $record->country->getLabel()),
+            LocationColumn::make(),
             TextColumn::make('market_region')
                 ->label('Market')
                 ->width(80)
                 ->color('gray')
-                ->badge()
-                ->searchable(),
+                ->badge(),
             TextColumn::make('business_model')
                 ->label('Model')
                 ->width(80)
                 ->color('gray')
-                ->badge()
-                ->searchable(),
+                ->badge(),
             TextColumn::make('stage')
                 ->width(80)
                 ->badge(),

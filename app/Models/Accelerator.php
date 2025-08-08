@@ -8,6 +8,7 @@ use App\Models\Abstracts\Organization;
 use App\Models\Contracts\CanPerformActivity;
 use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Followable;
+use App\Models\Contracts\HasPublicUrl;
 use App\Models\Contracts\Investable;
 use App\Models\Contracts\Linkable;
 use App\Models\Contracts\Verifiable;
@@ -28,7 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \App\Models\Enums\Country $country
  * @property-read \App\Models\AcceleratorParticipant[]|\Illuminate\Database\Eloquent\Collection $participators
  */
-final class Accelerator extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Verifiable, Viewable
+final class Accelerator extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Verifiable, Viewable, HasPublicUrl
 {
     /** @use HasFactory<\Database\Factories\AcceleratorFactory> */
     use HasFactory, HasFollowers, HasInvestments, HasLinks, HasPerformedActivities, HasReceivedActivities, HasVerifications;
@@ -45,5 +46,10 @@ final class Accelerator extends Organization implements CanPerformActivity, CanR
     public function participators(): HasMany
     {
         return $this->hasMany(AcceleratorParticipant::class);
+    }
+
+    public function getPublicUrl(): string
+    {
+        return url('/'); // todo
     }
 }

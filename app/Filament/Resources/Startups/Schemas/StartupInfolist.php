@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Startups\Schemas;
 
 use App\Filament\Support\Entries\HtmlEntry;
+use App\Filament\Support\Entries\LocationEntry;
 use App\Models\Startup;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
@@ -18,9 +19,7 @@ final class StartupInfolist
             Fieldset::make('Startup')
                 ->columns(1)
                 ->schema([
-                    TextEntry::make('city')
-                        ->label('Location')
-                        ->formatStateUsing(fn(Startup $record) => "{$record->city}, {$record->country->getLabel()}"),
+                    LocationEntry::make(),
                     TextEntry::make('founded_year')->numeric(),
 
                     Fieldset::make('Market')

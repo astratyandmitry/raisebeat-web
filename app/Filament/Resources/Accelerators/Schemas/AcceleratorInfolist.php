@@ -4,39 +4,23 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Accelerators\Schemas;
 
+use App\Filament\Support\Entries\LocationEntry;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Fieldset;
 
 final class AcceleratorInfolist
 {
-    public static function configure(Schema $schema): Schema
+    public static function entries(): array
     {
-        return $schema
-            ->components([
-                TextEntry::make('uuid')
-                    ->label('UUID'),
-                TextEntry::make('user_id')
-                    ->numeric(),
-                TextEntry::make('slug'),
-                TextEntry::make('name'),
-                TextEntry::make('headline'),
-                TextEntry::make('logo_url'),
-                TextEntry::make('contact_website'),
-                TextEntry::make('contact_email'),
-                TextEntry::make('contact_phone'),
-                TextEntry::make('founded_year')
-                    ->numeric(),
-                TextEntry::make('country'),
-                TextEntry::make('city'),
-                TextEntry::make('count_viewed')
-                    ->numeric(),
-                IconEntry::make('is_public')
-                    ->boolean(),
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
-            ]);
+        return [
+            Fieldset::make('Accelerator')
+                ->columns(1)
+                ->schema([
+                    LocationEntry::make(),
+                    TextEntry::make('founded_year')->numeric(),
+                    IconEntry::make('is_public')->label('Public')->boolean(),
+                ]),
+        ];
     }
 }
