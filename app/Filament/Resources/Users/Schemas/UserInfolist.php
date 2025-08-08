@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Users\Schemas;
 
 use App\Filament\Resources\Investors\InvestorResource;
-use App\Filament\Support\Entries\DatesFieldsetEntry;
+use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\HtmlEntry;
 use App\Models\User;
 use Filament\Infolists\Components\IconEntry;
@@ -72,7 +72,7 @@ final class UserInfolist
                         TextEntry::make('language'),
                     ]),
 
-                DatesFieldsetEntry::make(),
+                DatesFieldset::make(),
             ]);
     }
 }

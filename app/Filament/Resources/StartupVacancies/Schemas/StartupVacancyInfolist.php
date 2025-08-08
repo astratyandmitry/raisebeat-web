@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\StartupVacancies\Schemas;
 
 use App\Filament\Resources\Startups\StartupResource;
-use App\Filament\Support\Entries\DatesFieldsetEntry;
+use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\HtmlEntry;
 use App\Models\StartupVacancy;
 use Filament\Infolists\Components\IconEntry;
@@ -43,7 +43,7 @@ final class StartupVacancyInfolist
                 IconEntry::make('is_applicable')
                     ->boolean(),
 
-                DatesFieldsetEntry::make(),
+                DatesFieldset::make(),
             ]);
     }
 }

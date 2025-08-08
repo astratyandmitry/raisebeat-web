@@ -65,7 +65,7 @@ final class StartupVacanciesTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('type')->options(VacancyType::options()),
+                SelectFilter::make('type')->options(VacancyType::getOptions()),
                 TernaryFilter::make('is_applicable')->label('Applicable'),
                 TrashedFilter::make(),
             ])

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Admins\Schemas;
 
-use App\Filament\Support\Entries\DatesFieldsetEntry;
+use App\Filament\Support\Entries\DatesFieldset;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -20,7 +20,7 @@ final class AdminInfolist
                 TextEntry::make('name'),
                 TextEntry::make('email'),
 
-                DatesFieldsetEntry::make(),
+                DatesFieldset::make(),
             ]);
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Posts\Schemas;
 
 use App\Filament\Resources\Posts\Entries\RepostFieldsetEntry;
-use App\Filament\Support\Entries\DatesFieldsetEntry;
+use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\HtmlEntry;
 use App\Filament\Support\Entries\UsernameEntry;
 use App\Models\Post;
@@ -49,7 +49,7 @@ final class PostInfolist
 
                 RepostFieldsetEntry::make(),
 
-                DatesFieldsetEntry::make(),
+                DatesFieldset::make(),
             ]);
     }
 }

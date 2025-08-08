@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models\Enums;
 
-enum BusinessModel: string
+use Filament\Support\Contracts\HasLabel;
+
+enum BusinessModel: string implements HasLabel
 {
     use HasLocalizedInformation;
 

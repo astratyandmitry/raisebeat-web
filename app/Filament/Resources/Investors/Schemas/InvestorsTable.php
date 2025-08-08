@@ -58,7 +58,7 @@ final class InvestorsTable
             ])
             ->filters([
                 SelectFilter::make('focus_region')
-                    ->options(Region::options()),
+                    ->options(Region::getOptions()),
 
                 TrashedFilter::make(),
             ])

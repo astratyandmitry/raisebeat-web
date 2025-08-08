@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Comments\Schemas;
 
-use App\Filament\Support\Entries\DatesFieldsetEntry;
+use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\HtmlEntry;
 use App\Filament\Support\Entries\UsernameEntry;
 use App\Models\Comment;
@@ -38,7 +38,7 @@ final class CommentInfolist
 
                 HtmlEntry::make('content'),
 
-                DatesFieldsetEntry::make(),
+                DatesFieldset::make(),
             ]);
     }
 }

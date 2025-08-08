@@ -63,7 +63,7 @@ final class PostsTable
             ])
             ->filters([
                 SelectFilter::make('type')
-                    ->options(PostType::options()),
+                    ->options(PostType::getOptions()),
 
                 Filter::make('external')
                     ->checkbox()

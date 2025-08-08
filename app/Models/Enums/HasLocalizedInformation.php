@@ -14,7 +14,7 @@ trait HasLocalizedInformation
     /**
      * @return array<int|string, string>
      */
-    public static function options(): array
+    public static function getOptions(): array
     {
         return collect(static::cases())->mapWithKeys(fn($case) => [
             $case->value => $case->getLabel(),

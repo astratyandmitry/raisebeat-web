@@ -8,6 +8,7 @@ use App\Models\Abstracts\Organization;
 use App\Models\Contracts\CanPerformActivity;
 use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Followable;
+use App\Models\Contracts\HasPublicUrl;
 use App\Models\Contracts\Linkable;
 use App\Models\Contracts\Verifiable;
 use App\Models\Contracts\Viewable;
@@ -47,7 +48,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \App\Models\StartupMetric[]|\Illuminate\Database\Eloquent\Collection $metrics
  * @property-read \App\Models\StartupVacancy[]|\Illuminate\Database\Eloquent\Collection $vacancies
  */
-final class Startup extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable
+final class Startup extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable, HasPublicUrl
 {
     /** @use HasFactory<\Database\Factories\StartupFactory> */
     use HasFactory, HasFollowers, HasLinks, HasPerformedActivities, HasReceivedActivities, HasVerifications;
@@ -87,5 +88,10 @@ final class Startup extends Organization implements CanPerformActivity, CanRecei
     public function vacancies(): HasMany
     {
         return $this->hasMany(StartupVacancy::class);
+    }
+
+    public function getPublicUrl(): string
+    {
+        return url('/'); // todo
     }
 }

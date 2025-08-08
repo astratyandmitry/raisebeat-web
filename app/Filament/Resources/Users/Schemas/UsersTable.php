@@ -70,7 +70,7 @@ final class UsersTable
             ])
             ->filters([
                 SelectFilter::make('country')
-                    ->options(Country::options()),
+                    ->options(Country::getOptions()),
 
                 Filter::make('email_verified_at')
                     ->label('Verified only')

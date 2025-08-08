@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\Enums;
 
-enum FundraisingRound: string
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+
+enum FundraisingRound: string implements HasLabel, HasColor
 {
     use HasLocalizedInformation;
 
@@ -14,4 +17,15 @@ enum FundraisingRound: string
     case SeriesB = 'series_b';
     case Bridge = 'bridge';
     case Grant = 'grant';
+
+    public function getColor(): string
+    {
+        return  match ($this) {
+            self::PreSeed => 'info',
+            self::Seed => 'success',
+            self::SeriesA => 'danger',
+            self::SeriesB => 'warning',
+            self::Bridge, self::Grant => 'gray',
+        };
+    }
 }

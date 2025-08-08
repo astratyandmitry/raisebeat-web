@@ -18,7 +18,7 @@ abstract class OrganizationFactory extends Factory
             'slug' => Str::slug($name),
             'headline' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'logo_url' => $this->faker->imageUrl(400, 400),
+            'logo_url' => 'https://placehold.jp/300x300.png',
             'contact_website' => $this->faker->url,
             'contact_email' => $this->faker->email,
             'contact_phone' => $this->faker->phoneNumber,

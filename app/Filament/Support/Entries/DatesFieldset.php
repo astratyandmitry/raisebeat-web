@@ -7,7 +7,7 @@ namespace App\Filament\Support\Entries;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Fieldset;
 
-final class DatesFieldsetEntry
+final class DatesFieldset
 {
     public static function make(bool $hasDeletedAt = true): Fieldset
     {
@@ -16,10 +16,13 @@ final class DatesFieldsetEntry
             ->columns($hasDeletedAt ? 3 : 2)
             ->schema([
                 TextEntry::make('created_at')
+                    ->label('Created')
                     ->dateTime('Y-m-d H:i'),
                 TextEntry::make('updated_at')
+                    ->label('Updated')
                     ->dateTime('Y-m-d H:i'),
                 TextEntry::make('deleted_at')
+                    ->label('Deleted')
                     ->dateTime('Y-m-d H:i')
                     ->placeholder('None')
                     ->visible($hasDeletedAt),

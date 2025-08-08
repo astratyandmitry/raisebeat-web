@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\Enums;
 
-enum FundraisingStatus: string
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+
+enum FundraisingStatus: string implements HasLabel, HasColor
 {
     use HasLocalizedInformation;
 
@@ -12,4 +15,14 @@ enum FundraisingStatus: string
     case Active = 'active';
     case SoftCommit = 'soft_commit';
     case Closed = 'closed';
+
+    public function getColor(): string
+    {
+        return match ($this) {
+            self::NotRaising => 'gray',
+            self::Active => 'danger',
+            self::SoftCommit => 'warning',
+            self::Closed => 'success',
+        };
+    }
 }
