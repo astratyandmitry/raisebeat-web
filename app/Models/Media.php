@@ -8,6 +8,7 @@ use App\Models\Abstracts\Organization;
 use App\Models\Contracts\CanPerformActivity;
 use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Followable;
+use App\Models\Contracts\HasPublicUrl;
 use App\Models\Contracts\Linkable;
 use App\Models\Contracts\Verifiable;
 use App\Models\Contracts\Viewable;
@@ -20,10 +21,11 @@ use App\Models\Traits\HasVerifications;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
+ * @property-read string $official_url
  * @property-read string|null $submission_url
  * @property-read \App\Models\Enums\MediaType $type
  */
-final class Media extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable
+final class Media extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable, HasPublicUrl
 {
     /** @use HasFactory<\Database\Factories\MediaFactory> */
     use HasFactory, HasFollowers, HasLinks, HasPerformedActivities, HasReceivedActivities, HasVerifications;
@@ -34,5 +36,10 @@ final class Media extends Organization implements CanPerformActivity, CanReceive
             ...parent::casts(),
             'type' => MediaType::class,
         ];
+    }
+
+    public function getPublicUrl(): string
+    {
+        return url('/'); // todo
     }
 }

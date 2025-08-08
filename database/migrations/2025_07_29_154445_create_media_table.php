@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration{
     /**
      * Run the migrations.
      */
@@ -27,7 +26,8 @@ return new class extends Migration
             $table->string('contact_email', 80)->nullable();
             $table->string('contact_phone', 20)->nullable();
             $table->string('type', 20)->index()->comment(MediaType::class);
-            $table->string('submission_url', 240)->nullable();
+            $table->string('official_url', 250);
+            $table->string('submission_url', 250)->nullable();
             $table->unsignedInteger('count_viewed')->default(0);
             $table->boolean('is_public')->default(false)->index();
             $table->softDeletes();

@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Media\Pages;
 
 use App\Filament\Resources\Media\MediaResource;
-use Filament\Actions\EditAction;
-use Filament\Resources\Pages\ViewRecord;
+use Filament\Actions\CreateAction;
+use Filament\Resources\Pages\ListRecords;
 
-final class ViewMedia extends ViewRecord
+final class ManageMedia extends ListRecords
 {
     protected static string $resource = MediaResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            EditAction::make(),
+            CreateAction::make()->label('Create'),
         ];
     }
 }

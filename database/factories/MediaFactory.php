@@ -16,6 +16,7 @@ final class MediaFactory extends OrganizationFactory
         return [
             ...parent::definition(),
             'type' => $this->faker->randomElement(MediaType::cases()),
+            'official_url' => $this->faker->url,
             'submission_url' => $this->faker->optional(0.5)->url,
         ];
     }

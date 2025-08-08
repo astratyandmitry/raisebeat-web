@@ -25,6 +25,7 @@ abstract class BaseOrganizationTable
     public static function configure(Table $table, array $columns = [], array $filters = []): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns([
                 IdColumn::make(),
                 ImageColumn::make('logo_url')

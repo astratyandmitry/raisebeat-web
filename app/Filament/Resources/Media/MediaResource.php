@@ -4,20 +4,15 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Media;
 
-use App\Filament\Resources\Media\Pages\CreateMedia;
-use App\Filament\Resources\Media\Pages\EditMedia;
-use App\Filament\Resources\Media\Pages\ListMedia;
-use App\Filament\Resources\Media\Pages\ViewMedia;
+use App\Filament\Components\Organization\BaseOrganizationResource;
+use App\Filament\Resources\Media\Pages\ManageMedia;
 use App\Filament\Resources\Media\Schemas\MediaForm;
 use App\Filament\Resources\Media\Schemas\MediaInfolist;
-use App\Filament\Resources\Media\Tables\MediaTable;
+use App\Filament\Resources\Media\Schemas\MediaTable;
 use App\Models\Media;
 use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Tables\Table;
 
-final class MediaResource extends Resource
+final class MediaResource extends BaseOrganizationResource
 {
     protected static ?string $model = Media::class;
 
@@ -25,35 +20,30 @@ final class MediaResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
-    public static function form(Schema $schema): Schema
-    {
-        return MediaForm::configure($schema);
-    }
-
-    public static function infolist(Schema $schema): Schema
-    {
-        return MediaInfolist::configure($schema);
-    }
-
-    public static function table(Table $table): Table
-    {
-        return MediaTable::configure($table);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
-            'index' => ListMedia::route('/'),
-            'create' => CreateMedia::route('/create'),
-            'view' => ViewMedia::route('/{record}'),
-            'edit' => EditMedia::route('/{record}/edit'),
+            'index' => ManageMedia::route('/'),
         ];
+    }
+
+    protected static function getTableColumns(): array
+    {
+        return MediaTable::columns();
+    }
+
+    protected static function getTableFilters(): array
+    {
+        return MediaTable::filters();
+    }
+
+    protected static function getInfolistComponents(): array
+    {
+        return MediaInfolist::entries();
+    }
+
+    protected static function getFromComponents(): array
+    {
+        return MediaForm::fields();
     }
 }

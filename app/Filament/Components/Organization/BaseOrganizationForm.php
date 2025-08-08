@@ -27,7 +27,10 @@ abstract class BaseOrganizationForm
 
                 Select::make('user_id')
                     ->label('User')
+                    ->nullable()
+                    ->default(null)
                     ->options(User::query()->pluck('username', 'id'))
+                    ->dehydrateStateUsing(fn($state) => ($state === '' ? null : $state))
                     ->native(false)
                     ->searchable(),
 
