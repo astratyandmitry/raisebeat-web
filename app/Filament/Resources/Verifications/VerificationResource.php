@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Verifications;
 
 use App\Filament\Resources\Verifications\Pages\ManageVerifications;
-use App\Filament\Resources\Verifications\Schemas\VerificationInfolist;
 use App\Filament\Resources\Verifications\Schemas\VerificationsTable;
 use App\Models\Verification;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use UnitEnum;
 
@@ -21,11 +19,6 @@ final class VerificationResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    public static function infolist(Schema $schema): Schema
-    {
-        return VerificationInfolist::configure($schema);
-    }
-
     public static function table(Table $table): Table
     {
         return VerificationsTable::configure($table);
@@ -35,6 +28,7 @@ final class VerificationResource extends Resource
     {
         return [
             'index' => ManageVerifications::route('/'),
+            //'view' => ViewVerification::route('/{record}'),
         ];
     }
 }

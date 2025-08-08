@@ -8,6 +8,7 @@ use App\Filament\Resources\Posts\Entries\RepostFieldsetEntry;
 use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\HtmlEntry;
 use App\Filament\Support\Entries\UsernameEntry;
+use App\Filament\Support\Helpers\MorphRoute;
 use App\Models\Post;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
@@ -31,21 +32,18 @@ final class PostInfolist
                     ->iconColor('primary')
                     ->icon('heroicon-s-link')
                     ->openUrlInNewTab()
-                    ->state(fn (Post $record) => $record->postable->getDisplayLabel())
-                    ->url(fn (Post $record): string => route("filament.admin.resources.{$record->postable_type}.index", [
-                        'tableAction' => 'view',
-                        'tableActionRecord' => $record->postable_id,
-                    ])),
+                    ->state(fn(Post $record) => $record->postable->getDisplayLabel())
+                    ->url(fn(Post $record): string => MorphRoute::make($record, 'postable')),
 
                 TextEntry::make('type')->badge(),
-                TextEntry::make('title')->visible(fn (Post $record): bool => ! empty($record->title)),
-                HtmlEntry::make('description')->visible(fn (Post $record): bool => ! empty($record->title)),
+                TextEntry::make('title')->visible(fn(Post $record): bool => ! empty($record->title)),
+                HtmlEntry::make('description')->visible(fn(Post $record): bool => ! empty($record->title)),
 
                 TextEntry::make('external_url')
                     ->label('External URL')
                     ->openUrlInNewTab()
-                    ->url(fn (Post $record) => $record->external_url)
-                    ->visible(fn (Post $record): bool => ! empty($record->external_url)),
+                    ->url(fn(Post $record) => $record->external_url)
+                    ->visible(fn(Post $record): bool => ! empty($record->external_url)),
 
                 RepostFieldsetEntry::make(),
 

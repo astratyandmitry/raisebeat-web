@@ -7,7 +7,7 @@ use App\Models\Contracts\Verifiable;
 use App\Models\Enums\VerificationStatus;
 use Filament\Actions\Action;
 
-final class ViewVerificationAction
+final class GoToVerififcationAction
 {
     public static function make(): Action
     {

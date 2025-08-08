@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Investors\Schemas;
 
+use App\Filament\Support\Actions\GoToVerififcationAction;
 use App\Filament\Support\Actions\ViewPublicUrlAction;
-use App\Filament\Support\Actions\ViewVerificationAction;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\Region;
 use App\Models\Investor;
@@ -71,7 +71,7 @@ final class InvestorsTable
                 ViewPublicUrlAction::make()->hiddenLabel(),
 
                 ActionGroup::make([
-                    ViewVerificationAction::make(),
+                    GoToVerififcationAction::make(),
                     DeleteAction::make(),
                     ForceDeleteAction::make(),
                     RestoreAction::make(),

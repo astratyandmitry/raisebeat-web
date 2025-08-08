@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Filament\Components\Organization;
 
+use App\Filament\Support\Actions\GoToVerififcationAction;
 use App\Filament\Support\Actions\ViewPublicUrlAction;
-use App\Filament\Support\Actions\ViewVerificationAction;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Abstracts\Organization;
 use Filament\Actions\ActionGroup;
@@ -59,7 +59,7 @@ abstract class BaseOrganizationTable
                 ViewPublicUrlAction::make()->hiddenLabel(),
 
                 ActionGroup::make([
-                    ViewVerificationAction::make(),
+                    GoToVerififcationAction::make(),
                     EditAction::make(),
                     DeleteAction::make(),
                     ForceDeleteAction::make(),

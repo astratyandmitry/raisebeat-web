@@ -8,11 +8,12 @@ use App\Filament\Resources\Verifications\Actions\ApproveBulkAction;
 use App\Filament\Resources\Verifications\Actions\ApproveRecordAction;
 use App\Filament\Resources\Verifications\Actions\RejectBulkAction;
 use App\Filament\Resources\Verifications\Actions\RejectRecordAction;
+use App\Filament\Resources\Verifications\Actions\ViewVerificationAction;
 use App\Filament\Support\Columns\IdColumn;
+use App\Filament\Support\Helpers\MorphRoute;
 use App\Models\Verification;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -49,14 +50,10 @@ final class VerificationsTable
                     ->dateTime('Y-m-d H:i')
                     ->sortable(),
             ])
-            ->recordUrl(fn(Verification $record
-            ): string => route("filament.admin.resources.{$record->verifiable_type}.index", [
-                'tableAction' => 'view',
-                'tableActionRecord' => $record->verifiable_id,
-            ]))
+            ->recordUrl(fn(Verification $record): string => MorphRoute::make($record, 'verifiable'))
             ->openRecordUrlInNewTab()
             ->recordActions([
-                ViewAction::make()->hiddenLabel(),
+                ViewVerificationAction::make(),
                 ActionGroup::make([
                     ApproveRecordAction::make(),
                     RejectRecordAction::make(),
