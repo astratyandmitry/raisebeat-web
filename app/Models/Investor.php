@@ -8,9 +8,11 @@ use App\Models\Abstracts\Model;
 use App\Models\Contracts\CanPerformActivity;
 use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Followable;
+use App\Models\Contracts\HasPublicUrl;
 use App\Models\Contracts\Investable;
 use App\Models\Contracts\Linkable;
 use App\Models\Contracts\Postable;
+use App\Models\Contracts\RelaterToUser;
 use App\Models\Contracts\Verifiable;
 use App\Models\Contracts\Viewable;
 use App\Models\Enums\Region;
@@ -33,7 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\Enums\Region $focus_region
  * @property-read \App\Models\User $user
  */
-final class Investor extends Model implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Postable, Verifiable, Viewable
+final class Investor extends Model implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Postable, Verifiable, Viewable, HasPublicUrl, RelaterToUser
 {
     /** @use HasFactory<\Database\Factories\InvestorFactory> */
     use HasFactory,
@@ -63,5 +65,10 @@ final class Investor extends Model implements CanPerformActivity, CanReceiveActi
     public function getDisplayLabel(): string
     {
         return $this->name;
+    }
+
+    public function getPublicUrl(): string
+    {
+        return url('/'); // todo
     }
 }

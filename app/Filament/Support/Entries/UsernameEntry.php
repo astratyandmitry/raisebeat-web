@@ -15,8 +15,14 @@ final class UsernameEntry
         return TextEntry::make('user.username')
             ->label('Author')
             ->color('primary')
+            ->weight('medium')
+            ->iconColor('primary')
+            ->icon('heroicon-s-link')
             ->openUrlInNewTab()
-            ->url(fn (RelaterToUser $record): string => UserResource::getUrl('view', [$record]))
+            ->url(fn (RelaterToUser $record): string => UserResource::getIndexUrl([
+                'tableAction' => 'view',
+                'tableActionRecord' => $record->id,
+            ]))
             ->state(fn (RelaterToUser $record): string => "@{$record->user->username}");
     }
 }

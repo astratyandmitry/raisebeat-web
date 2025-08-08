@@ -31,7 +31,7 @@ final class UsersTable
     {
         return $table
             ->defaultSort('id', 'desc')
-            ->modifyQueryUsing(fn ($query) => $query->with('investor_profile'))
+            ->modifyQueryUsing(fn($query) => $query->with('investor_profile'))
             ->columns([
                 IdColumn::make(),
                 ImageColumn::make('avatar_url')
@@ -56,9 +56,12 @@ final class UsersTable
                     ->dateTime('Y-m-d H:i')
                     ->placeholder('Not verified')
                     ->toggleable(),
-                IconColumn::make('investor_profile')
-                    ->label('Investor')
-                    ->boolean(),
+                TextColumn::make('uuid')
+                    ->width(40)
+                    ->label('Type')
+                    ->badge()
+                    ->color(fn(User $record) => $record->investor_profile ? 'danger' : 'info')
+                    ->formatStateUsing(fn(User $record) => $record->investor_profile ? 'Investor' : 'User'),
                 TextColumn::make('created_at')
                     ->width(80)
                     ->dateTime('Y-m-d H:i')

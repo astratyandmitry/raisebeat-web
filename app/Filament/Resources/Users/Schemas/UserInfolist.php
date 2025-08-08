@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Users\Schemas;
 
+use App\Filament\Resources\Investors\InvestorResource;
 use App\Filament\Support\Entries\DatesFieldsetEntry;
 use App\Filament\Support\Entries\HtmlEntry;
 use App\Models\User;
@@ -27,7 +28,7 @@ final class UserInfolist
                     ->label('Avatar')
                     ->circular(),
 
-                TextEntry::make('full_name')
+                TextEntry::make('first_name')
                     ->formatStateUsing(fn(User $record) => $record->getDisplayLabel()),
                 TextEntry::make('username')
                     ->formatStateUsing(fn(User $record) => "@{$record->username}"),
@@ -37,6 +38,19 @@ final class UserInfolist
                 TextEntry::make('city')
                     ->label('Location')
                     ->formatStateUsing(fn(User $record) => "{$record->city}, {$record->country->getLabel()}"),
+
+                TextEntry::make('investor_profile')
+                    ->color('primary')
+                    ->weight('medium')
+                    ->iconColor('primary')
+                    ->icon('heroicon-s-link')
+                    ->formatStateUsing(fn() => 'View Investor Profile')
+                    ->openUrlInNewTab()
+                    ->urL(fn(User $record) => InvestorResource::getIndexUrl([
+                        'tableAction' => 'view',
+                        'tableActionRecord' => $record->investor_profile->id,
+                    ]))
+                    ->visible(fn(User $record) => ! empty($record->investor_profile)),
 
                 Fieldset::make('Email')
                     ->columns(2)

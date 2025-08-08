@@ -38,18 +38,10 @@ final class UserResource extends Resource
         return UsersTable::configure($table);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            PostsRelationManager::class,
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
             'index' => ManageUsers::route('/'),
-            'view' => ViewUser::route('/{record}'),
         ];
     }
 

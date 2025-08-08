@@ -28,6 +28,9 @@ final class CommentInfolist
                     ->label('Commentable')
                     ->color('primary')
                     ->openUrlInNewTab()
+                    ->weight('medium')
+                    ->iconColor('primary')
+                    ->icon('heroicon-s-link')
                     ->url(fn (Comment $record) => $record->commentable->getPublicUrl())
                     ->formatStateUsing(fn (Comment $record) => match ($record->commentable::class) {
                         Post::class => $record->commentable->title ?? 'Untitled Post',

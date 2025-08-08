@@ -26,7 +26,13 @@ final class StartupVacancyInfolist
                 TextEntry::make('startup.name')
                     ->label('Startup')
                     ->color('primary')
-                    ->url(fn (StartupVacancy $record): string => StartupResource::getUrl('view', [$record]))
+                    ->weight('medium')
+                    ->iconColor('primary')
+                    ->icon('heroicon-s-link')
+                    ->url(fn (StartupVacancy $record): string => StartupResource::getIndexUrl([
+                        'tableAction' => 'view',
+                        'tableActionRecord' => $record->id,
+                    ]))
                     ->openUrlInNewTab(),
 
                 TextEntry::make('type')->badge(),

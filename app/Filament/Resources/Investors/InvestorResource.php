@@ -12,6 +12,7 @@ use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 final class InvestorResource extends Resource
 {
@@ -31,17 +32,26 @@ final class InvestorResource extends Resource
         return InvestorsTable::configure($table);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
             'index' => ListInvestors::route('/'),
+        ];
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['user.first_name', 'user.last_name', 'user.username'];
+    }
+
+    /**
+     * @param \App\Models\Investor $record
+     * @return array|string[]
+     */
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'user' => $record->user->getDisplayLabel(),
         ];
     }
 }
