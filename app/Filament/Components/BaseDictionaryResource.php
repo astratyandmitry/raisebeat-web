@@ -6,6 +6,7 @@ namespace App\Filament\Components;
 
 use App\Filament\Components\Translatable\FormTranslatableField;
 use App\Filament\Components\Translatable\InfolistTranslatableTextEntry;
+use App\Filament\Support\Columns\IdColumn;
 use App\Models\Abstracts\Model;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\EditAction;
@@ -62,10 +63,7 @@ abstract class BaseDictionaryResource extends Resource
             ->reorderable('sort_order')
             ->defaultSort('sort_order')
             ->columns([
-                TextColumn::make('id')
-                    ->width(40)
-                    ->label('ID')
-                    ->sortable(),
+                IdColumn::make(),
                 TextColumn::make('name')
                     ->label('Entity')
                     ->description(fn($record) => $record->key)

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Admins\Schemas;
 
 use App\Filament\Resources\Admins\Actions\EditAdminAction;
+use App\Filament\Support\Columns\IdColumn;
 use App\Models\Admin;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\DeleteAction;
@@ -21,12 +22,10 @@ final class AdminsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'asc')
             ->paginated(false)
             ->columns([
-                TextColumn::make('id')
-                    ->width(50)
-                    ->label('ID')
-                    ->sortable(),
+                IdColumn::make(),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('email')
@@ -48,7 +47,7 @@ final class AdminsTable
                     DeleteAction::make(),
                     ForceDeleteAction::make()->hidden(),
                     RestoreAction::make(),
-                ])->color('gray')->visible(fn (Admin $record): bool => ! $record->root || auth()->user()->root),
+                ])->color('gray')->visible(fn(Admin $record): bool => ! $record->root || auth()->user()->root),
             ])
             ->filters([
                 TrashedFilter::make(),

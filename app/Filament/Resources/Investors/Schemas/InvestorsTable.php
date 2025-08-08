@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Investors\Tables;
+namespace App\Filament\Resources\Investors\Schemas;
 
+use App\Filament\Support\Columns\IdColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -17,9 +19,11 @@ final class InvestorsTable
     {
         return $table
             ->columns([
-                TextColumn::make('uuid')
-                    ->label('UUID')
-                    ->searchable(),
+                IdColumn::make(),
+                ImageColumn::make('user.avatar_url')
+                    ->width(40)
+                    ->circular()
+                    ->label('Avatar'),
                 TextColumn::make('user_id')
                     ->numeric()
                     ->sortable(),

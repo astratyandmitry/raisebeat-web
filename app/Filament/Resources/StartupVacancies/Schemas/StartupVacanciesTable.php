@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\StartupVacancies\Schemas;
 
 use App\Filament\Support\Actions\ViewPublicUrlAction;
+use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\VacancyType;
 use App\Models\StartupVacancy;
 use Filament\Actions\ActionGroup;
@@ -31,9 +32,7 @@ final class StartupVacanciesTable
         return $table
             ->defaultSort('id', 'desc')
             ->columns([
-                TextColumn::make('id')
-                    ->width(50)
-                    ->label('ID'),
+                IdColumn::make(),
                 TextColumn::make('title')
                     ->limit(50)
                     ->description(fn(StartupVacancy $record) => Str::limit($record->description))

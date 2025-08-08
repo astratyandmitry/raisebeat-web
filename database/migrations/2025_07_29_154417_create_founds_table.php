@@ -39,6 +39,7 @@ return new class extends Migration
             $table->boolean('is_lead_investor')->default(false)->index();
             $table->boolean('is_follow_investor')->default(false)->index();
             $table->boolean('is_public')->default(false)->index();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->index(['name', 'headline']);

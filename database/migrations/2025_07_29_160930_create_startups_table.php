@@ -48,6 +48,7 @@ return new class extends Migration
             $table->boolean('is_demo_private')->default(false)->index();
             $table->boolean('is_deck_private')->default(false)->index();
             $table->boolean('is_public')->default(false)->index();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->index(['name', 'headline']);

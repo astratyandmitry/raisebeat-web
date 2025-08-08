@@ -31,9 +31,4 @@ final class VerificationResource extends Resource
             'index' => ManageVerifications::route('/'),
         ];
     }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()->with('verifiable');
-    }
 }

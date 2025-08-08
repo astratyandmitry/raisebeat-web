@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Users\Schemas;
 
 use App\Filament\Support\Actions\ViewPublicUrlAction;
+use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\Country;
 use App\Models\User;
 use Filament\Actions\ActionGroup;
@@ -16,6 +17,7 @@ use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -29,10 +31,9 @@ final class UsersTable
     {
         return $table
             ->defaultSort('id', 'desc')
+            ->modifyQueryUsing(fn ($query) => $query->with('investor_profile'))
             ->columns([
-                TextColumn::make('id')
-                    ->width(50)
-                    ->label('ID'),
+                IdColumn::make(),
                 ImageColumn::make('avatar_url')
                     ->width(40)
                     ->circular()
@@ -55,6 +56,9 @@ final class UsersTable
                     ->dateTime('Y-m-d H:i')
                     ->placeholder('Not verified')
                     ->toggleable(),
+                IconColumn::make('investor_profile')
+                    ->label('Investor')
+                    ->boolean(),
                 TextColumn::make('created_at')
                     ->width(80)
                     ->dateTime('Y-m-d H:i')

@@ -19,6 +19,7 @@ use App\Models\Traits\HasVerifications;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property-read int $user_id
@@ -35,7 +36,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 abstract class Organization extends Model implements CanPerformActivity, CanReceiveActivity, Linkable, Postable, Verifiable, RelaterToUser
 {
-    use HasLinks, HasPerformedActivities, HasPosts, HasReceivedActivities, HasVerifications;
+    use HasLinks, HasPerformedActivities, HasPosts, HasReceivedActivities, HasVerifications, SoftDeletes;
 
     protected function casts(): array
     {

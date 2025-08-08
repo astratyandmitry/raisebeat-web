@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Comments\Schemas;
 
+use App\Filament\Support\Columns\IdColumn;
 use App\Filament\Support\Columns\UsernameColumn;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
@@ -22,11 +23,10 @@ final class CommentsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->defaultSort('created_at', 'desc')
+            ->modifyQueryUsing(fn($query) => $query->with('commentable', 'user'))
+            ->defaultSort('id', 'desc')
             ->columns([
-                TextColumn::make('id')
-                    ->width(50)
-                    ->label('ID'),
+                IdColumn::make(),
                 TextColumn::make('content')
                     ->label('Comment')
                     ->limitedTooltip(80),

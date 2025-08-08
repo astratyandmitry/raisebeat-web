@@ -11,11 +11,4 @@ use Filament\Resources\Pages\ListRecords;
 final class ListInvestors extends ListRecords
 {
     protected static string $resource = InvestorResource::class;
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            CreateAction::make(),
-        ];
-    }
 }

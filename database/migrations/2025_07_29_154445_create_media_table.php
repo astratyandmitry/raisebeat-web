@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('submission_url', 240)->nullable();
             $table->unsignedInteger('count_viewed')->default(0);
             $table->boolean('is_public')->default(false)->index();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->index(['name', 'headline']);

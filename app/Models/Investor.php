@@ -23,6 +23,7 @@ use App\Models\Traits\HasReceivedActivities;
 use App\Models\Traits\HasVerifications;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property-read int $user_id
@@ -42,7 +43,8 @@ final class Investor extends Model implements CanPerformActivity, CanReceiveActi
         HasPerformedActivities,
         HasPosts,
         HasReceivedActivities,
-        HasVerifications;
+        HasVerifications,
+        SoftDeletes;
 
     protected function casts(): array
     {

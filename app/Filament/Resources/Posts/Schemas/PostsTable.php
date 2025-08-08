@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Posts\Schemas;
 
 use App\Filament\Support\Actions\ViewPublicUrlAction;
+use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\PostType;
 use App\Models\Post;
 use Filament\Actions\ActionGroup;
@@ -28,11 +29,9 @@ final class PostsTable
     {
         return $table
             ->modifyQueryUsing(fn($query) => $query->with('postable', 'parent'))
-            ->defaultSort('created_at', 'desc')
+            ->defaultSort('id', 'desc')
             ->columns([
-                TextColumn::make('id')
-                    ->width(50)
-                    ->label('ID'),
+                IdColumn::make(),
                 TextColumn::make('title')
                     ->label('Post')
                     ->formatStateUsing(fn (Post $record) => $record->parent ? $record->parent->title : $record->title)

@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('city', 40);
             $table->unsignedInteger('count_viewed')->default(0);
             $table->boolean('is_public')->default(false)->index();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->index(['name', 'headline']);
