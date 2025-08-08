@@ -92,7 +92,7 @@ final class StartupForm
                         ->label('Deck'),
                 ]),
 
-            Fieldset::make('Access')
+            Fieldset::make('Config')
                 ->columns(3)
                 ->inlineLabel(false)
                 ->schema([

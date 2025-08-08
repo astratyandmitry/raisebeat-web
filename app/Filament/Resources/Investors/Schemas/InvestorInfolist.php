@@ -6,10 +6,6 @@ namespace App\Filament\Resources\Investors\Schemas;
 
 use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\UserFieldset;
-use App\Filament\Support\Entries\UsernameEntry;
-use App\Models\Investor;
-use App\Models\User;
-use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Schema;
@@ -24,14 +20,22 @@ final class InvestorInfolist
             ->components([
                 TextEntry::make('uuid')
                     ->label('UUID'),
-                TextEntry::make('check_size_min')
-                    ->numeric(),
-                TextEntry::make('check_size_max')
-                    ->numeric(),
                 TextEntry::make('focus_headline'),
                 TextEntry::make('focus_region')
                     ->color('gray')
                     ->badge(),
+
+                Fieldset::make('Check')
+                    ->columns(2)
+                    ->inlineLabel(false)
+                    ->schema([
+                        TextEntry::make('check_size_min')
+                            ->label('Min size')
+                            ->numeric(),
+                        TextEntry::make('check_size_max')
+                            ->label('Max size')
+                            ->numeric(),
+                    ]),
 
                 UserFieldset::make(),
                 DatesFieldset::make(),

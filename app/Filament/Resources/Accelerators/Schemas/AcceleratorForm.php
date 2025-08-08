@@ -14,7 +14,7 @@ final class AcceleratorForm
     public static function fields(): array
     {
         return [
-            Fieldset::make('Startup')
+            Fieldset::make('Accelerator')
                 ->columns(1)
                 ->schema([
                     LocationFieldsGrid::make(),

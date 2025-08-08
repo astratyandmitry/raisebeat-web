@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Founds;
 
+use App\Filament\Components\Organization\BaseOrganizationResource;
 use App\Filament\Resources\Founds\Pages\CreateFound;
 use App\Filament\Resources\Founds\Pages\EditFound;
-use App\Filament\Resources\Founds\Pages\ListFounds;
+use App\Filament\Resources\Founds\Pages\ManageFounds;
 use App\Filament\Resources\Founds\Pages\ViewFound;
 use App\Filament\Resources\Founds\Schemas\FoundForm;
 use App\Filament\Resources\Founds\Schemas\FoundInfolist;
-use App\Filament\Resources\Founds\Tables\FoundsTable;
+use App\Filament\Resources\Founds\Schemas\FoundsTable;
 use App\Models\Found;
 use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Tables\Table;
 
-final class FoundResource extends Resource
+final class FoundResource extends BaseOrganizationResource
 {
     protected static ?string $model = Found::class;
 
@@ -25,35 +23,30 @@ final class FoundResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
-    public static function form(Schema $schema): Schema
-    {
-        return FoundForm::configure($schema);
-    }
-
-    public static function infolist(Schema $schema): Schema
-    {
-        return FoundInfolist::configure($schema);
-    }
-
-    public static function table(Table $table): Table
-    {
-        return FoundsTable::configure($table);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
-            'index' => ListFounds::route('/'),
-            'create' => CreateFound::route('/create'),
-            'view' => ViewFound::route('/{record}'),
-            'edit' => EditFound::route('/{record}/edit'),
+            'index' => ManageFounds::route('/'),
         ];
+    }
+
+    protected static function getTableColumns(): array
+    {
+        return FoundsTable::columns();
+    }
+
+    protected static function getTableFilters(): array
+    {
+        return FoundsTable::filters();
+    }
+
+    protected static function getInfolistComponents(): array
+    {
+        return FoundInfolist::entries();
+    }
+
+    protected static function getFromComponents(): array
+    {
+        return FoundForm::fields();
     }
 }

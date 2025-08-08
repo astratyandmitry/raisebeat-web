@@ -20,7 +20,7 @@ final class StartupInfolist
                 ->columns(1)
                 ->schema([
                     LocationEntry::make(),
-                    TextEntry::make('founded_year')->numeric(),
+                    TextEntry::make('founded_year'),
 
                     Fieldset::make('Market')
                         ->columns(1)
@@ -70,7 +70,7 @@ final class StartupInfolist
                         ->visible(fn(Startup $record) => ! empty($record->deck_url)),
                 ]),
 
-            Fieldset::make('Access')
+            Fieldset::make('Config')
                 ->columns(3)
                 ->inlineLabel(false)
                 ->schema([

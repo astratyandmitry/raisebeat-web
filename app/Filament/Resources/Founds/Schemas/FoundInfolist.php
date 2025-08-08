@@ -4,49 +4,50 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Founds\Schemas;
 
+use App\Filament\Support\Entries\LocationEntry;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Fieldset;
 
 final class FoundInfolist
 {
-    public static function configure(Schema $schema): Schema
+    public static function entries(): array
     {
-        return $schema
-            ->components([
-                TextEntry::make('uuid')
-                    ->label('UUID'),
-                TextEntry::make('user_id')
-                    ->numeric(),
-                TextEntry::make('slug'),
-                TextEntry::make('name'),
-                TextEntry::make('headline'),
-                TextEntry::make('logo_url'),
-                TextEntry::make('contact_website'),
-                TextEntry::make('contact_email'),
-                TextEntry::make('contact_phone'),
-                TextEntry::make('founded_year')
-                    ->numeric(),
-                TextEntry::make('check_size_min')
-                    ->numeric(),
-                TextEntry::make('check_size_max')
-                    ->numeric(),
-                TextEntry::make('focus_region'),
-                TextEntry::make('investment_model'),
-                TextEntry::make('country'),
-                TextEntry::make('city'),
-                TextEntry::make('count_viewed')
-                    ->numeric(),
-                IconEntry::make('is_lead_investor')
-                    ->boolean(),
-                IconEntry::make('is_follow_investor')
-                    ->boolean(),
-                IconEntry::make('is_public')
-                    ->boolean(),
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
-            ]);
+        return [
+            Fieldset::make('Found')
+                ->columns(1)
+                ->schema([
+                    LocationEntry::make(),
+                    TextEntry::make('focus_region')->badge()->color('gray'),
+                    TextEntry::make('investment_model')->badge()->color('gray'),
+                    TextEntry::make('founded_year'),
+
+                    Fieldset::make('Check')
+                        ->columns(2)
+                        ->inlineLabel(false)
+                        ->schema([
+                            TextEntry::make('check_size_min')
+                                ->label('Min size')
+                                ->numeric(),
+                            TextEntry::make('check_size_max')
+                                ->label('Max size')
+                                ->numeric(),
+                        ]),
+
+                    Fieldset::make('Config')->columns(3)
+                        ->inlineLabel(false)
+                        ->schema([
+                            IconEntry::make('is_lead_investor')
+                                ->label('Lead Investor')
+                                ->boolean(),
+                            IconEntry::make('is_follow_investor')
+                                ->label('Follow Investor')
+                                ->boolean(),
+                            IconEntry::make('is_public')
+                                ->label('Public')
+                                ->boolean(),
+                        ]),
+                ]),
+        ];
     }
 }

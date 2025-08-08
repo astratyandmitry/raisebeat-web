@@ -18,7 +18,7 @@ final class AcceleratorInfolist
                 ->columns(1)
                 ->schema([
                     LocationEntry::make(),
-                    TextEntry::make('founded_year')->numeric(),
+                    TextEntry::make('founded_year'),
                     IconEntry::make('is_public')->label('Public')->boolean(),
                 ]),
         ];

@@ -8,6 +8,7 @@ use App\Models\Abstracts\Organization;
 use App\Models\Contracts\CanPerformActivity;
 use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Followable;
+use App\Models\Contracts\HasPublicUrl;
 use App\Models\Contracts\Investable;
 use App\Models\Contracts\Linkable;
 use App\Models\Contracts\Verifiable;
@@ -34,7 +35,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \App\Models\Enums\InvestmentModel $investment_model
  * @property-read \App\Models\Enums\Country $country
  */
-final class Found extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Verifiable, Viewable
+final class Found extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Verifiable, Viewable, HasPublicUrl
 {
     /** @use HasFactory<\Database\Factories\FoundFactory> */
     use HasFactory, HasFollowers, HasInvestments, HasLinks, HasPerformedActivities, HasReceivedActivities, HasVerifications;
@@ -51,5 +52,10 @@ final class Found extends Organization implements CanPerformActivity, CanReceive
             'country' => Country::class,
             'focus_region' => Region::class,
         ];
+    }
+
+    public function getPublicUrl(): string
+    {
+        return url('/'); // todo
     }
 }
