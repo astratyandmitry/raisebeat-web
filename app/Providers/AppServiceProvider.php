@@ -33,7 +33,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->enforceSecureUrls();
         $this->optimizeViteSettings();
 
-        LogViewer::auth(fn(): bool => auth('admin')->check());
+        LogViewer::auth(fn (): bool => auth('admin')->check());
 
         Relation::morphMap([
             'users' => User::class,

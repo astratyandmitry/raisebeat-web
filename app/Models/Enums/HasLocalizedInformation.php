@@ -16,7 +16,7 @@ trait HasLocalizedInformation
      */
     public static function getOptions(): array
     {
-        return collect(static::cases())->mapWithKeys(fn($case) => [
+        return collect(static::cases())->mapWithKeys(fn ($case) => [
             $case->value => $case->getLabel(),
         ])->toArray();
     }

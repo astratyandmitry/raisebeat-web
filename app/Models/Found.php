@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \App\Models\Enums\InvestmentModel $investment_model
  * @property-read \App\Models\Enums\Country $country
  */
-final class Found extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Verifiable, Viewable, HasPublicUrl
+final class Found extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, HasPublicUrl, Investable, Linkable, Verifiable, Viewable
 {
     /** @use HasFactory<\Database\Factories\FoundFactory> */
     use HasFactory, HasFollowers, HasInvestments, HasLinks, HasPerformedActivities, HasReceivedActivities, HasVerifications;

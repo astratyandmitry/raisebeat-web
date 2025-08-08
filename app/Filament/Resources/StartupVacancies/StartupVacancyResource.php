@@ -60,7 +60,7 @@ final class StartupVacancyResource extends Resource
     }
 
     /**
-     * @param \App\Models\StartupVacancy $record
+     * @param  \App\Models\StartupVacancy  $record
      * @return array|string[]
      */
     public static function getGlobalSearchResultDetails(Model $record): array

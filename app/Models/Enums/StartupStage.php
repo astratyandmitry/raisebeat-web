@@ -7,7 +7,7 @@ namespace App\Models\Enums;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 
-enum StartupStage: string implements HasLabel, HasColor
+enum StartupStage: string implements HasColor, HasLabel
 {
     use HasLocalizedInformation;
 

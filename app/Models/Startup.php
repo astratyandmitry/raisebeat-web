@@ -48,7 +48,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \App\Models\StartupMetric[]|\Illuminate\Database\Eloquent\Collection $metrics
  * @property-read \App\Models\StartupVacancy[]|\Illuminate\Database\Eloquent\Collection $vacancies
  */
-final class Startup extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, Linkable, Verifiable, Viewable, HasPublicUrl
+final class Startup extends Organization implements CanPerformActivity, CanReceiveActivity, Followable, HasPublicUrl, Linkable, Verifiable, Viewable
 {
     /** @use HasFactory<\Database\Factories\StartupFactory> */
     use HasFactory, HasFollowers, HasLinks, HasPerformedActivities, HasReceivedActivities, HasVerifications;

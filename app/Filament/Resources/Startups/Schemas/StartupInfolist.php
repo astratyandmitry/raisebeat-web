@@ -60,14 +60,14 @@ final class StartupInfolist
 
             Fieldset::make('URLs')
                 ->columns(1)
-                ->visible(fn(Startup $record) => ! empty($record->demo_url) || ! empty($record->deck_url))
+                ->visible(fn (Startup $record): bool => ! empty($record->demo_url) || ! empty($record->deck_url))
                 ->schema([
                     TextEntry::make('demo_url')
                         ->label('Demo')
-                        ->visible(fn(Startup $record) => ! empty($record->demo_url)),
+                        ->visible(fn (Startup $record): bool => ! empty($record->demo_url)),
                     TextEntry::make('deck_url')
                         ->label('Deck')
-                        ->visible(fn(Startup $record) => ! empty($record->deck_url)),
+                        ->visible(fn (Startup $record): bool => ! empty($record->deck_url)),
                 ]),
 
             Fieldset::make('Config')

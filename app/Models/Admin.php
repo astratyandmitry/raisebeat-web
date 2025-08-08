@@ -20,7 +20,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
  * @property string $name
  * @property string $password
  * @property string $remember_token
- * @property boolean $root
+ * @property bool $root
  */
 final class Admin extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser
 {

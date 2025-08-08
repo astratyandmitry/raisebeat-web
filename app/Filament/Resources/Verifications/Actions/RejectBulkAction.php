@@ -16,7 +16,7 @@ final class RejectBulkAction extends RejectAction
     {
         return BulkAction::make('verification.reject')
             ->action(function (Collection $records, RejectVerificationAction $cmd, array $data): void {
-                $records->each(fn(Verification $el): Verification => $cmd->execute($el, $data['comment']));
+                $records->each(fn (Verification $el): Verification => $cmd->execute($el, $data['comment']));
             })
             ->successNotification(function (Collection $records): void {
                 Notification::make()->danger()

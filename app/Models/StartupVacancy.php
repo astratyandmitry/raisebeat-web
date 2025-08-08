@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\Enums\VacancyType $type
  * @property-read \App\Models\Startup $startup
  */
-final class StartupVacancy extends Model implements CanReceiveActivity, Viewable, HasPublicUrl
+final class StartupVacancy extends Model implements CanReceiveActivity, HasPublicUrl, Viewable
 {
     /** @use HasFactory<\Database\Factories\StartupVacancyFactory> */
     use HasFactory, HasReceivedActivities, SoftDeletes;

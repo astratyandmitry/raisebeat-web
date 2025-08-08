@@ -47,7 +47,7 @@ final class AdminsTable
                     DeleteAction::make(),
                     ForceDeleteAction::make()->hidden(),
                     RestoreAction::make(),
-                ])->color('gray')->visible(fn(Admin $record): bool => ! $record->root || auth()->user()->root),
+                ])->color('gray')->visible(fn (Admin $record): bool => ! $record->root || auth()->user()->root),
             ])
             ->filters([
                 TrashedFilter::make(),

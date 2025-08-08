@@ -6,15 +6,12 @@ namespace App\Filament\Resources\Investors\Schemas;
 
 use App\Filament\Support\Actions\ViewPublicUrlAction;
 use App\Filament\Support\Columns\IdColumn;
-use App\Models\Enums\Country;
 use App\Models\Enums\Region;
 use App\Models\Investor;
-use App\Models\User;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
@@ -31,7 +28,7 @@ final class InvestorsTable
     {
         return $table
             ->defaultSort('id', 'desc')
-            ->modifyQueryUsing(fn($query) => $query->with('user'))
+            ->modifyQueryUsing(fn ($query) => $query->with('user'))
             ->columns([
                 IdColumn::make(),
                 ImageColumn::make('user.avatar_url')
@@ -40,8 +37,8 @@ final class InvestorsTable
                     ->label('Avatar'),
                 TextColumn::make('user.first_name')
                     ->label('User')
-                    ->formatStateUsing(fn(Investor $record) => $record->user->getDisplayLabel())
-                    ->description(fn(Investor $record) => "@{$record->user->username}"),
+                    ->formatStateUsing(fn (Investor $record) => $record->user->getDisplayLabel())
+                    ->description(fn (Investor $record): string => "@{$record->user->username}"),
                 TextColumn::make('focus_headline')
                     ->label('Headline')
                     ->limitedTooltip(100)

@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\User $user
  * @property-read \App\Models\Abstracts\Organization|null $postable
  */
-final class Post extends Model implements CanReceiveActivity, Commentable, Likeable, Viewable, HasPublicUrl, RelaterToUser
+final class Post extends Model implements CanReceiveActivity, Commentable, HasPublicUrl, Likeable, RelaterToUser, Viewable
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasComments, HasFactory, HasReceivedActivities, SoftDeletes;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Components\Organization;
 
 use App\Filament\Support\Entries\DatesFieldset;
@@ -30,7 +32,7 @@ abstract class BaseOrganizationInfolist
 
                 ...$components,
 
-                UserFieldset::make()->visible(fn(RelaterToUser $record) => ! empty($record->user)),
+                UserFieldset::make()->visible(fn (RelaterToUser $record): bool => ! empty($record->user)),
 
                 Fieldset::make('Contacts')
                     ->columns(1)

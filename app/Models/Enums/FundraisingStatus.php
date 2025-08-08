@@ -7,7 +7,7 @@ namespace App\Models\Enums;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 
-enum FundraisingStatus: string implements HasLabel, HasColor
+enum FundraisingStatus: string implements HasColor, HasLabel
 {
     use HasLocalizedInformation;
 

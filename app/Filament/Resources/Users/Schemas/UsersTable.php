@@ -12,12 +12,10 @@ use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -31,7 +29,7 @@ final class UsersTable
     {
         return $table
             ->defaultSort('id', 'desc')
-            ->modifyQueryUsing(fn($query) => $query->with('investor_profile'))
+            ->modifyQueryUsing(fn ($query) => $query->with('investor_profile'))
             ->columns([
                 IdColumn::make(),
                 ImageColumn::make('avatar_url')
@@ -40,13 +38,13 @@ final class UsersTable
                     ->label('Avatar'),
                 TextColumn::make('first_name')
                     ->label('Info')
-                    ->formatStateUsing(fn(User $record) => $record->getDisplayLabel())
-                    ->description(fn(User $record) => "@{$record->username}")
+                    ->formatStateUsing(fn (User $record): string => $record->getDisplayLabel())
+                    ->description(fn (User $record): string => "@{$record->username}")
                     ->searchable(['first_name', 'last_name', 'username']),
                 TextColumn::make('city')
                     ->label('Location')
                     ->searchable(['country', 'city'])
-                    ->description(fn(User $record) => $record->country->getLabel()),
+                    ->description(fn (User $record) => $record->country->getLabel()),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
@@ -60,8 +58,8 @@ final class UsersTable
                     ->width(40)
                     ->label('Type')
                     ->badge()
-                    ->color(fn(User $record) => $record->investor_profile ? 'danger' : 'info')
-                    ->formatStateUsing(fn(User $record) => $record->investor_profile ? 'Investor' : 'User'),
+                    ->color(fn (User $record): string => $record->investor_profile ? 'danger' : 'info')
+                    ->formatStateUsing(fn (User $record): string => $record->investor_profile ? 'Investor' : 'User'),
                 TextColumn::make('created_at')
                     ->width(80)
                     ->dateTime('Y-m-d H:i')
@@ -75,7 +73,7 @@ final class UsersTable
                 Filter::make('email_verified_at')
                     ->label('Verified only')
                     ->checkbox()
-                    ->modifyQueryUsing(fn($query) => $query->whereNotNull('email_verified_at')),
+                    ->modifyQueryUsing(fn ($query) => $query->whereNotNull('email_verified_at')),
 
                 TrashedFilter::make(),
             ])

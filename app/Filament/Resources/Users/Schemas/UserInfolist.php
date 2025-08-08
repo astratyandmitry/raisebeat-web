@@ -8,7 +8,6 @@ use App\Filament\Resources\Investors\InvestorResource;
 use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\HtmlEntry;
 use App\Models\User;
-use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Fieldset;
@@ -29,28 +28,28 @@ final class UserInfolist
                     ->circular(),
 
                 TextEntry::make('first_name')
-                    ->formatStateUsing(fn(User $record) => $record->getDisplayLabel()),
+                    ->formatStateUsing(fn (User $record): string => $record->getDisplayLabel()),
                 TextEntry::make('username')
-                    ->formatStateUsing(fn(User $record) => "@{$record->username}"),
+                    ->formatStateUsing(fn (User $record): string => "@{$record->username}"),
                 TextEntry::make('headline')
-                    ->visible(fn(User $record) => ! empty($record->headline)),
+                    ->visible(fn (User $record): bool => ! empty($record->headline)),
                 HtmlEntry::make('bio'),
                 TextEntry::make('city')
                     ->label('Location')
-                    ->formatStateUsing(fn(User $record) => "{$record->city}, {$record->country->getLabel()}"),
+                    ->formatStateUsing(fn (User $record): string => "{$record->city}, {$record->country->getLabel()}"),
 
                 TextEntry::make('investor_profile')
                     ->color('primary')
                     ->weight('medium')
                     ->iconColor('primary')
                     ->icon('heroicon-s-link')
-                    ->formatStateUsing(fn() => 'View Investor Profile')
+                    ->formatStateUsing(fn (): string => 'View Investor Profile')
                     ->openUrlInNewTab()
-                    ->urL(fn(User $record) => InvestorResource::getIndexUrl([
+                    ->urL(fn (User $record): string => InvestorResource::getIndexUrl([
                         'tableAction' => 'view',
                         'tableActionRecord' => $record->investor_profile->id,
                     ]))
-                    ->visible(fn(User $record) => ! empty($record->investor_profile)),
+                    ->visible(fn (User $record): bool => ! empty($record->investor_profile)),
 
                 Fieldset::make('Email')
                     ->columns(2)

@@ -31,21 +31,21 @@ final class PostInfolist
                     ->iconColor('primary')
                     ->icon('heroicon-s-link')
                     ->openUrlInNewTab()
-                    ->state(fn(Post $record) => $record->postable->getDisplayLabel())
-                    ->url(fn(Post $record): string => route("filament.admin.resources.{$record->postable_type}.index", [
+                    ->state(fn (Post $record) => $record->postable->getDisplayLabel())
+                    ->url(fn (Post $record): string => route("filament.admin.resources.{$record->postable_type}.index", [
                         'tableAction' => 'view',
                         'tableActionRecord' => $record->postable_id,
                     ])),
 
                 TextEntry::make('type')->badge(),
-                TextEntry::make('title')->visible(fn(Post $record): bool => ! empty($record->title)),
-                HtmlEntry::make('description')->visible(fn(Post $record): bool => ! empty($record->title)),
+                TextEntry::make('title')->visible(fn (Post $record): bool => ! empty($record->title)),
+                HtmlEntry::make('description')->visible(fn (Post $record): bool => ! empty($record->title)),
 
                 TextEntry::make('external_url')
                     ->label('External URL')
                     ->openUrlInNewTab()
-                    ->url(fn(Post $record) => $record->external_url)
-                    ->visible(fn(Post $record): bool => ! empty($record->external_url)),
+                    ->url(fn (Post $record) => $record->external_url)
+                    ->visible(fn (Post $record): bool => ! empty($record->external_url)),
 
                 RepostFieldsetEntry::make(),
 

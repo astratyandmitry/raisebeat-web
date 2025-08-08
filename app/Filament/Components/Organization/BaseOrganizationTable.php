@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Components\Organization;
 
 use App\Filament\Support\Actions\ViewPublicUrlAction;
@@ -33,7 +35,7 @@ abstract class BaseOrganizationTable
                     ->label('Logo')
                     ->circular(),
                 TextColumn::make('name')
-                    ->description(fn(Organization $record): string => Str::limit($record->headline, 80))
+                    ->description(fn (Organization $record): string => Str::limit($record->headline, 80))
                     ->searchable(['name', 'headline']),
                 ...$columns,
                 TextColumn::make('created_at')

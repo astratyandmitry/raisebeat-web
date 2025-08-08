@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\Enums\Region $focus_region
  * @property-read \App\Models\User $user
  */
-final class Investor extends Model implements CanPerformActivity, CanReceiveActivity, Followable, Investable, Linkable, Postable, Verifiable, Viewable, HasPublicUrl, RelaterToUser
+final class Investor extends Model implements CanPerformActivity, CanReceiveActivity, Followable, HasPublicUrl, Investable, Linkable, Postable, RelaterToUser, Verifiable, Viewable
 {
     /** @use HasFactory<\Database\Factories\InvestorFactory> */
     use HasFactory,

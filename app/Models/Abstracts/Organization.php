@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read bool $is_public
  * @property-read \App\Models\User $user
  */
-abstract class Organization extends Model implements CanPerformActivity, CanReceiveActivity, Linkable, Postable, Verifiable, RelaterToUser
+abstract class Organization extends Model implements CanPerformActivity, CanReceiveActivity, Linkable, Postable, RelaterToUser, Verifiable
 {
     use HasLinks, HasPerformedActivities, HasPosts, HasReceivedActivities, HasVerifications, SoftDeletes;
 

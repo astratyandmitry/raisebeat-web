@@ -35,7 +35,7 @@ final class StartupVacanciesTable
                 IdColumn::make(),
                 TextColumn::make('title')
                     ->limit(50)
-                    ->description(fn(StartupVacancy $record) => Str::limit($record->description))
+                    ->description(fn (StartupVacancy $record) => Str::limit($record->description))
                     ->searchable(['title', 'description']),
                 TextColumn::make('startup.name')
                     ->label('Startup')

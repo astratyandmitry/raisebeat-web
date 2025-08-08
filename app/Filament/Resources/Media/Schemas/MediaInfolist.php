@@ -22,7 +22,7 @@ final class MediaInfolist
                         ->label('Official URL'),
                     TextEntry::make('submission_url')
                         ->label('Submission URL')
-                        ->visible(fn(Media $record) => ! empty($record->submission_url)),
+                        ->visible(fn (Media $record): bool => ! empty($record->submission_url)),
                     IconEntry::make('is_public')->label('Public')->boolean(),
                 ]),
         ];

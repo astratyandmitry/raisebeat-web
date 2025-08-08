@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Entries;
 
 use App\Models\Abstracts\Model;
@@ -11,6 +13,6 @@ final class LocationEntry
     {
         return TextEntry::make('city')
             ->label('Location')
-            ->formatStateUsing(fn(Model $record) => "{$record->city}, {$record->country->getLabel()}");
+            ->formatStateUsing(fn (Model $record): string => "{$record->city}, {$record->country->getLabel()}");
     }
 }

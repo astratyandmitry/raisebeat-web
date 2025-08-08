@@ -54,7 +54,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read \App\Models\Member[]|\Illuminate\Database\Eloquent\Collection $memberships
  * @property-read \App\Models\Post[]|\Illuminate\Database\Eloquent\Collection $posts
  */
-final class User extends Model implements AuthenticatableContract, AuthorizableContract, CanPerformActivity, CanReceiveActivity, CanResetPasswordContract, Followable, Linkable, HasPublicUrl
+final class User extends Model implements AuthenticatableContract, AuthorizableContract, CanPerformActivity, CanReceiveActivity, CanResetPasswordContract, Followable, HasPublicUrl, Linkable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use Authenticatable, Authorizable, CanResetPassword, HasApiTokens, HasFactory, HasFollowers, HasLinks, HasPerformedActivities, HasReceivedActivities, MustVerifyEmail, Notifiable, SoftDeletes;

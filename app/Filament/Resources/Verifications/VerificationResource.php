@@ -9,7 +9,6 @@ use App\Filament\Resources\Verifications\Schemas\VerificationsTable;
 use App\Models\Verification;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 
 final class VerificationResource extends Resource

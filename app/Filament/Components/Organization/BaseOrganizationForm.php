@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Components\Organization;
 
 use App\Models\User;
@@ -30,7 +32,7 @@ abstract class BaseOrganizationForm
                     ->nullable()
                     ->default(null)
                     ->options(User::query()->pluck('username', 'id'))
-                    ->dehydrateStateUsing(fn($state) => ($state === '' ? null : $state))
+                    ->dehydrateStateUsing(fn ($state) => ($state === '' ? null : $state))
                     ->native(false)
                     ->searchable(),
 

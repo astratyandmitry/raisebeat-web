@@ -66,14 +66,14 @@ abstract class BaseDictionaryResource extends Resource
                 IdColumn::make(),
                 TextColumn::make('name')
                     ->label('Entity')
-                    ->description(fn($record) => $record->key)
+                    ->description(fn ($record) => $record->key)
                     ->searchable(['name', 'key']),
                 ToggleColumn::make('is_active')
                     ->label('Active')
                     ->width(80),
                 TextColumn::make('created_at')
                     ->label('Date')
-                    ->description(fn(Model $record) => $record->updated_at->format('Y-m-d H:i'))
+                    ->description(fn (Model $record) => $record->updated_at->format('Y-m-d H:i'))
                     ->width(120)
                     ->dateTime('Y-m-d H:i')
                     ->sortable(),

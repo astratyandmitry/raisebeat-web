@@ -7,7 +7,7 @@ namespace App\Models\Enums;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 
-enum PostType: string implements HasLabel, HasColor
+enum PostType: string implements HasColor, HasLabel
 {
     use HasLocalizedInformation;
 

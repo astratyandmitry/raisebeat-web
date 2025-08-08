@@ -7,7 +7,7 @@ namespace App\Models\Enums;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 
-enum FundraisingRound: string implements HasLabel, HasColor
+enum FundraisingRound: string implements HasColor, HasLabel
 {
     use HasLocalizedInformation;
 
@@ -20,7 +20,7 @@ enum FundraisingRound: string implements HasLabel, HasColor
 
     public function getColor(): string
     {
-        return  match ($this) {
+        return match ($this) {
             self::PreSeed => 'info',
             self::Seed => 'success',
             self::SeriesA => 'danger',

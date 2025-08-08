@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Founds;
 
 use App\Filament\Components\Organization\BaseOrganizationResource;
-use App\Filament\Resources\Founds\Pages\CreateFound;
-use App\Filament\Resources\Founds\Pages\EditFound;
 use App\Filament\Resources\Founds\Pages\ManageFounds;
-use App\Filament\Resources\Founds\Pages\ViewFound;
 use App\Filament\Resources\Founds\Schemas\FoundForm;
 use App\Filament\Resources\Founds\Schemas\FoundInfolist;
 use App\Filament\Resources\Founds\Schemas\FoundsTable;

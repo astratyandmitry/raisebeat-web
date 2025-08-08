@@ -45,7 +45,7 @@ final class InvestorResource extends Resource
     }
 
     /**
-     * @param \App\Models\Investor $record
+     * @param  \App\Models\Investor  $record
      * @return array|string[]
      */
     public static function getGlobalSearchResultDetails(Model $record): array
