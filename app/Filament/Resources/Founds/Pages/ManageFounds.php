@@ -6,9 +6,9 @@ namespace App\Filament\Resources\Founds\Pages;
 
 use App\Filament\Resources\Founds\FoundResource;
 use Filament\Actions\CreateAction;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ManageRecords;
 
-final class ManageFounds extends ListRecords
+final class ManageFounds extends ManageRecords
 {
     protected static string $resource = FoundResource::class;
 

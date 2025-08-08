@@ -13,9 +13,9 @@ final class ViewPublicUrlAction
     {
         return Action::make('view-public-url')
             ->label('Public URL')
-            ->icon('heroicon-o-link')
+            ->icon('heroicon-s-link')
             ->openUrlInNewTab()
             ->color('gray')
-            ->url(fn (HasPublicUrl $record): string => $record->getPublicUrl());
+            ->url(fn(HasPublicUrl $record): string => $record->getPublicUrl());
     }
 }

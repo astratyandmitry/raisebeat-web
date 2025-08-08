@@ -15,7 +15,7 @@ abstract class RejectAction
     public static function make(): Action|BulkAction
     {
         return static::configure()
-            ->icon('heroicon-o-x-mark')
+            ->icon('heroicon-s-x-mark')
             ->label('Reject')
             ->color('danger')
             ->requiresConfirmation()

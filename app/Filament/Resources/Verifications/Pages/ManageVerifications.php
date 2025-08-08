@@ -6,11 +6,11 @@ namespace App\Filament\Resources\Verifications\Pages;
 
 use App\Filament\Resources\Verifications\VerificationResource;
 use App\Models\Enums\VerificationStatus;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ManageRecords;
 use Filament\Schemas\Components\Tabs\Tab;
 use Illuminate\Support\Facades\DB;
 
-final class ManageVerifications extends ListRecords
+final class ManageVerifications extends ManageRecords
 {
     protected static string $resource = VerificationResource::class;
 
@@ -27,7 +27,7 @@ final class ManageVerifications extends ListRecords
 
         foreach (VerificationStatus::cases() as $status) {
             $tabs[$status->value] = Tab::make($status->getLabel())
-                ->modifyQueryUsing(fn ($query) => $query->where('status', $status))
+                ->modifyQueryUsing(fn($query) => $query->where('status', $status))
                 ->badgeColor($status->getColor())
                 ->badge($counts->get($status->value));
         }

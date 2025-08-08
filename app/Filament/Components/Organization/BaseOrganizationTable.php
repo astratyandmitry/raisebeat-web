@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Components\Organization;
 
 use App\Filament\Support\Actions\ViewPublicUrlAction;
+use App\Filament\Support\Actions\ViewVerificationAction;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Abstracts\Organization;
 use Filament\Actions\ActionGroup;
@@ -28,6 +29,7 @@ abstract class BaseOrganizationTable
     {
         return $table
             ->defaultSort('id', 'desc')
+            ->modifyQueryUsing(fn($query) => $query->with('latest_verification'))
             ->columns([
                 IdColumn::make(),
                 ImageColumn::make('logo_url')
@@ -35,9 +37,13 @@ abstract class BaseOrganizationTable
                     ->label('Logo')
                     ->circular(),
                 TextColumn::make('name')
-                    ->description(fn (Organization $record): string => Str::limit($record->headline, 80))
+                    ->description(fn(Organization $record): string => Str::limit($record->headline, 80))
                     ->searchable(['name', 'headline']),
                 ...$columns,
+                TextColumn::make('latest_verification.status')
+                    ->width(80)
+                    ->label('Status')
+                    ->badge(),
                 TextColumn::make('created_at')
                     ->label('Created')
                     ->width(80)
@@ -53,6 +59,7 @@ abstract class BaseOrganizationTable
                 ViewPublicUrlAction::make()->hiddenLabel(),
 
                 ActionGroup::make([
+                    ViewVerificationAction::make(),
                     EditAction::make(),
                     DeleteAction::make(),
                     ForceDeleteAction::make(),

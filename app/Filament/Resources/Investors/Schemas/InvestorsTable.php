@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Investors\Schemas;
 
 use App\Filament\Support\Actions\ViewPublicUrlAction;
+use App\Filament\Support\Actions\ViewVerificationAction;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\Region;
 use App\Models\Investor;
@@ -28,7 +29,7 @@ final class InvestorsTable
     {
         return $table
             ->defaultSort('id', 'desc')
-            ->modifyQueryUsing(fn ($query) => $query->with('user'))
+            ->modifyQueryUsing(fn($query) => $query->with('user', 'latest_verification'))
             ->columns([
                 IdColumn::make(),
                 ImageColumn::make('user.avatar_url')
@@ -37,8 +38,8 @@ final class InvestorsTable
                     ->label('Avatar'),
                 TextColumn::make('user.first_name')
                     ->label('User')
-                    ->formatStateUsing(fn (Investor $record) => $record->user->getDisplayLabel())
-                    ->description(fn (Investor $record): string => "@{$record->user->username}"),
+                    ->formatStateUsing(fn(Investor $record) => $record->user->getDisplayLabel())
+                    ->description(fn(Investor $record): string => "@{$record->user->username}"),
                 TextColumn::make('focus_headline')
                     ->label('Headline')
                     ->limitedTooltip(100)
@@ -48,7 +49,13 @@ final class InvestorsTable
                     ->label('Region')
                     ->color('gray')
                     ->badge(),
+                TextColumn::make('latest_verification.status')
+                    ->width(80)
+                    ->label('Status')
+                    ->badge(),
                 TextColumn::make('created_at')
+                    ->width(80)
+                    ->label('Created')
                     ->dateTime('Y-m-d H:i')
                     ->sortable()
                     ->toggleable(),
@@ -64,6 +71,7 @@ final class InvestorsTable
                 ViewPublicUrlAction::make()->hiddenLabel(),
 
                 ActionGroup::make([
+                    ViewVerificationAction::make(),
                     DeleteAction::make(),
                     ForceDeleteAction::make(),
                     RestoreAction::make(),

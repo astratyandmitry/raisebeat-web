@@ -12,9 +12,13 @@ final class ViewVerifiableAction
     public static function make(): Action
     {
         return Action::make('view')
-            ->url(fn (Verification $record): string => route("filament.admin.resources.{$record->verifiable_type}.view", $record->verifiable_id))
+            ->url(fn(Verification $record
+            ): string => route("filament.admin.resources.{$record->verifiable_type}.index", [
+                'tableAction' => 'view',
+                'tableActionRecord' => $record->verifiable_id,
+            ]))
             ->hiddenLabel()
             ->openUrlInNewTab()
-            ->icon('heroicon-o-eye');
+            ->icon('heroicon-s-eye');
     }
 }

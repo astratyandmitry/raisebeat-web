@@ -6,9 +6,9 @@ namespace App\Filament\Resources\StartupProductTypes\Pages;
 
 use App\Filament\Resources\StartupProductTypes\StartupProductTypeResource;
 use Filament\Actions\CreateAction;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ManageRecords;
 
-final class ManageStartupProductTypes extends ListRecords
+final class ManageStartupProductTypes extends ManageRecords
 {
     protected static string $resource = StartupProductTypeResource::class;
 

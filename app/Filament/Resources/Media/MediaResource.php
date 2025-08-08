@@ -16,7 +16,7 @@ final class MediaResource extends BaseOrganizationResource
 {
     protected static ?string $model = Media::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-s-newspaper';
 
     protected static ?int $navigationSort = 4;
 

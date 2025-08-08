@@ -14,7 +14,7 @@ abstract class ApproveAction
     public static function make(): Action|BulkAction
     {
         return static::configure()
-            ->icon('heroicon-o-check')
+            ->icon('heroicon-s-check')
             ->label('Approve')
             ->color('success')
             ->deselectRecordsAfterCompletion()

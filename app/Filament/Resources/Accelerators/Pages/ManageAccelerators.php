@@ -6,9 +6,9 @@ namespace App\Filament\Resources\Accelerators\Pages;
 
 use App\Filament\Resources\Accelerators\AcceleratorResource;
 use Filament\Actions\CreateAction;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ManageRecords;
 
-final class ManageAccelerators extends ListRecords
+final class ManageAccelerators extends ManageRecords
 {
     protected static string $resource = AcceleratorResource::class;
 

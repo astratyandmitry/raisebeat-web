@@ -35,7 +35,7 @@ final class AdminsTable
                     ->label('State')
                     ->trueColor('danger')
                     ->alignCenter()
-                    ->icon('heroicon-o-trash')
+                    ->icon('heroicon-s-trash')
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime('Y-m-d H:i')
@@ -47,7 +47,7 @@ final class AdminsTable
                     DeleteAction::make(),
                     ForceDeleteAction::make()->hidden(),
                     RestoreAction::make(),
-                ])->color('gray')->visible(fn (Admin $record): bool => ! $record->root || auth()->user()->root),
+                ])->color('gray')->visible(fn(Admin $record): bool => ! $record->root || auth()->user()->root),
             ])
             ->filters([
                 TrashedFilter::make(),

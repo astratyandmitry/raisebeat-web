@@ -6,9 +6,9 @@ namespace App\Filament\Resources\StartupCategories\Pages;
 
 use App\Filament\Resources\StartupCategories\StartupCategoryResource;
 use Filament\Actions\CreateAction;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ManageRecords;
 
-final class ManageStartupCategories extends ListRecords
+final class ManageStartupCategories extends ManageRecords
 {
     protected static string $resource = StartupCategoryResource::class;
 

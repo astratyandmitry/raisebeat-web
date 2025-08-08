@@ -18,6 +18,7 @@ final class AcceleratorParticipantFactory extends Factory
             'startup_id' => Startup::query()->inRandomOrder()->first(),
             'year' => $this->faker->numberBetween(2000, 2020),
             'quarter' => $this->faker->randomElement(['q1', 'q2', 'q3', 'q4']),
+            'is_confirmed' => $this->faker->boolean,
         ];
     }
 }

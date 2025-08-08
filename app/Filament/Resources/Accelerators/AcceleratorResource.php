@@ -16,7 +16,7 @@ final class AcceleratorResource extends BaseOrganizationResource
 {
     protected static ?string $model = Accelerator::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-s-user-group';
 
     protected static ?int $navigationSort = 2;
 

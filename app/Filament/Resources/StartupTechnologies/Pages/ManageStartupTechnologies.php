@@ -6,9 +6,9 @@ namespace App\Filament\Resources\StartupTechnologies\Pages;
 
 use App\Filament\Resources\StartupTechnologies\StartupTechnologyResource;
 use Filament\Actions\CreateAction;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ManageRecords;
 
-final class ManageStartupTechnologies extends ListRecords
+final class ManageStartupTechnologies extends ManageRecords
 {
     protected static string $resource = StartupTechnologyResource::class;
 
