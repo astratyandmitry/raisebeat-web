@@ -15,70 +15,105 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Schemas\Components\Grid;
 
 final class StartupForm
 {
-    public static function configure(Schema $schema): Schema
+    public static function fields(): array
     {
-        return $schema
-            ->components([
-                TextInput::make('uuid')
-                    ->label('UUID')
-                    ->required(),
-                TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('slug')
-                    ->required(),
-                TextInput::make('name')
-                    ->required(),
-                TextInput::make('headline'),
-                Textarea::make('description')
-                    ->columnSpanFull(),
-                TextInput::make('logo_url'),
-                TextInput::make('contact_website'),
-                TextInput::make('contact_email')
-                    ->email(),
-                TextInput::make('contact_phone')
-                    ->tel(),
-                TextInput::make('market_problem')
-                    ->required(),
-                TextInput::make('market_solution')
-                    ->required(),
-                Select::make('market_region')
-                    ->options(Region::class)
-                    ->required(),
-                Select::make('country')
-                    ->options(Country::class)
-                    ->required(),
-                TextInput::make('city')
-                    ->required(),
-                TextInput::make('founded_year')
-                    ->required()
-                    ->numeric(),
-                Select::make('business_model')
-                    ->options(BusinessModel::class)
-                    ->required(),
-                Select::make('stage')
-                    ->options(StartupStage::class)
-                    ->required(),
-                Select::make('fundraising_status')
-                    ->options(FundraisingStatus::class)
-                    ->required(),
-                Select::make('fundraising_round')
-                    ->options(FundraisingRound::class),
-                Select::make('team_size')
-                    ->options(TeamSize::class)
-                    ->required(),
-                TextInput::make('demo_url'),
-                TextInput::make('deck_url'),
-                Toggle::make('is_demo_private')
-                    ->required(),
-                Toggle::make('is_deck_private')
-                    ->required(),
-                Toggle::make('is_public')
-                    ->required(),
-            ]);
+        return [
+            Fieldset::make('Startup')
+                ->columns(1)
+                ->schema([
+                    Grid::make(2)
+                        ->schema([
+                            Select::make('country')
+                                ->options(Country::getOptions())
+                                ->required(),
+
+                            TextInput::make('city')
+                                ->maxlength(40)
+                                ->required(),
+                        ]),
+
+                    TextInput::make('founded_year')
+                        ->required()
+                        ->numeric()
+                        ->minValue(2000)
+                        ->maxValue(date('Y')),
+
+                    Fieldset::make('Market')
+                        ->columns(1)
+                        ->schema([
+                            Select::make('market_region')
+                                ->required()
+                                ->options(Region::getOptions())
+                                ->label('Region'),
+                            Textarea::make('market_problem')
+                                ->autosize()
+                                ->required()
+                                ->maxLength(1000)
+                                ->label('Problem'),
+                            Textarea::make('market_solution')
+                                ->autosize()
+                                ->required()
+                                ->maxLength(1000)
+                                ->label('Solution'),
+                        ]),
+
+                    Fieldset::make('Data')
+                        ->columns(2)
+                        ->inlineLabel(false)
+                        ->schema([
+                            Select::make('business_model')
+                                ->label('Model')
+                                ->required()
+                                ->options(BusinessModel::getOptions()),
+                            Select::make('stage')
+                                ->label('Status')
+                                ->required()
+                                ->options(StartupStage::getOptions()),
+                            Select::make('fundraising_status')
+                                ->label('Status')
+                                ->required()
+                                ->options(FundraisingStatus::getOptions()),
+                            Select::make('fundraising_round')
+                                ->label('Round')
+                                ->options(FundraisingRound::getOptions()),
+                            Select::make('team_size')
+                                ->label('Team')
+                                ->required()
+                                ->options(TeamSize::getOptions()),
+                        ]),
+                ]),
+
+            Fieldset::make('URLs')
+                ->columns(1)
+                ->schema([
+                    TextInput::make('demo_url')
+                        ->maxLength(500)
+                        ->activeUrl()
+                        ->placeholder('https://example.com/some-uri')
+                        ->label('Demo'),
+                    TextInput::make('deck_url')
+                        ->maxLength(500)
+                        ->activeUrl()
+                        ->placeholder('https://example.com/some-uri')
+                        ->label('Deck'),
+                ]),
+
+            Fieldset::make('Access')
+                ->columns(3)
+                ->inlineLabel(false)
+                ->schema([
+                    Toggle::make('is_demo_private')
+                        ->label('Demo Private'),
+                    Toggle::make('is_deck_private')
+                        ->label('Deck Private'),
+                    Toggle::make('is_public')
+                        ->label('Public'),
+                ]),
+        ];
     }
 }

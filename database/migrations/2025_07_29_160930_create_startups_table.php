@@ -23,9 +23,9 @@ return new class extends Migration
         Schema::create('startups', function (Blueprint $table): void {
             $table->id();
             $table->uuid()->unique();
-            $table->foreignId('user_id')->constrained();
-            $table->string('slug', 40)->unique()->index();
-            $table->string('name', 40)->unique();
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->string('slug', 80)->unique()->index();
+            $table->string('name', 80)->unique();
             $table->string('headline', 120)->nullable();
             $table->text('description')->nullable();
             $table->string('logo_url')->nullable();

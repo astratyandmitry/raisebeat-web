@@ -19,7 +19,7 @@ return new class extends Migration
         Schema::create('founds', function (Blueprint $table): void {
             $table->id();
             $table->uuid()->unique();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->string('slug', 40)->unique()->index();
             $table->string('name', 40)->unique();
             $table->string('headline', 120)->nullable();
