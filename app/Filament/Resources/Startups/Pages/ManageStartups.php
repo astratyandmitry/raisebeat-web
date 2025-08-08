@@ -8,7 +8,7 @@ use App\Filament\Resources\Startups\StartupResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-final class ListStartups extends ListRecords
+final class ManageStartups extends ListRecords
 {
     protected static string $resource = StartupResource::class;
 

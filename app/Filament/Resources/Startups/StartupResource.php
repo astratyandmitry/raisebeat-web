@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Startups;
 
 use App\Filament\Components\Organization\BaseOrganizationResource;
-use App\Filament\Resources\Startups\Pages\ListStartups;
+use App\Filament\Resources\Startups\Pages\ManageStartups;
 use App\Filament\Resources\Startups\Schemas\StartupForm;
 use App\Filament\Resources\Startups\Schemas\StartupInfolist;
 use App\Filament\Resources\Startups\Schemas\StartupTable;
@@ -23,7 +23,7 @@ final class StartupResource extends BaseOrganizationResource
     public static function getPages(): array
     {
         return [
-            'index' => ListStartups::route('/'),
+            'index' => ManageStartups::route('/'),
         ];
     }
 
