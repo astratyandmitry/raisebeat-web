@@ -28,7 +28,6 @@ final class VerificationResource extends Resource
     {
         return [
             'index' => ManageVerifications::route('/'),
-            //'view' => ViewVerification::route('/{record}'),
         ];
     }
 }
