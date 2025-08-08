@@ -27,6 +27,7 @@ final class PostsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn($query) => $query->with('postable', 'parent'))
             ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('id')
