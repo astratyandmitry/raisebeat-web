@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models\Enums;
 
-enum Country: string
+use Filament\Support\Contracts\HasLabel;
+
+enum Country: string implements HasLabel
 {
     use HasLocalizedInformation;
 

@@ -12,7 +12,9 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 use UnitEnum;
 
 final class StartupVacancyResource extends Resource
@@ -50,5 +52,22 @@ final class StartupVacancyResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['title', 'description'];
+    }
+
+    /**
+     * @param \App\Models\StartupVacancy $record
+     * @return array|string[]
+     */
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'Startup' => $record->startup->getDisplayLabel(),
+            'Description' => Str::limit($record->description, 60),
+        ];
     }
 }

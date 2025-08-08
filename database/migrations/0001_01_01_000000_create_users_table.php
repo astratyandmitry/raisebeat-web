@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('city', 40)->nullable();
             $table->string('timezone', 9)->comment(Timezone::class);
             $table->string('language', 2)->comment(Language::class);
-            $table->boolean('is_blocked')->default(false);
+            $table->softDeletes();
             $table->timestamps();
 
             $table->index(['country', 'city']);

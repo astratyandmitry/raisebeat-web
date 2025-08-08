@@ -22,7 +22,7 @@ final class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'email' => $this->faker->unique()->safeEmail(),
+            'email' => $email = $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => self::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
@@ -31,7 +31,7 @@ final class UserFactory extends Factory
             'username' => $this->faker->unique()->userName,
             'headline' => $this->faker->sentence,
             'bio' => $this->faker->paragraph,
-            'avatar_url' => $this->faker->imageUrl(400, 400),
+            'avatar_url' => "https://i.pravatar.cc/300?u=$email",
             'country' => $this->faker->randomElement(Country::cases()),
             'city' => $this->faker->city,
             'timezone' => $this->faker->randomElement(Timezone::cases()),
@@ -41,15 +41,8 @@ final class UserFactory extends Factory
 
     public function unverified(): self
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'email_verified_at' => null,
-        ]);
-    }
-
-    public function blocked(): self
-    {
-        return $this->state(fn (array $attributes): array => [
-            'is_blocked' => true,
         ]);
     }
 }

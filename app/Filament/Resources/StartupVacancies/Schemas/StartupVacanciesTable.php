@@ -6,6 +6,7 @@ namespace App\Filament\Resources\StartupVacancies\Schemas;
 
 use App\Filament\Support\Actions\ViewPublicUrlAction;
 use App\Models\Enums\VacancyType;
+use App\Models\StartupVacancy;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -21,6 +22,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 final class StartupVacanciesTable
 {
@@ -34,7 +36,8 @@ final class StartupVacanciesTable
                     ->label('ID'),
                 TextColumn::make('title')
                     ->limit(50)
-                    ->searchable(['title', 'content']),
+                    ->description(fn(StartupVacancy $record) => Str::limit($record->description))
+                    ->searchable(['title', 'description']),
                 TextColumn::make('startup.name')
                     ->label('Startup')
                     ->searchable(),

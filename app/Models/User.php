@@ -8,6 +8,7 @@ use App\Models\Abstracts\Model;
 use App\Models\Contracts\CanPerformActivity;
 use App\Models\Contracts\CanReceiveActivity;
 use App\Models\Contracts\Followable;
+use App\Models\Contracts\HasPublicUrl;
 use App\Models\Contracts\Linkable;
 use App\Models\Enums\Country;
 use App\Models\Enums\Language;
@@ -25,6 +26,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -41,7 +43,6 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read string|null $avatar_url
  * @property-read string|null $city
  * @property-read bool $is_admin
- * @property-read bool $is_blocked
  * @property-read \App\Models\Enums\Country|null $country
  * @property-read \App\Models\Enums\Timezone $timezone
  * @property-read \App\Models\Enums\Language $language
@@ -53,15 +54,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read \App\Models\Member[]|\Illuminate\Database\Eloquent\Collection $memberships
  * @property-read \App\Models\Post[]|\Illuminate\Database\Eloquent\Collection $posts
  */
-final class User extends Model implements AuthenticatableContract, AuthorizableContract, CanPerformActivity, CanReceiveActivity, CanResetPasswordContract, Followable, Linkable
+final class User extends Model implements AuthenticatableContract, AuthorizableContract, CanPerformActivity, CanReceiveActivity, CanResetPasswordContract, Followable, Linkable, HasPublicUrl
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use Authenticatable, Authorizable, CanResetPassword, HasApiTokens, HasFactory, HasFollowers, HasLinks, HasPerformedActivities, HasReceivedActivities, MustVerifyEmail, Notifiable;
-
-    public function getGuarded(): array
-    {
-        return ['is_admin', 'is_blocked'];
-    }
+    use Authenticatable, Authorizable, CanResetPassword, HasApiTokens, HasFactory, HasFollowers, HasLinks, HasPerformedActivities, HasReceivedActivities, MustVerifyEmail, Notifiable, SoftDeletes;
 
     public function getHidden(): array
     {
@@ -77,7 +73,6 @@ final class User extends Model implements AuthenticatableContract, AuthorizableC
             'timezone' => Timezone::class,
             'language' => Language::class,
             'is_admin' => 'boolean',
-            'is_blocked' => 'boolean',
         ];
     }
 
@@ -119,5 +114,10 @@ final class User extends Model implements AuthenticatableContract, AuthorizableC
     public function getDisplayLabel(): string
     {
         return "$this->first_name $this->last_name";
+    }
+
+    public function getPublicUrl(): string
+    {
+        return url('/'); // todo
     }
 }
