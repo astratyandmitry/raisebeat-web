@@ -50,7 +50,7 @@ abstract class BaseOrganizationTable
                     ->boolean(),
                 TextColumn::make('latest_verification.status')
                     ->width(80)
-                    ->label('Status')
+                    ->label('Verification')
                     ->badge(),
                 DateColumn::make(),
             ])
