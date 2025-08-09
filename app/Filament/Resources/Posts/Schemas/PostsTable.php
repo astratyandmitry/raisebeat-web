@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Posts\Schemas;
 
-use App\Filament\Support\Actions\ViewPublicUrlAction;
+use App\Filament\Support\Actions\ViewRecordPublicUrlAction;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\PostType;
 use App\Models\Post;
@@ -44,7 +44,7 @@ final class PostsTable
                     ->searchable(),
                 TextColumn::make('postable.name')
                     ->state(fn(Post $record) => $record->postable->getDisplayLabel())
-                    ->description(fn(Post $record) => Str::title($record->postable_type))
+                    ->description(fn(Post $record) => Str::title(Str::singular($record->postable_type)))
                     ->searchable(),
                 IconColumn::make('external_url')
                     ->label('URL')
@@ -71,7 +71,7 @@ final class PostsTable
             ])
             ->recordActions([
                 ViewAction::make()->hiddenLabel(),
-                ViewPublicUrlAction::make()->hiddenLabel(),
+                ViewRecordPublicUrlAction::make()->hiddenLabel(),
 
                 ActionGroup::make([
                     DeleteAction::make(),

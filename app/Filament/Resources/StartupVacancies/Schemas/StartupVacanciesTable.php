@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\StartupVacancies\Schemas;
 
-use App\Filament\Support\Actions\ViewPublicUrlAction;
+use App\Filament\Support\Actions\ViewRecordPublicUrlAction;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\VacancyType;
 use App\Models\StartupVacancy;
@@ -71,7 +71,7 @@ final class StartupVacanciesTable
             ])
             ->recordActions([
                 ViewAction::make()->hiddenLabel(),
-                ViewPublicUrlAction::make()->hiddenLabel(),
+                ViewRecordPublicUrlAction::make()->hiddenLabel(),
 
                 ActionGroup::make([
                     DeleteAction::make(),

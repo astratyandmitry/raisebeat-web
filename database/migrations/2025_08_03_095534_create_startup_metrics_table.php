@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Enums\Quarter;
 use App\Models\StartupMetric;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->foreignId('startup_id')->constrained();
             $table->string('type', 40)->index()->comment(StartupMetric::class);
             $table->unsignedInteger('year');
-            $table->enum('quarter', ['q1', 'q2', 'q3', 'q4']);
+            $table->enum('quarter', array_keys(Quarter::getOptions()));
             $table->double('value');
             $table->boolean('is_confirmed')->default(false);
             $table->timestamps();

@@ -11,6 +11,7 @@ final class IdColumn
     public static function make(): TextColumn
     {
         return TextColumn::make('id')
+            ->sortable()
             ->searchable(['id', 'uuid'])
             ->width(50)
             ->label('ID');

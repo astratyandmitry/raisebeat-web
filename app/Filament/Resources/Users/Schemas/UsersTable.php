@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Users\Schemas;
 
-use App\Filament\Support\Actions\ViewPublicUrlAction;
+use App\Filament\Support\Actions\ViewRecordPublicUrlAction;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\Country;
 use App\Models\User;
@@ -79,7 +79,7 @@ final class UsersTable
             ])
             ->recordActions([
                 ViewAction::make()->hiddenLabel(),
-                ViewPublicUrlAction::make()->hiddenLabel(),
+                ViewRecordPublicUrlAction::make()->hiddenLabel(),
 
                 ActionGroup::make([
                     DeleteAction::make(),

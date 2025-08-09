@@ -30,7 +30,7 @@ final class VerificationsTable
                 IdColumn::make(),
                 TextColumn::make('verifiable.name')
                     ->state(fn(Verification $record) => $record->verifiable->getDisplayLabel())
-                    ->description(fn(Verification $record) => Str::title($record->verifiable_type))
+                    ->description(fn(Verification $record) => Str::title(Str::singular($record->verifiable_type)))
                     ->searchable(),
                 TextColumn::make('status')
                     ->badge(),

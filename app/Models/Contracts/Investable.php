@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @mixin \App\Models\Abstracts\Model
+ * @mixin \App\Models\Abstracts\Organization
  */
 interface Investable
 {

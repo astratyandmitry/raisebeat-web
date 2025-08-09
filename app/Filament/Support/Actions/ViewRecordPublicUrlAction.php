@@ -7,7 +7,7 @@ namespace App\Filament\Support\Actions;
 use App\Models\Contracts\HasPublicUrl;
 use Filament\Actions\Action;
 
-final class ViewPublicUrlAction
+final class ViewRecordPublicUrlAction
 {
     public static function make(): Action
     {

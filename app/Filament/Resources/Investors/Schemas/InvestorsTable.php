@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Investors\Schemas;
 
 use App\Filament\Support\Actions\GoToVerififcationAction;
-use App\Filament\Support\Actions\ViewPublicUrlAction;
+use App\Filament\Support\Actions\ViewRecordPublicUrlAction;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\Region;
 use App\Models\Investor;
@@ -68,7 +68,7 @@ final class InvestorsTable
             ])
             ->recordActions([
                 ViewAction::make()->hiddenLabel(),
-                ViewPublicUrlAction::make()->hiddenLabel(),
+                ViewRecordPublicUrlAction::make()->hiddenLabel(),
 
                 ActionGroup::make([
                     GoToVerififcationAction::make(),
