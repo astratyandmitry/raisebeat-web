@@ -14,7 +14,8 @@ final class ApproveRecordAction extends ApproveAction
     public static function configure(): Action
     {
         return Action::make('verification.approve')
-            ->action(function (Verification $record, ApproveVerificationAction $cmd): void {
+            ->cancelParentActions()
+            ->action(function (Verification $record, Action $action, ApproveVerificationAction $cmd): void {
                 $cmd->execute($record);
             })
             ->successNotification(function (Verification $record): void {

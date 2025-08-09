@@ -14,6 +14,7 @@ final class RejectRecordAction extends RejectAction
     protected static function configure(): Action
     {
         return Action::make('verification.reject')
+            ->cancelParentActions()
             ->action(function (Verification $record, RejectVerificationAction $cmd, array $data): void {
                 $cmd->execute($record, $data['comment']);
             })
