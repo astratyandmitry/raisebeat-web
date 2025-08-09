@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\Abstracts;
 
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -12,18 +14,9 @@ use Spatie\Translatable\HasTranslations;
  * @property-read bool $is_active
  * @property int $sort_order
  */
-abstract class Dictionary extends Model
+abstract class Dictionary extends Model implements Sortable
 {
-    use HasTranslations;
+    use HasTranslations, SortableTrait;
 
     protected array $translatable = ['name'];
-
-    public static function boot(): void
-    {
-        parent::boot();
-
-        self::creating(function (self $model): void {
-            $model->sort_order = (int) self::query()->max('sort_order') + 1;
-        });
-    }
 }
