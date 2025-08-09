@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\AcceleratorParticipants;
 
 use App\Filament\Resources\AcceleratorParticipants\Pages\ManageAcceleratorParticipants;
@@ -12,12 +14,13 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 final class AcceleratorParticipantResource extends Resource
 {
     protected static ?string $model = AcceleratorParticipant::class;
 
-    protected static null|string|\UnitEnum $navigationGroup = 'Content';
+    protected static null|string|UnitEnum $navigationGroup = 'Content';
 
     protected static ?string $navigationLabel = 'Participants';
 

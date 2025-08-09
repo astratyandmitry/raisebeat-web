@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Filters;
 
 use Filament\Tables\Filters\TernaryFilter;

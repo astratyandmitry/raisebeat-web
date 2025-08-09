@@ -16,6 +16,6 @@ final class ViewRecordPublicUrlAction
             ->icon('heroicon-s-link')
             ->openUrlInNewTab()
             ->color('gray')
-            ->url(fn(HasPublicUrl $record): string => $record->getPublicUrl());
+            ->url(fn (HasPublicUrl $record): string => $record->getPublicUrl());
     }
 }

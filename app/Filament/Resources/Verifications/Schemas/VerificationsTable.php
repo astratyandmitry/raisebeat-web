@@ -24,13 +24,13 @@ final class VerificationsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn($query) => $query->with('verifiable'))
+            ->modifyQueryUsing(fn ($query) => $query->with('verifiable'))
             ->defaultSort('id', 'desc')
             ->columns([
                 IdColumn::make(),
                 TextColumn::make('verifiable.name')
-                    ->state(fn(Verification $record) => $record->verifiable->getDisplayLabel())
-                    ->description(fn(Verification $record) => Str::title(Str::singular($record->verifiable_type)))
+                    ->state(fn (Verification $record) => $record->verifiable->getDisplayLabel())
+                    ->description(fn (Verification $record) => Str::title(Str::singular($record->verifiable_type)))
                     ->searchable(),
                 TextColumn::make('status')
                     ->badge(),
@@ -50,14 +50,14 @@ final class VerificationsTable
                     ->dateTime('Y-m-d H:i')
                     ->sortable(),
             ])
-            ->recordUrl(fn(Verification $record): string => MorphRoute::make($record, 'verifiable'))
+            ->recordUrl(fn (Verification $record): string => MorphRoute::make($record, 'verifiable'))
             ->openRecordUrlInNewTab()
             ->recordActions([
                 ViewVerificationAction::make(),
                 ActionGroup::make([
                     ApproveRecordAction::make(),
                     RejectRecordAction::make(),
-                ])->color('gray')->visible(fn(Verification $record) => $record->status->isPending()),
+                ])->color('gray')->visible(fn (Verification $record) => $record->status->isPending()),
             ])
             ->filters([
                 SelectFilter::make('verifiable_type')
@@ -77,7 +77,7 @@ final class VerificationsTable
                 ])->label('Actions'),
             ])
             ->checkIfRecordIsSelectableUsing(
-                fn(Verification $record): bool => $record->status->isPending(),
+                fn (Verification $record): bool => $record->status->isPending(),
             );
     }
 }

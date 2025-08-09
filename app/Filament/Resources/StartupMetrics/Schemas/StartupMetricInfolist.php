@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\StartupMetrics\Schemas;
 
 use App\Filament\Support\Entries\ConfirmedEntry;
@@ -24,7 +26,7 @@ final class StartupMetricInfolist
                 YearQuarterEntry::make(),
                 TextEntry::make('value')
                     ->label('Period')
-                    ->formatStateUsing(fn(StartupMetric $record) => "{$record->value}, {$record->type->value}"),
+                    ->formatStateUsing(fn (StartupMetric $record): string => "{$record->value}, {$record->type->value}"),
                 ConfirmedEntry::make(),
                 DatesFieldset::make(),
             ]);

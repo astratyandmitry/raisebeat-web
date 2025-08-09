@@ -32,7 +32,7 @@ abstract class BaseOrganizationTable
     {
         return $table
             ->defaultSort('id', 'desc')
-            ->modifyQueryUsing(fn($query) => $query->with('latest_verification'))
+            ->modifyQueryUsing(fn ($query) => $query->with('latest_verification'))
             ->columns([
                 IdColumn::make(),
                 ImageColumn::make('logo_url')
@@ -40,7 +40,7 @@ abstract class BaseOrganizationTable
                     ->label('Logo')
                     ->circular(),
                 TextColumn::make('name')
-                    ->description(fn(Organization $record): string => Str::limit($record->headline, 80))
+                    ->description(fn (Organization $record): string => Str::limit($record->headline, 80))
                     ->searchable(['name', 'headline']),
                 ...$columns,
                 IconColumn::make('is_public')

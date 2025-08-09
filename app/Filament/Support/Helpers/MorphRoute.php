@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Helpers;
 
 use App\Models\Abstracts\Model;

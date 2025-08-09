@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Actions;
 
 use App\Filament\Resources\Verifications\VerificationResource;
@@ -16,10 +18,10 @@ final class GoToVerififcationAction
             ->label('Verification')
             ->icon('heroicon-s-shield-exclamation')
             ->openUrlInNewTab()
-            ->url(fn(Verifiable $record): string => VerificationResource::getIndexUrl([
+            ->url(fn (Verifiable $record): string => VerificationResource::getIndexUrl([
                 'tableAction' => 'view',
                 'tableActionRecord' => $record->latest_verification->id,
             ]))
-            ->visible(fn(Verifiable $record) => $record->latest_verification?->status === VerificationStatus::Pending);
+            ->visible(fn (Verifiable $record): bool => $record->latest_verification?->status === VerificationStatus::Pending);
     }
 }

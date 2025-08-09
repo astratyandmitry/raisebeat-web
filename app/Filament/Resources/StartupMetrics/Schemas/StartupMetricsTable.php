@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\StartupMetrics\Schemas;
 
 use App\Filament\Support\Actions\ConfirmRecordAction;
@@ -31,8 +33,8 @@ final class StartupMetricsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->defaultSort(fn($query) => $query->orderByDesc('year')->orderByDesc('quarter'))
-            ->modifyQueryUsing(fn($query) => $query->with('startup'))
+            ->defaultSort(fn ($query) => $query->orderByDesc('year')->orderByDesc('quarter'))
+            ->modifyQueryUsing(fn ($query) => $query->with('startup'))
             ->columns([
                 IdColumn::make(),
                 TextColumn::make('startup.name'),
@@ -40,7 +42,7 @@ final class StartupMetricsTable
                 TextColumn::make('value')
                     ->width(120)
                     ->label('Metric')
-                    ->description(fn(StartupMetric $record) => $record->type->value)
+                    ->description(fn (StartupMetric $record) => $record->type->value)
                     ->numeric(),
                 ConfirmedColumn::make(),
                 DateColumn::make(),

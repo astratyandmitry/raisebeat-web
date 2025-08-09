@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Confirmation;
 
 use App\Models\Contracts\Confirmable;

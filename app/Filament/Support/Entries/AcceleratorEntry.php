@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Entries;
 
 use App\Filament\Resources\Accelerators\AcceleratorResource;
@@ -17,7 +19,7 @@ final class AcceleratorEntry
             ->icon('heroicon-s-link')
             ->openUrlInNewTab()
             ->label('Startup')
-            ->url(fn(Model $record) => AcceleratorResource::getIndexUrl([
+            ->url(fn (Model $record): string => AcceleratorResource::getIndexUrl([
                 'tableAction' => 'view',
                 'tableActionRecord' => $record->getAttribute('accelerator_id'),
             ]));

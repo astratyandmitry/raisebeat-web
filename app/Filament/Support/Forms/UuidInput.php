@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Forms;
 
 use Filament\Forms\Components\TextInput;

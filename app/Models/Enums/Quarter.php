@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Enums;
 
 use Filament\Support\Contracts\HasLabel;
@@ -19,7 +21,7 @@ enum Quarter: string implements HasLabel
 
     public static function getOptions(): array
     {
-        return collect(self::cases())->mapWithKeys(fn($case) => [
+        return collect(self::cases())->mapWithKeys(fn ($case) => [
             $case->value => $case->getLabel(),
         ])->toArray();
     }

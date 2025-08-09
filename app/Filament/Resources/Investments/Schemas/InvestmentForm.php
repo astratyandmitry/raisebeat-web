@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Investments\Schemas;
 
 use App\Filament\Support\Forms\StartupSelect;
@@ -46,13 +48,11 @@ final class InvestmentForm
                             ->required()
                             ->native(false)
                             ->searchable()
-                            ->options(function (Get $get): ?Collection {
-                                return match ($get('investable_type')) {
-                                    'founds' => Found::query()->pluck('name', 'id'),
-                                    'investors' => Investor::query()->pluck('name', 'id'),
-                                    'accelerators' => Accelerator::query()->pluck('name', 'id'),
-                                    default => null,
-                                };
+                            ->options(fn (Get $get): ?Collection => match ($get('investable_type')) {
+                                'founds' => Found::query()->pluck('name', 'id'),
+                                'investors' => Investor::query()->pluck('name', 'id'),
+                                'accelerators' => Accelerator::query()->pluck('name', 'id'),
+                                default => null,
                             }),
 
                         TextInput::make('amount_usd')

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\AcceleratorParticipants\Schemas;
 
 use App\Filament\Support\Forms\AcceleratorSelect;

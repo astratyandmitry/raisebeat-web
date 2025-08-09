@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int $accelerator_id
  * @property-read int $startup_id
  * @property-read int $year
- * @property-read boolean $is_confirmed
+ * @property-read bool $is_confirmed
  * @property-read \App\Models\Enums\Quarter $quarter
  * @property-read \App\Models\Accelerator $accelerator
  * @property-read \App\Models\Startup $startup

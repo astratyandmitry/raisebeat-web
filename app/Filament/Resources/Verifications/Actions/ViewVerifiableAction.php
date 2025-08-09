@@ -13,7 +13,7 @@ final class ViewVerifiableAction
     public static function make(): Action
     {
         return Action::make('view')
-            ->url(fn(Verification $record): string => MorphRoute::make($record, 'verifiable'))
+            ->url(fn (Verification $record): string => MorphRoute::make($record, 'verifiable'))
             ->hiddenLabel()
             ->openUrlInNewTab()
             ->icon('heroicon-s-eye');

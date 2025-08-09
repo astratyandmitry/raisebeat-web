@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Columns;
 
 use App\Models\Abstracts\Model;
@@ -12,7 +14,7 @@ final class YearQuarterColumn
         return TextColumn::make('year')
             ->width(80)
             ->label('Period')
-            ->description(fn(Model $record) => $record->quarter->getLabel())
+            ->description(fn (Model $record) => $record->quarter->getLabel())
             ->sortable(['year', 'quarter']);
     }
 }

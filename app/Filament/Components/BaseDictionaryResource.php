@@ -63,7 +63,7 @@ abstract class BaseDictionaryResource extends Resource
                 IdColumn::make(),
                 TextColumn::make('name')
                     ->label('Entity')
-                    ->description(fn($record) => $record->key)
+                    ->description(fn ($record) => $record->key)
                     ->searchable(['name', 'key']),
                 ToggleColumn::make('is_active')
                     ->label('Active')

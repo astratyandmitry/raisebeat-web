@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\StartupMetrics\Schemas;
 
 use App\Filament\Support\Forms\StartupSelect;

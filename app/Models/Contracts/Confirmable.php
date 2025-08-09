@@ -6,6 +6,7 @@ namespace App\Models\Contracts;
 
 /**
  * @property-read bool $is_confirmed
+ *
  * @mixin \App\Models\Abstracts\Model
  */
 interface Confirmable {}

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\AcceleratorParticipants\Schemas;
 
 use App\Filament\Support\Actions\ConfirmRecordAction;
@@ -28,8 +30,8 @@ final class AcceleratorParticipantsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->defaultSort(fn($query) => $query->orderByDesc('year')->orderByDesc('quarter'))
-            ->modifyQueryUsing(fn($query) => $query->with('startup', 'accelerator'))
+            ->defaultSort(fn ($query) => $query->orderByDesc('year')->orderByDesc('quarter'))
+            ->modifyQueryUsing(fn ($query) => $query->with('startup', 'accelerator'))
             ->columns([
                 IdColumn::make(),
                 TextColumn::make('accelerator.name'),

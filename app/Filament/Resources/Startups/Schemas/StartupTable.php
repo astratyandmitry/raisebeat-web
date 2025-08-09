@@ -10,10 +10,8 @@ use App\Models\Enums\Country;
 use App\Models\Enums\FundraisingRound;
 use App\Models\Enums\FundraisingStatus;
 use App\Models\Enums\Region;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TernaryFilter;
 
 final class StartupTable
 {

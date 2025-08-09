@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Verifications\Actions;
 
 use App\Filament\Resources\Verifications\Schemas\VerificationInfolist;
@@ -14,12 +16,10 @@ final class ViewVerificationAction
         return ViewAction::make('view')
             ->hiddenLabel()
             ->color('gray')
-            ->schema(fn(Schema $schema) => VerificationInfolist::configure($schema))
-            ->extraModalFooterActions(function (Verification $record) {
-                return $record->status->isPending() ? [
-                    ApproveRecordAction::make(),
-                    RejectRecordAction::make(),
-                ] : [];
-            });
+            ->schema(fn (Schema $schema): Schema => VerificationInfolist::configure($schema))
+            ->extraModalFooterActions(fn (Verification $record): array => $record->status->isPending() ? [
+                ApproveRecordAction::make(),
+                RejectRecordAction::make(),
+            ] : []);
     }
 }

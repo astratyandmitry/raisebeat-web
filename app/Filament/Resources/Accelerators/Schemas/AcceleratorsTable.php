@@ -7,7 +7,6 @@ namespace App\Filament\Resources\Accelerators\Schemas;
 use App\Filament\Support\Columns\LocationColumn;
 use App\Models\Enums\Country;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TernaryFilter;
 
 final class AcceleratorsTable
 {

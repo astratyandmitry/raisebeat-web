@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\StartupMetrics\Pages;
 
 use App\Filament\Resources\StartupMetrics\StartupMetricResource;

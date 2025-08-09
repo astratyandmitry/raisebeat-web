@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Investments\Schemas;
 
 use App\Filament\Support\Entries\ConfirmedEntry;
@@ -24,14 +26,14 @@ final class InvestmentInfolist
             ->components([
                 UuidEntry::make(),
                 StartupEntry::make(),
-                TextEntry::make("investable.name")
+                TextEntry::make('investable.name')
                     ->color('primary')
                     ->weight('medium')
                     ->iconColor('primary')
                     ->icon('heroicon-s-link')
                     ->openUrlInNewTab()
-                    ->label(fn(Investment $record) => Str::title(Str::singular($record->investable_type)))
-                    ->url(fn(Model $record) => MorphRoute::make($record, 'investable')),
+                    ->label(fn (Investment $record) => Str::title(Str::singular($record->investable_type)))
+                    ->url(fn (Model $record): string => MorphRoute::make($record, 'investable')),
                 YearQuarterEntry::make(),
                 TextEntry::make('amount_usd')
                     ->label('Amount')

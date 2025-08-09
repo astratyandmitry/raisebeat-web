@@ -30,7 +30,7 @@ final class InvestorsTable
     {
         return $table
             ->defaultSort('id', 'desc')
-            ->modifyQueryUsing(fn($query) => $query->with('user', 'latest_verification'))
+            ->modifyQueryUsing(fn ($query) => $query->with('user', 'latest_verification'))
             ->columns([
                 IdColumn::make(),
                 ImageColumn::make('user.avatar_url')
@@ -39,8 +39,8 @@ final class InvestorsTable
                     ->label('Avatar'),
                 TextColumn::make('user.first_name')
                     ->label('User')
-                    ->formatStateUsing(fn(Investor $record) => $record->user->getDisplayLabel())
-                    ->description(fn(Investor $record): string => "@{$record->user->username}"),
+                    ->formatStateUsing(fn (Investor $record) => $record->user->getDisplayLabel())
+                    ->description(fn (Investor $record): string => "@{$record->user->username}"),
                 TextColumn::make('focus_headline')
                     ->label('Headline')
                     ->limitedTooltip(100)

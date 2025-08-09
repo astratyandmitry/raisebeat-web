@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Actions;
 
 use App\Actions\Confirmation\ConfirmAction;
@@ -16,7 +18,7 @@ final class ConfirmRecordAction
             ->label('Confirm')
             ->color('success')
             ->cancelParentActions()
-            ->hidden(fn(Confirmable $record) => $record->is_confirmed)
+            ->hidden(fn (Confirmable $record) => $record->is_confirmed)
             ->action(function (Confirmable $record, Action $action, ConfirmAction $cmd): void {
                 $cmd->execute($record);
             })

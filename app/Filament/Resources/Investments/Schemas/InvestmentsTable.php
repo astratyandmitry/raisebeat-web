@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Investments\Schemas;
 
 use App\Filament\Support\Actions\ConfirmRecordAction;
@@ -10,8 +12,6 @@ use App\Filament\Support\Columns\YearQuarterColumn;
 use App\Filament\Support\Filters\ConfirmedFilter;
 use App\Filament\Support\Filters\StartupFilter;
 use App\Filament\Support\Filters\YearQuarterFilters;
-use App\Filament\Support\Helpers\YearsList;
-use App\Models\Enums\Quarter;
 use App\Models\Investment;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
@@ -23,8 +23,6 @@ use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -34,15 +32,15 @@ final class InvestmentsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->defaultSort(fn($query) => $query->orderByDesc('year')->orderByDesc('quarter'))
-            ->modifyQueryUsing(fn($query) => $query->with('startup', 'investable'))
+            ->defaultSort(fn ($query) => $query->orderByDesc('year')->orderByDesc('quarter'))
+            ->modifyQueryUsing(fn ($query) => $query->with('startup', 'investable'))
             ->columns([
                 IdColumn::make(),
                 TextColumn::make('startup.name'),
                 TextColumn::make('investable.name')
                     ->label('Investor')
-                    ->state(fn(Investment $record) => $record->investable->getDisplayLabel())
-                    ->description(fn(Investment $record) => Str::title(Str::singular($record->investable_type)))
+                    ->state(fn (Investment $record) => $record->investable->getDisplayLabel())
+                    ->description(fn (Investment $record) => Str::title(Str::singular($record->investable_type)))
                     ->searchable(),
                 YearQuarterColumn::make(),
                 TextColumn::make('amount_usd')

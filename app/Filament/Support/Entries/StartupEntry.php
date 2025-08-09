@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Support\Entries;
 
 use App\Filament\Resources\Startups\StartupResource;
@@ -17,7 +19,7 @@ final class StartupEntry
             ->icon('heroicon-s-link')
             ->openUrlInNewTab()
             ->label('Startup')
-            ->url(fn(Model $record) => StartupResource::getIndexUrl([
+            ->url(fn (Model $record): string => StartupResource::getIndexUrl([
                 'tableAction' => 'view',
                 'tableActionRecord' => $record->getAttribute('startup_id'),
             ]));
