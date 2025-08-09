@@ -33,6 +33,7 @@ final class InvestmentForm
                 Select::make('startup_id')
                     ->columnSpanFull()
                     ->native(false)
+                    ->searchable()
                     ->relationship('startup', 'name')
                     ->required(),
 
@@ -56,6 +57,7 @@ final class InvestmentForm
                     ->schema([
                         Select::make('investable_type')
                             ->label('Type')
+                            ->native(false)
                             ->options([
                                 'founds' => 'Found',
                                 'accelerators' => 'Accelerator',
@@ -67,6 +69,8 @@ final class InvestmentForm
                         Select::make('investable_id')
                             ->label('Entity')
                             ->required()
+                            ->native(false)
+                            ->searchable()
                             ->options(function (Get $get): ?Collection {
                                 return match ($get('investable_type')) {
                                     'founds' => Found::query()->pluck('name', 'id'),

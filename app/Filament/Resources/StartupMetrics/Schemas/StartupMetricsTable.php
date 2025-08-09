@@ -7,7 +7,6 @@ use App\Filament\Support\Columns\IdColumn;
 use App\Filament\Support\Helpers\YearsList;
 use App\Models\Enums\MetricType;
 use App\Models\Enums\Quarter;
-use App\Models\Investment;
 use App\Models\StartupMetric;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
@@ -57,6 +56,11 @@ final class StartupMetricsTable
                     ->sortable(),
             ])
             ->filters([
+                SelectFilter::make('startup_id')
+                    ->label('Startup')
+                    ->searchable()
+                    ->native(false)
+                    ->relationship('startup', 'name'),
                 SelectFilter::make('type')
                     ->options(MetricType::getOptions()),
                 SelectFilter::make('year')

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Investments\Schemas;
+namespace App\Filament\Resources\AcceleratorParticipants\Schemas;
 
 use App\Filament\Support\Actions\ConfirmRecordAction;
 use App\Filament\Support\Columns\IdColumn;
 use App\Filament\Support\Helpers\YearsList;
+use App\Models\AcceleratorParticipant;
 use App\Models\Enums\Quarter;
-use App\Models\Investment;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -19,36 +19,25 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
 
-final class InvestmentsTable
+final class AcceleratorParticipantsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->defaultSort(fn($query) => $query->orderByDesc('year')->orderByDesc('quarter'))
-            ->modifyQueryUsing(fn($query) => $query->with('startup', 'investable'))
+            ->modifyQueryUsing(fn($query) => $query->with('startup', 'accelerator'))
             ->columns([
                 IdColumn::make(),
+                TextColumn::make('accelerator.name'),
                 TextColumn::make('startup.name'),
-                TextColumn::make('investable.name')
-                    ->label('Investor')
-                    ->state(fn(Investment $record) => $record->investable->getDisplayLabel())
-                    ->description(fn(Investment $record) => Str::title(Str::singular($record->investable_type)))
-                    ->searchable(),
                 TextColumn::make('year')
                     ->width(80)
                     ->label('Period')
-                    ->description(fn(Investment $record) => $record->quarter->getLabel())
+                    ->description(fn(AcceleratorParticipant $record) => $record->quarter->getLabel())
                     ->sortable(['year', 'quarter']),
-                TextColumn::make('amount_usd')
-                    ->width(120)
-                    ->sortable()
-                    ->label('Amount')
-                    ->money('usd'),
                 IconColumn::make('is_confirmed')
                     ->label('Confirmed')
                     ->width(40)
@@ -71,7 +60,6 @@ final class InvestmentsTable
                 SelectFilter::make('quarter')
                     ->multiple()
                     ->options(Quarter::getOptions()),
-                TernaryFilter::make('is_confirmed')->label('Confirmed'),
                 TrashedFilter::make(),
             ])
             ->recordActions([
