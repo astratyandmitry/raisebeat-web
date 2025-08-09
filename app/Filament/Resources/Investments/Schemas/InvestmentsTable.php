@@ -4,12 +4,14 @@ namespace App\Filament\Resources\Investments\Schemas;
 
 use App\Filament\Support\Actions\ConfirmRecordAction;
 use App\Filament\Support\Columns\IdColumn;
+use App\Filament\Support\Helpers\YearsList;
 use App\Models\Enums\Quarter;
 use App\Models\Investment;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
@@ -60,7 +62,7 @@ final class InvestmentsTable
             ])
             ->filters([
                 SelectFilter::make('year')
-                    ->options(collect(range(date('Y'), 2000))->mapWithKeys(fn($year) => [$year => $year])),
+                    ->options(YearsList::generate()),
                 SelectFilter::make('quarter')
                     ->multiple()
                     ->options(Quarter::getOptions()),
@@ -72,6 +74,7 @@ final class InvestmentsTable
 
                 ActionGroup::make([
                     ConfirmRecordAction::make(),
+                    EditAction::make(),
                     DeleteAction::make(),
                     ForceDeleteAction::make(),
                     RestoreAction::make(),
