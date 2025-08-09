@@ -7,6 +7,7 @@ namespace App\Filament\Components\Organization;
 use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\HtmlEntry;
 use App\Filament\Support\Entries\UserFieldset;
+use App\Filament\Support\Forms\UuidInput;
 use App\Models\Abstracts\Organization;
 use App\Models\Contracts\RelaterToUser;
 use Filament\Infolists\Components\ImageEntry;
@@ -22,8 +23,7 @@ abstract class BaseOrganizationInfolist
             ->columns(1)
             ->inlineLabel()
             ->components([
-                TextEntry::make('uuid')
-                    ->label('UUID'),
+                UuidInput::make(),
                 ImageEntry::make('logo_url')
                     ->circular()
                     ->label('Logo'),

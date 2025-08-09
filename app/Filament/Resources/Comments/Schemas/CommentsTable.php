@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Comments\Schemas;
 
+use App\Filament\Support\Columns\DateColumn;
 use App\Filament\Support\Columns\IdColumn;
 use App\Filament\Support\Columns\UsernameColumn;
 use Filament\Actions\ActionGroup;
@@ -31,10 +32,7 @@ final class CommentsTable
                     ->label('Comment')
                     ->limitedTooltip(80),
                 UsernameColumn::make(),
-                TextColumn::make('created_at')
-                    ->width(80)
-                    ->dateTime('Y-m-d H:i')
-                    ->sortable(),
+                DateColumn::make(),
             ])
             ->filters([
                 TrashedFilter::make(),

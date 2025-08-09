@@ -8,6 +8,7 @@ use App\Filament\Resources\Posts\Entries\RepostFieldsetEntry;
 use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\HtmlEntry;
 use App\Filament\Support\Entries\UsernameEntry;
+use App\Filament\Support\Entries\UuidEntry;
 use App\Filament\Support\Helpers\MorphRoute;
 use App\Models\Post;
 use Filament\Infolists\Components\TextEntry;
@@ -21,10 +22,8 @@ final class PostInfolist
             ->inlineLabel()
             ->columns(1)
             ->components([
-                TextEntry::make('uuid')
-                    ->label('UUID'),
+                UuidEntry::make(),
                 UsernameEntry::make(),
-
                 TextEntry::make('postable.name')
                     ->label('Postable')
                     ->color('primary')
@@ -38,7 +37,6 @@ final class PostInfolist
                 TextEntry::make('type')->badge(),
                 TextEntry::make('title')->visible(fn(Post $record): bool => ! empty($record->title)),
                 HtmlEntry::make('description')->visible(fn(Post $record): bool => ! empty($record->title)),
-
                 TextEntry::make('external_url')
                     ->label('External URL')
                     ->openUrlInNewTab()
@@ -46,7 +44,6 @@ final class PostInfolist
                     ->visible(fn(Post $record): bool => ! empty($record->external_url)),
 
                 RepostFieldsetEntry::make(),
-
                 DatesFieldset::make(),
             ]);
     }

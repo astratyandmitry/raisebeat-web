@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Users\Schemas;
 
 use App\Filament\Support\Actions\ViewRecordPublicUrlAction;
+use App\Filament\Support\Columns\DateColumn;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\Country;
 use App\Models\User;
@@ -29,7 +30,7 @@ final class UsersTable
     {
         return $table
             ->defaultSort('id', 'desc')
-            ->modifyQueryUsing(fn ($query) => $query->with('investor_profile'))
+            ->modifyQueryUsing(fn($query) => $query->with('investor_profile'))
             ->columns([
                 IdColumn::make(),
                 ImageColumn::make('avatar_url')
@@ -38,13 +39,13 @@ final class UsersTable
                     ->label('Avatar'),
                 TextColumn::make('first_name')
                     ->label('Info')
-                    ->formatStateUsing(fn (User $record): string => $record->getDisplayLabel())
-                    ->description(fn (User $record): string => "@{$record->username}")
+                    ->formatStateUsing(fn(User $record): string => $record->getDisplayLabel())
+                    ->description(fn(User $record): string => "@{$record->username}")
                     ->searchable(['first_name', 'last_name', 'username']),
                 TextColumn::make('city')
                     ->label('Location')
                     ->searchable(['country', 'city'])
-                    ->description(fn (User $record) => $record->country->getLabel()),
+                    ->description(fn(User $record) => $record->country->getLabel()),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
@@ -58,13 +59,9 @@ final class UsersTable
                     ->width(40)
                     ->label('Type')
                     ->badge()
-                    ->color(fn (User $record): string => $record->investor_profile ? 'danger' : 'info')
-                    ->formatStateUsing(fn (User $record): string => $record->investor_profile ? 'Investor' : 'User'),
-                TextColumn::make('created_at')
-                    ->width(80)
-                    ->dateTime('Y-m-d H:i')
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->color(fn(User $record): string => $record->investor_profile ? 'danger' : 'info')
+                    ->formatStateUsing(fn(User $record): string => $record->investor_profile ? 'Investor' : 'User'),
+                DateColumn::make(),
             ])
             ->filters([
                 SelectFilter::make('country')
@@ -73,7 +70,7 @@ final class UsersTable
                 Filter::make('email_verified_at')
                     ->label('Verified only')
                     ->checkbox()
-                    ->modifyQueryUsing(fn ($query) => $query->whereNotNull('email_verified_at')),
+                    ->modifyQueryUsing(fn($query) => $query->whereNotNull('email_verified_at')),
 
                 TrashedFilter::make(),
             ])

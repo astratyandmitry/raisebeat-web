@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Verifications\Schemas;
 
 use App\Filament\Support\Entries\HtmlEntry;
+use App\Filament\Support\Entries\UuidEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Schema;
@@ -17,11 +18,8 @@ final class VerificationInfolist
             ->columns(1)
             ->inlineLabel()
             ->components([
-                TextEntry::make('uuid')
-                    ->label('UUID'),
-
-                TextEntry::make('status')
-                    ->badge(),
+                UuidEntry::make(),
+                TextEntry::make('status')->badge(),
                 HtmlEntry::make('comment'),
 
                 Fieldset::make('Dates')

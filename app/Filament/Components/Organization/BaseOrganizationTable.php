@@ -6,6 +6,7 @@ namespace App\Filament\Components\Organization;
 
 use App\Filament\Support\Actions\GoToVerififcationAction;
 use App\Filament\Support\Actions\ViewRecordPublicUrlAction;
+use App\Filament\Support\Columns\DateColumn;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Abstracts\Organization;
 use Filament\Actions\ActionGroup;
@@ -51,16 +52,12 @@ abstract class BaseOrganizationTable
                     ->width(80)
                     ->label('Status')
                     ->badge(),
-                TextColumn::make('created_at')
-                    ->label('Created')
-                    ->width(80)
-                    ->dateTime('Y-m-d H:i')
-                    ->sortable(),
+                DateColumn::make(),
             ])
             ->filters([
                 ...$filters,
                 TernaryFilter::make('is_public')->label('Public'),
-                TrashedFilter::make('deleted_at'),
+                TrashedFilter::make(),
             ])
             ->recordActions([
                 ViewAction::make()->hiddenLabel(),

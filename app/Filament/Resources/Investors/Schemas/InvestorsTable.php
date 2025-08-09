@@ -6,6 +6,7 @@ namespace App\Filament\Resources\Investors\Schemas;
 
 use App\Filament\Support\Actions\GoToVerififcationAction;
 use App\Filament\Support\Actions\ViewRecordPublicUrlAction;
+use App\Filament\Support\Columns\DateColumn;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\Region;
 use App\Models\Investor;
@@ -53,12 +54,7 @@ final class InvestorsTable
                     ->width(80)
                     ->label('Status')
                     ->badge(),
-                TextColumn::make('created_at')
-                    ->width(80)
-                    ->label('Created')
-                    ->dateTime('Y-m-d H:i')
-                    ->sortable()
-                    ->toggleable(),
+                DateColumn::make(),
             ])
             ->filters([
                 SelectFilter::make('focus_region')

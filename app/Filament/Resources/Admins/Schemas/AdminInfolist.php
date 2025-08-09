@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Admins\Schemas;
 
 use App\Filament\Support\Entries\DatesFieldset;
+use App\Filament\Support\Entries\UuidEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -16,10 +17,9 @@ final class AdminInfolist
             ->inlineLabel()
             ->columns(1)
             ->components([
-                TextEntry::make('uuid')->label('UUID'),
+                UuidEntry::make(),
                 TextEntry::make('name'),
                 TextEntry::make('email'),
-
                 DatesFieldset::make(),
             ]);
     }

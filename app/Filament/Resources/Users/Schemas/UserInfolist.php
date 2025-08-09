@@ -7,6 +7,7 @@ namespace App\Filament\Resources\Users\Schemas;
 use App\Filament\Resources\Investors\InvestorResource;
 use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\HtmlEntry;
+use App\Filament\Support\Entries\UuidEntry;
 use App\Models\User;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
@@ -21,8 +22,7 @@ final class UserInfolist
             ->columns(1)
             ->inlineLabel()
             ->components([
-                TextEntry::make('uuid')
-                    ->label('UUID'),
+                UuidEntry::make(),
                 ImageEntry::make('avatar_url')
                     ->label('Avatar')
                     ->circular(),

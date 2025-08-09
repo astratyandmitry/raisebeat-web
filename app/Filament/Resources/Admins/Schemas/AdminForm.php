@@ -15,7 +15,7 @@ final class AdminForm
     {
         return $schema
             ->components([
-                UuidInput::make()->columnSpanFull(),
+                UuidInput::make(),
 
                 TextInput::make('name')
                     ->maxLength(80)

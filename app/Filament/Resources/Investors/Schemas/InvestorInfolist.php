@@ -6,6 +6,7 @@ namespace App\Filament\Resources\Investors\Schemas;
 
 use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\UserFieldset;
+use App\Filament\Support\Entries\UuidEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Schema;
@@ -18,8 +19,7 @@ final class InvestorInfolist
             ->columns(1)
             ->inlineLabel()
             ->components([
-                TextEntry::make('uuid')
-                    ->label('UUID'),
+                UuidEntry::make(),
                 TextEntry::make('focus_headline'),
                 TextEntry::make('focus_region')
                     ->color('gray')

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Posts\Schemas;
 
 use App\Filament\Support\Actions\ViewRecordPublicUrlAction;
+use App\Filament\Support\Columns\DateColumn;
 use App\Filament\Support\Columns\IdColumn;
 use App\Models\Enums\PostType;
 use App\Models\Post;
@@ -49,17 +50,12 @@ final class PostsTable
                 IconColumn::make('external_url')
                     ->label('URL')
                     ->trueColor('primary')
-                    ->tooltip(fn(Post $record) => $record->external_url)
                     ->url(fn(Post $record) => $record->external_url)
                     ->openUrlInNewTab()
                     ->alignCenter()
                     ->icon('heroicon-s-link')
                     ->boolean(),
-                TextColumn::make('created_at')
-                    ->label('Created')
-                    ->width(80)
-                    ->dateTime('Y-m-d H:i')
-                    ->sortable(),
+                DateColumn::make(),
             ])
             ->filters([
                 SelectFilter::make('type')

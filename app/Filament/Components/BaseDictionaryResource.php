@@ -6,8 +6,9 @@ namespace App\Filament\Components;
 
 use App\Filament\Components\Translatable\FormTranslatableField;
 use App\Filament\Components\Translatable\InfolistTranslatableTextEntry;
+use App\Filament\Support\Columns\DateColumn;
 use App\Filament\Support\Columns\IdColumn;
-use App\Models\Abstracts\Model;
+use App\Filament\Support\Forms\UuidInput;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -36,7 +37,7 @@ abstract class BaseDictionaryResource extends Resource
             ->columns(1)
             ->components([
                 Grid::make()->schema([
-
+                    UuidInput::make(),
                     TextInput::make('key')
                         ->disabledOn('edit')
                         ->alphaDash()
@@ -62,17 +63,12 @@ abstract class BaseDictionaryResource extends Resource
                 IdColumn::make(),
                 TextColumn::make('name')
                     ->label('Entity')
-                    ->description(fn ($record) => $record->key)
+                    ->description(fn($record) => $record->key)
                     ->searchable(['name', 'key']),
                 ToggleColumn::make('is_active')
                     ->label('Active')
                     ->width(80),
-                TextColumn::make('created_at')
-                    ->label('Date')
-                    ->description(fn (Model $record) => $record->updated_at->format('Y-m-d H:i'))
-                    ->width(120)
-                    ->dateTime('Y-m-d H:i')
-                    ->sortable(),
+                DateColumn::make(),
             ])
             ->filters([
                 TernaryFilter::make('is_active')

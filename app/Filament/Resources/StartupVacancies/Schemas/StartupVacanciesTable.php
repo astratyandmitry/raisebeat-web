@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Filament\Resources\StartupVacancies\Schemas;
 
 use App\Filament\Support\Actions\ViewRecordPublicUrlAction;
+use App\Filament\Support\Columns\DateColumn;
 use App\Filament\Support\Columns\IdColumn;
+use App\Filament\Support\Filters\StartupFilter;
 use App\Models\Enums\VacancyType;
 use App\Models\StartupVacancy;
 use Filament\Actions\ActionGroup;
@@ -50,21 +52,10 @@ final class StartupVacanciesTable
                     ->label('Applicable')
                     ->alignCenter()
                     ->boolean(),
-                TextColumn::make('created_at')
-                    ->width(40)
-                    ->label('Created')
-                    ->dateTime('Y-m-d H:i')
-                    ->sortable(),
-                TextColumn::make('updated_at')
-                    ->label('Updated')
-                    ->dateTime('Y-m-d H:i')
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('deleted_at')
-                    ->label('Deleted')
-                    ->dateTime('Y-m-d H:i')
-                    ->toggleable(isToggledHiddenByDefault: true),
+                DateColumn::make(),
             ])
             ->filters([
+                StartupFilter::make(),
                 SelectFilter::make('type')->options(VacancyType::getOptions()),
                 TernaryFilter::make('is_applicable')->label('Applicable'),
                 TrashedFilter::make(),
