@@ -16,6 +16,8 @@ final class LocationFieldsGrid
         return Grid::make(2)
             ->schema([
                 Select::make('country')
+                    ->native(false)
+                    ->searchable()
                     ->options(Country::getOptions())
                     ->required(),
 

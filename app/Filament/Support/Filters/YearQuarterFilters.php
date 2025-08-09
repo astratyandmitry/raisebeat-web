@@ -17,8 +17,10 @@ final class YearQuarterFilters
     {
         return [
             SelectFilter::make('year')
+                ->native(false)
                 ->options(YearsList::generate()),
             SelectFilter::make('quarter')
+                ->native(false)
                 ->multiple()
                 ->options(Quarter::getOptions()),
         ];
