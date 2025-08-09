@@ -19,7 +19,7 @@ final class InvestmentResource extends Resource
 
     protected static null|string|\UnitEnum $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

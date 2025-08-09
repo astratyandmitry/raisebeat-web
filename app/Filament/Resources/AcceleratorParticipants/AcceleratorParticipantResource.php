@@ -21,7 +21,7 @@ final class AcceleratorParticipantResource extends Resource
 
     protected static ?string $navigationLabel = 'Participants';
 
-    protected static ?int $navigationSort = 7;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {

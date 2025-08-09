@@ -21,7 +21,7 @@ final class CommentResource extends Resource
 
     protected static null|string|UnitEnum $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 6;
 
     public static function infolist(Schema $schema): Schema
     {

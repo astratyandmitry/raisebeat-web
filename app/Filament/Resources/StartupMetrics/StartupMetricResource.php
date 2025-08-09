@@ -21,7 +21,7 @@ final class StartupMetricResource extends Resource
 
     protected static ?string $navigationLabel = 'Metrics';
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {

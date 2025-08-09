@@ -23,7 +23,7 @@ final class StartupVacancyResource extends Resource
 
     protected static null|string|UnitEnum $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 4;
 
     protected static ?string $navigationLabel = 'Vacancies';
 
