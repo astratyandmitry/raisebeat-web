@@ -6,21 +6,23 @@ namespace App\Models;
 
 use App\Models\Abstracts\Model;
 use App\Models\Contracts\Confirmable;
+use App\Models\Enums\MetricType;
 use App\Models\Enums\Quarter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property-read int $startup_id
  * @property-read int $year
  * @property-read float $value
  * @property-read \App\Models\Enums\Quarter $quarter
- * @property-read \App\Models\Enums\MemberType $type
+ * @property-read \App\Models\Enums\MetricType $type
  */
 final class StartupMetric extends Model implements Confirmable
 {
     /** @use HasFactory<\Database\Factories\StartupMetricFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected function casts(): array
     {
@@ -29,6 +31,7 @@ final class StartupMetric extends Model implements Confirmable
             'value' => 'float',
             'is_confirmed' => 'boolean',
             'quarter' => Quarter::class,
+            'type' => MetricType::class,
         ];
     }
 

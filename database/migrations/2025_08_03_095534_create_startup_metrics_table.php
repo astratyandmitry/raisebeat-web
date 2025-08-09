@@ -24,6 +24,7 @@ return new class extends Migration
             $table->enum('quarter', array_keys(Quarter::getOptions()));
             $table->double('value');
             $table->boolean('is_confirmed')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

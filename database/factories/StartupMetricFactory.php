@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Enums\MemberType;
+use App\Models\Enums\MetricType;
 use App\Models\Enums\Quarter;
 use App\Models\Startup;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,7 +21,7 @@ final class StartupMetricFactory extends Factory
             'year' => $this->faker->numberBetween(2000, 2020),
             'quarter' => $this->faker->randomElement(Quarter::cases()),
             'value' => $this->faker->numberBetween(10, 100),
-            'type' => $this->faker->randomElement(MemberType::cases()),
+            'type' => $this->faker->randomElement(MetricType::cases()),
             'is_confirmed' => $this->faker->boolean,
         ];
     }
