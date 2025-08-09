@@ -11,7 +11,7 @@ use App\Models\Enums\InteractionType;
 use App\Models\Found;
 use App\Models\Interaction;
 use App\Models\Investor;
-use App\Models\Media;
+use App\Models\Publisher;
 use App\Models\Startup;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -22,7 +22,7 @@ final class InteractionSeeder extends Seeder
     private array $data = [
         [
             'type' => InteractionType::RequestDemoAccess,
-            'from' => [Investor::class, Found::class, Accelerator::class, Media::class],
+            'from' => [Investor::class, Found::class, Accelerator::class, Publisher::class],
             'to' => [Startup::class],
         ],
         [
@@ -48,11 +48,11 @@ final class InteractionSeeder extends Seeder
         [
             'type' => InteractionType::SubmitNews,
             'from' => [Startup::class, Investor::class, Found::class, Accelerator::class],
-            'to' => [Media::class],
+            'to' => [Publisher::class],
         ],
         [
             'type' => InteractionType::InviteToTeam,
-            'from' => [Startup::class, Found::class, Accelerator::class, Media::class],
+            'from' => [Startup::class, Found::class, Accelerator::class, Publisher::class],
             'to' => [User::class],
         ],
     ];

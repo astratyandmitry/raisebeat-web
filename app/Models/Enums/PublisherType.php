@@ -6,7 +6,7 @@ namespace App\Models\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
-enum MediaType: string implements HasLabel
+enum PublisherType: string implements HasLabel
 {
     use HasLocalizedInformation;
 

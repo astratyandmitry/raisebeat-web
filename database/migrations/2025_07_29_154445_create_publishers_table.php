@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\Enums\MediaType;
+use App\Models\Enums\PublisherType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('media', function (Blueprint $table): void {
+        Schema::create('publishers', function (Blueprint $table): void {
             $table->id();
             $table->uuid()->unique();
             $table->foreignId('user_id')->nullable()->constrained();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('contact_website', 240)->nullable();
             $table->string('contact_email', 80)->nullable();
             $table->string('contact_phone', 20)->nullable();
-            $table->string('type', 20)->index()->comment(MediaType::class);
+            $table->string('type', 20)->index()->comment(PublisherType::class);
             $table->string('official_url', 250);
             $table->string('submission_url', 250)->nullable();
             $table->unsignedInteger('count_viewed')->default(0);
@@ -43,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('publishers');
     }
 };

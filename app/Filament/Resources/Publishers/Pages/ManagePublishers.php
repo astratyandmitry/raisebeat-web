@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Media\Pages;
+namespace App\Filament\Resources\Publishers\Pages;
 
-use App\Filament\Resources\Media\MediaResource;
+use App\Filament\Resources\Publishers\PublisherResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ManageRecords;
 
-final class ManageMedia extends ManageRecords
+final class ManagePublishers extends ManageRecords
 {
-    protected static string $resource = MediaResource::class;
+    protected static string $resource = PublisherResource::class;
 
     protected function getHeaderActions(): array
     {

@@ -9,7 +9,7 @@ use App\Models\Accelerator;
 use App\Models\Comment;
 use App\Models\Found;
 use App\Models\Investor;
-use App\Models\Media;
+use App\Models\Publisher;
 use App\Models\Post;
 use App\Models\Startup;
 use App\Models\StartupVacancy;
@@ -40,7 +40,7 @@ final class AppServiceProvider extends ServiceProvider
             'accelerators' => Accelerator::class,
             'investors' => Investor::class,
             'founds' => Found::class,
-            'media' => Media::class,
+            'publishers' => Publisher::class,
             'startups' => Startup::class,
             'startup_vacancies' => StartupVacancy::class,
             'posts' => Post::class,

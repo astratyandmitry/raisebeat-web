@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Media\Schemas;
+namespace App\Filament\Resources\Publishers\Schemas;
 
-use App\Models\Enums\MediaType;
+use App\Models\Enums\PublisherType;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 
-final class MediaTable
+final class PublisherTable
 {
     public static function columns(): array
     {
@@ -24,7 +24,7 @@ final class MediaTable
     {
         return [
             SelectFilter::make('type')
-                ->options(MediaType::getOptions()),
+                ->options(PublisherType::getOptions()),
         ];
     }
 }

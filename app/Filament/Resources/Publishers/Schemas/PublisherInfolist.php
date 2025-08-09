@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Media\Schemas;
+namespace App\Filament\Resources\Publishers\Schemas;
 
-use App\Models\Media;
+use App\Models\Publisher;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Fieldset;
 
-final class MediaInfolist
+final class PublisherInfolist
 {
     public static function entries(): array
     {
         return [
-            Fieldset::make('Media')
+            Fieldset::make('Publisher')
                 ->columns(1)
                 ->schema([
                     TextEntry::make('type')->badge()->color('gray'),
@@ -22,7 +22,7 @@ final class MediaInfolist
                         ->label('Official URL'),
                     TextEntry::make('submission_url')
                         ->label('Submission URL')
-                        ->visible(fn (Media $record): bool => ! empty($record->submission_url)),
+                        ->visible(fn (Publisher $record): bool => ! empty($record->submission_url)),
                     IconEntry::make('is_public')->label('Public')->boolean(),
                 ]),
         ];

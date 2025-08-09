@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Media\Schemas;
+namespace App\Filament\Resources\Publishers\Schemas;
 
-use App\Models\Enums\MediaType;
+use App\Models\Enums\PublisherType;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Fieldset;
 
-final class MediaForm
+final class PublisherForm
 {
     public static function fields(): array
     {
         return [
-            Fieldset::make('Media')
+            Fieldset::make('Publisher')
                 ->columns(1)
                 ->schema([
                     Select::make('type')
-                        ->options(MediaType::getOptions())
+                        ->options(PublisherType::getOptions())
                         ->required(),
                     TextInput::make('official_url')
                         ->label('Official URL')

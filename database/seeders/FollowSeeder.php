@@ -8,7 +8,7 @@ use App\Models\Accelerator;
 use App\Models\Contracts\Followable;
 use App\Models\Found;
 use App\Models\Investor;
-use App\Models\Media;
+use App\Models\Publisher;
 use App\Models\Startup;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,7 +16,7 @@ use Illuminate\Support\Arr;
 
 final class FollowSeeder extends Seeder
 {
-    private array $followable = [Accelerator::class, Investor::class, Found::class, Media::class, Startup::class];
+    private array $followable = [Accelerator::class, Investor::class, Found::class, Publisher::class, Startup::class];
 
     public function run(): void
     {

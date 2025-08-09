@@ -67,7 +67,7 @@ final class VerificationsTable
                         'investors' => 'Investors',
                         'accelerators' => 'Accelerators',
                         'founds' => 'Founds',
-                        'medias' => 'Medias',
+                        'publishers' => 'Publishers',
                     ]),
             ])
             ->toolbarActions([

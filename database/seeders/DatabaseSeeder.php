@@ -12,7 +12,7 @@ use App\Models\Found;
 use App\Models\Investment;
 use App\Models\Investor;
 use App\Models\Link;
-use App\Models\Media;
+use App\Models\Publisher;
 use App\Models\Member;
 use App\Models\Notification;
 use App\Models\Post;
@@ -63,7 +63,7 @@ final class DatabaseSeeder extends Seeder
             ->has(Post::factory(2)->has(Comment::factory(3)))
             ->create();
 
-        Media::factory(10)
+        Publisher::factory(10)
             ->has(Verification::factory(), 'verifications_history')
             ->has(Link::factory(3))
             ->has(Member::factory(1))

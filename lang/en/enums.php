@@ -8,7 +8,7 @@ use App\Models\Enums\InteractionStatus;
 use App\Models\Enums\InteractionType;
 use App\Models\Enums\InvestmentModel;
 use App\Models\Enums\Language;
-use App\Models\Enums\MediaType;
+use App\Models\Enums\PublisherType;
 use App\Models\Enums\MemberType;
 use App\Models\Enums\MetricType;
 use App\Models\Enums\PostType;
@@ -172,13 +172,13 @@ return [
         VacancyType::Freelance->value => 'Freelance',
     ],
 
-    MediaType::class => [
-        MediaType::NewsSite->value => 'News site',
-        MediaType::Blog->value => 'Blog',
-        MediaType::Podcast->value => 'Podcast',
-        MediaType::Youtube->value => 'YouTube',
-        MediaType::Telegram->value => 'Telegram',
-        MediaType::Community->value => 'Community',
+    PublisherType::class => [
+        PublisherType::NewsSite->value => 'News site',
+        PublisherType::Blog->value => 'Blog',
+        PublisherType::Podcast->value => 'Podcast',
+        PublisherType::Youtube->value => 'YouTube',
+        PublisherType::Telegram->value => 'Telegram',
+        PublisherType::Community->value => 'Community',
     ],
 
     PostType::class => [
