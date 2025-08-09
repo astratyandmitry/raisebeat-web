@@ -16,7 +16,7 @@ final class StartupResource extends BaseOrganizationResource
 {
     protected static ?string $model = Startup::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-s-rocket-launch';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rocket-launch';
 
     protected static ?int $navigationSort = 1;
 

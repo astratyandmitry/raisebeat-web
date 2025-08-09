@@ -16,7 +16,7 @@ final class FoundResource extends BaseOrganizationResource
 {
     protected static ?string $model = Found::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-s-presentation-chart-line';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-presentation-chart-line';
 
     protected static ?int $navigationSort = 3;
 
