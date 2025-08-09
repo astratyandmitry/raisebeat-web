@@ -3,10 +3,13 @@
 namespace App\Filament\Resources\AcceleratorParticipants\Schemas;
 
 use App\Filament\Support\Actions\ConfirmRecordAction;
+use App\Filament\Support\Columns\ConfirmedColumn;
+use App\Filament\Support\Columns\DateColumn;
 use App\Filament\Support\Columns\IdColumn;
-use App\Filament\Support\Helpers\YearsList;
-use App\Models\AcceleratorParticipant;
-use App\Models\Enums\Quarter;
+use App\Filament\Support\Columns\YearQuarterColumn;
+use App\Filament\Support\Filters\ConfirmedFilter;
+use App\Filament\Support\Filters\StartupFilter;
+use App\Filament\Support\Filters\YearQuarterFilters;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -16,9 +19,7 @@ use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -33,33 +34,14 @@ final class AcceleratorParticipantsTable
                 IdColumn::make(),
                 TextColumn::make('accelerator.name'),
                 TextColumn::make('startup.name'),
-                TextColumn::make('year')
-                    ->width(80)
-                    ->label('Period')
-                    ->description(fn(AcceleratorParticipant $record) => $record->quarter->getLabel())
-                    ->sortable(['year', 'quarter']),
-                IconColumn::make('is_confirmed')
-                    ->label('Confirmed')
-                    ->width(40)
-                    ->alignCenter()
-                    ->boolean(),
-                TextColumn::make('created_at')
-                    ->label('Created')
-                    ->width(80)
-                    ->dateTime('Y-m-d H:i')
-                    ->sortable(),
+                YearQuarterColumn::make(),
+                ConfirmedColumn::make(),
+                DateColumn::make(),
             ])
             ->filters([
-                SelectFilter::make('startup_id')
-                    ->label('Startup')
-                    ->searchable()
-                    ->native(false)
-                    ->relationship('startup', 'name'),
-                SelectFilter::make('year')
-                    ->options(YearsList::generate()),
-                SelectFilter::make('quarter')
-                    ->multiple()
-                    ->options(Quarter::getOptions()),
+                StartupFilter::make(),
+                ...YearQuarterFilters::make(),
+                ConfirmedFilter::make(),
                 TrashedFilter::make(),
             ])
             ->recordActions([

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Admins\Schemas;
 
+use App\Filament\Support\Forms\UuidInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\Operation;
@@ -14,12 +15,8 @@ final class AdminForm
     {
         return $schema
             ->components([
-                TextInput::make('uuid')
-                    ->label('UUID')
-                    ->columnSpanFull()
-                    ->visibleOn(Operation::Edit)
-                    ->disabled()
-                    ->required(),
+                UuidInput::make()->columnSpanFull(),
+
                 TextInput::make('name')
                     ->maxLength(80)
                     ->required(),

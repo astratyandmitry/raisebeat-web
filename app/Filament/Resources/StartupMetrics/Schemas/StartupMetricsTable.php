@@ -3,10 +3,14 @@
 namespace App\Filament\Resources\StartupMetrics\Schemas;
 
 use App\Filament\Support\Actions\ConfirmRecordAction;
+use App\Filament\Support\Columns\ConfirmedColumn;
+use App\Filament\Support\Columns\DateColumn;
 use App\Filament\Support\Columns\IdColumn;
-use App\Filament\Support\Helpers\YearsList;
+use App\Filament\Support\Columns\YearQuarterColumn;
+use App\Filament\Support\Filters\ConfirmedFilter;
+use App\Filament\Support\Filters\StartupFilter;
+use App\Filament\Support\Filters\YearQuarterFilters;
 use App\Models\Enums\MetricType;
-use App\Models\Enums\Quarter;
 use App\Models\StartupMetric;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
@@ -17,10 +21,8 @@ use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -34,41 +36,21 @@ final class StartupMetricsTable
             ->columns([
                 IdColumn::make(),
                 TextColumn::make('startup.name'),
-                TextColumn::make('year')
-                    ->width(80)
-                    ->label('Period')
-                    ->description(fn(StartupMetric $record) => $record->quarter->getLabel())
-                    ->sortable(['year', 'quarter']),
+                YearQuarterColumn::make(),
                 TextColumn::make('value')
                     ->width(120)
                     ->label('Metric')
                     ->description(fn(StartupMetric $record) => $record->type->value)
                     ->numeric(),
-                IconColumn::make('is_confirmed')
-                    ->label('Confirmed')
-                    ->width(40)
-                    ->alignCenter()
-                    ->boolean(),
-                TextColumn::make('created_at')
-                    ->label('Created')
-                    ->width(80)
-                    ->dateTime('Y-m-d H:i')
-                    ->sortable(),
+                ConfirmedColumn::make(),
+                DateColumn::make(),
             ])
             ->filters([
-                SelectFilter::make('startup_id')
-                    ->label('Startup')
-                    ->searchable()
-                    ->native(false)
-                    ->relationship('startup', 'name'),
+                StartupFilter::make(),
                 SelectFilter::make('type')
                     ->options(MetricType::getOptions()),
-                SelectFilter::make('year')
-                    ->options(YearsList::generate()),
-                SelectFilter::make('quarter')
-                    ->multiple()
-                    ->options(Quarter::getOptions()),
-                TernaryFilter::make('is_confirmed')->label('Confirmed'),
+                ...YearQuarterFilters::make(),
+                ConfirmedFilter::make(),
                 TrashedFilter::make(),
             ])
             ->recordActions([

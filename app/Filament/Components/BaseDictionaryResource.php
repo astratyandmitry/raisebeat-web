@@ -36,11 +36,7 @@ abstract class BaseDictionaryResource extends Resource
             ->columns(1)
             ->components([
                 Grid::make()->schema([
-                    TextInput::make('uuid')
-                        ->label('UUID')
-                        ->disabled()
-                        ->visibleOn(Operation::Edit)
-                        ->required(),
+
                     TextInput::make('key')
                         ->disabledOn('edit')
                         ->alphaDash()

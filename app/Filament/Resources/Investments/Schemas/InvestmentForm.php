@@ -2,18 +2,17 @@
 
 namespace App\Filament\Resources\Investments\Schemas;
 
-use App\Filament\Support\Helpers\YearsList;
+use App\Filament\Support\Forms\StartupSelect;
+use App\Filament\Support\Forms\UuidInput;
+use App\Filament\Support\Forms\YearQuarterSelectGroup;
 use App\Models\Accelerator;
-use App\Models\Enums\Quarter;
 use App\Models\Found;
 use App\Models\Investor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Fieldset;
-use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
-use Filament\Support\Enums\Operation;
 use Illuminate\Support\Collection;
 
 final class InvestmentForm
@@ -23,38 +22,14 @@ final class InvestmentForm
         return $schema
             ->columns(1)
             ->components([
-                TextInput::make('uuid')
-                    ->label('UUID')
-                    ->disabled()
-                    ->columnSpanFull()
-                    ->visibleOn(Operation::Edit)
-                    ->required(),
+                UuidInput::make(),
+                StartupSelect::make()->required(),
+                YearQuarterSelectGroup::make(),
 
-                Select::make('startup_id')
-                    ->columnSpanFull()
-                    ->native(false)
-                    ->searchable()
-                    ->relationship('startup', 'name')
-                    ->required(),
-
-                Grid::make(3)
+                Fieldset::make('Investment')
+                    ->columns(3)
                     ->schema([
-                        Select::make('year')
-                            ->options(YearsList::generate())
-                            ->required(),
-                        Select::make('quarter')
-                            ->options(Quarter::getOptions())
-                            ->required(),
-                        TextInput::make('amount_usd')
-                            ->label('Amount USD')
-                            ->required()
-                            ->minValue(1)
-                            ->numeric(),
-                    ]),
-
-                Fieldset::make('Investor')
-                    ->columns(2)
-                    ->schema([
+                        UuidInput::make(),
                         Select::make('investable_type')
                             ->label('Type')
                             ->native(false)
@@ -67,7 +42,7 @@ final class InvestmentForm
                             ->live(),
 
                         Select::make('investable_id')
-                            ->label('Entity')
+                            ->label('Investor')
                             ->required()
                             ->native(false)
                             ->searchable()
@@ -79,6 +54,12 @@ final class InvestmentForm
                                     default => null,
                                 };
                             }),
+
+                        TextInput::make('amount_usd')
+                            ->label('Amount USD')
+                            ->required()
+                            ->minValue(1)
+                            ->numeric(),
                     ]),
             ]);
     }

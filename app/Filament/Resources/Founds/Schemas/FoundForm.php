@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Founds\Schemas;
 
 use App\Filament\Support\Forms\LocationFieldsGrid;
+use App\Filament\Support\Forms\UuidInput;
 use App\Models\Enums\Country;
 use App\Models\Enums\InvestmentModel;
 use App\Models\Enums\Region;
@@ -70,9 +71,7 @@ final class FoundForm
     {
         return $schema
             ->components([
-                TextInput::make('uuid')
-                    ->label('UUID')
-                    ->required(),
+                UuidInput::make()->columnSpanFull(),
                 TextInput::make('user_id')
                     ->required()
                     ->numeric(),

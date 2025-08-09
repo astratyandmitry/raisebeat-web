@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Components\Organization;
 
+use App\Filament\Support\Forms\UuidInput;
 use App\Models\User;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
@@ -21,11 +22,7 @@ abstract class BaseOrganizationForm
         return $schema
             ->columns(1)
             ->components([
-                TextInput::make('uuid')
-                    ->label('UUID')
-                    ->disabled()
-                    ->visibleOn(Operation::Edit)
-                    ->required(),
+                UuidInput::make(),
 
                 Select::make('user_id')
                     ->label('User')
@@ -43,6 +40,7 @@ abstract class BaseOrganizationForm
                             ->unique()
                             ->required(),
 
+                        // todo: slug generation
                         TextInput::make('slug')
                             ->maxlength(80)
                             ->alphaDash()

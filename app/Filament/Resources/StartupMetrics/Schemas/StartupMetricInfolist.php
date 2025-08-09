@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources\StartupMetrics\Schemas;
 
-use App\Filament\Resources\Startups\StartupResource;
+use App\Filament\Support\Entries\ConfirmedEntry;
 use App\Filament\Support\Entries\DatesFieldset;
+use App\Filament\Support\Entries\StartupEntry;
+use App\Filament\Support\Entries\UuidEntry;
+use App\Filament\Support\Entries\YearQuarterEntry;
 use App\Models\StartupMetric;
-use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -17,31 +19,13 @@ final class StartupMetricInfolist
             ->columns(1)
             ->inlineLabel()
             ->components([
-                TextEntry::make('uuid')
-                    ->label('UUID'),
-
-                TextEntry::make('startup.name')
-                    ->color('primary')
-                    ->weight('medium')
-                    ->iconColor('primary')
-                    ->icon('heroicon-s-link')
-                    ->openUrlInNewTab()
-                    ->label('Startup')
-                    ->url(fn(StartupMetric $record) => StartupResource::getIndexUrl([
-                        'tableAction' => 'view',
-                        'tableActionRecord' => $record->startup_id,
-                    ])),
-
-                TextEntry::make('year')
-                    ->label('Period')
-                    ->formatStateUsing(fn(StartupMetric $record) => "{$record->year}, {$record->quarter->getLabel()}"),
+                UuidEntry::make(),
+                StartupEntry::make(),
+                YearQuarterEntry::make(),
                 TextEntry::make('value')
                     ->label('Period')
                     ->formatStateUsing(fn(StartupMetric $record) => "{$record->value}, {$record->type->value}"),
-                IconEntry::make('is_confirmed')
-                    ->label('Confirmed')
-                    ->boolean(),
-
+                ConfirmedEntry::make(),
                 DatesFieldset::make(),
             ]);
     }
