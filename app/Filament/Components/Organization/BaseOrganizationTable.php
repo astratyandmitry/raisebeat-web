@@ -17,8 +17,10 @@ use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -40,6 +42,11 @@ abstract class BaseOrganizationTable
                     ->description(fn(Organization $record): string => Str::limit($record->headline, 80))
                     ->searchable(['name', 'headline']),
                 ...$columns,
+                IconColumn::make('is_public')
+                    ->width(40)
+                    ->alignCenter()
+                    ->label('Public')
+                    ->boolean(),
                 TextColumn::make('latest_verification.status')
                     ->width(80)
                     ->label('Status')
@@ -52,6 +59,7 @@ abstract class BaseOrganizationTable
             ])
             ->filters([
                 ...$filters,
+                TernaryFilter::make('is_public')->label('Public'),
                 TrashedFilter::make('deleted_at'),
             ])
             ->recordActions([

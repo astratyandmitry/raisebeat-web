@@ -29,10 +29,6 @@ final class FoundsTable
                 ->label('Model')
                 ->badge()
                 ->color('gray'),
-            IconColumn::make('is_public')
-                ->width(40)
-                ->label('Public')
-                ->boolean(),
         ];
     }
 
@@ -47,7 +43,6 @@ final class FoundsTable
             SelectFilter::make('investment_model')
                 ->label('Model')
                 ->options(InvestmentModel::getOptions()),
-            TernaryFilter::make('is_public')->label('Public'),
         ];
     }
 }

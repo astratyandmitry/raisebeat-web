@@ -7,6 +7,7 @@ namespace App\Filament\Components\Organization;
 use App\Filament\Support\Entries\DatesFieldset;
 use App\Filament\Support\Entries\HtmlEntry;
 use App\Filament\Support\Entries\UserFieldset;
+use App\Models\Abstracts\Organization;
 use App\Models\Contracts\RelaterToUser;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
@@ -32,8 +33,7 @@ abstract class BaseOrganizationInfolist
 
                 ...$components,
 
-                UserFieldset::make()->visible(fn (RelaterToUser $record): bool => ! empty($record->user)),
-
+                UserFieldset::make()->visible(fn(RelaterToUser $record): bool => ! empty($record->user)),
                 Fieldset::make('Contacts')
                     ->columns(1)
                     ->schema([

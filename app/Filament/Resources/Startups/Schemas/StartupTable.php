@@ -42,10 +42,6 @@ final class StartupTable
                 ->label('Round')
                 ->width(80)
                 ->badge(),
-            IconColumn::make('is_public')
-                ->width(40)
-                ->label('Public')
-                ->boolean(),
         ];
     }
 
@@ -66,7 +62,6 @@ final class StartupTable
             SelectFilter::make('fundraising_round')
                 ->label('Round')
                 ->options(FundraisingRound::getOptions()),
-            TernaryFilter::make('is_public')->label('Public'),
         ];
     }
 }
